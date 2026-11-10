@@ -1,13 +1,13 @@
 "use client";
 
-import type { NavigationRailOutput } from "@workspace/react/components/navigation-rail/output-chips";
+import type { NavigationRailOutput } from "composerkit/components/navigation-rail/output-chips";
 import {
   NavigationRail,
   NavigationRailCard,
   NavigationRailMarker,
   NavigationRailPreview,
-} from "@workspace/react/components/ui/navigation-rail";
-import type { NavigationRailItem } from "@workspace/react/components/ui/navigation-rail";
+} from "composerkit/components/ui/navigation-rail";
+import type { NavigationRailItem } from "composerkit/components/ui/navigation-rail";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";

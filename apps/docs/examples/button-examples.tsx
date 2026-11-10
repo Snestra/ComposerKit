@@ -6,23 +6,23 @@ import {
   ButtonGroupTitle,
   RoundIconToggleButton,
   ToolbarButton,
-} from "@workspace/react/components/button/button-group";
-import { DataButton } from "@workspace/react/components/button/data-button";
+} from "composerkit/components/button/button-group";
+import { DataButton } from "composerkit/components/button/data-button";
 import type {
   DataButtonColor,
   DataButtonSize,
   DataButtonVariant,
-} from "@workspace/react/components/button/data-button";
-import { PlatformProvider } from "@workspace/react/components/platform-provider";
-import { Button, ButtonLink } from "@workspace/react/components/ui/button";
+} from "composerkit/components/button/data-button";
+import { PlatformProvider } from "composerkit/components/platform-provider";
+import { Button, ButtonLink } from "composerkit/components/ui/button";
 import type {
   ButtonColor,
   ButtonFocusRing,
   ButtonRadius,
   ButtonSize,
-} from "@workspace/react/components/ui/button";
-import { Menu, MenuItem } from "@workspace/react/components/ui/menu";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/button";
+import { Menu, MenuItem } from "composerkit/components/ui/menu";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";

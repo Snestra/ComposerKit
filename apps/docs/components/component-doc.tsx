@@ -76,9 +76,7 @@ export async function ComponentDoc({ name }: { name: string }) {
           lang="diff"
         />
 
-        <h3>npm package</h3>
-        <p>The npm package lags the registry and has a different API.</p>
-        <DynamicCodeBlock code="npm install composerkit" lang="bash" />
+        <h3>Import</h3>
         <DynamicCodeBlock code={packageImport} lang="tsx" />
       </section>
 

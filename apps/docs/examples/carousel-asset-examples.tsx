@@ -6,18 +6,18 @@ import {
   ImageSourceHostContext,
   registerImageAssetFiles,
   useGeneratedImageSource,
-} from "@workspace/react/components/carousel/image-source";
+} from "composerkit/components/carousel/image-source";
 import type {
   GeneratedImageSourceOptions,
   ImageAssetResolver,
   ImageSourceHost,
-} from "@workspace/react/components/carousel/image-source";
-import { Button } from "@workspace/react/components/ui/button";
-import { ImageGroupCarousel } from "@workspace/react/components/ui/carousel";
+} from "composerkit/components/carousel/image-source";
+import { Button } from "composerkit/components/ui/button";
+import { ImageGroupCarousel } from "composerkit/components/ui/carousel";
 import type {
   CarouselImage,
   ImageGroupCarouselHandle,
-} from "@workspace/react/components/ui/carousel";
+} from "composerkit/components/ui/carousel";
 import { useCallback, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 

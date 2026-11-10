@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   Menu,
   MenuCheckboxItem,
@@ -19,13 +19,13 @@ import {
   MenuSubmenuItem,
   MenuTitle,
   MenuZoomProvider,
-} from "@workspace/react/components/ui/menu";
+} from "composerkit/components/ui/menu";
 import type {
   MenuContentWidth,
   MenuContextItem,
   MenuSize,
   MenuSurface,
-} from "@workspace/react/components/ui/menu";
+} from "composerkit/components/ui/menu";
 import {
   ListMenu,
   ListMenuCheckboxItem,
@@ -42,7 +42,7 @@ import {
   ListMenuSubContent,
   ListMenuSubTrigger,
   ListMenuTrigger,
-} from "@workspace/react/components/ui/menu-list";
+} from "composerkit/components/ui/menu-list";
 import { Archive, Copy, Folder, Pencil, Trash2 } from "lucide-react";
 import { createContext, use, useEffect, useRef, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";

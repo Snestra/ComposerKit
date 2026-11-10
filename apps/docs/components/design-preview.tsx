@@ -1,7 +1,7 @@
 "use client";
 
 import { Field } from "@base-ui/react/field";
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   Dialog,
   DialogBody,
@@ -10,15 +10,15 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@workspace/react/components/ui/dialog";
-import { Menu, MenuItem } from "@workspace/react/components/ui/menu";
+} from "composerkit/components/ui/dialog";
+import { Menu, MenuItem } from "composerkit/components/ui/menu";
 import {
   Popover,
   PopoverContent,
   PopoverTitle,
   PopoverTrigger,
-} from "@workspace/react/components/ui/popover";
-import { Select } from "@workspace/react/components/ui/select";
+} from "composerkit/components/ui/popover";
+import { Select } from "composerkit/components/ui/select";
 import { MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState } from "react";

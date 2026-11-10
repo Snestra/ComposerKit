@@ -8,7 +8,7 @@ import {
   EyebrowNotice,
   RecoveryBannerPlacementContext,
   useBannerCtaDensity,
-} from "@workspace/react/components/ui/banner";
+} from "composerkit/components/ui/banner";
 import type {
   AlertLevel,
   AlertVariant,
@@ -17,8 +17,8 @@ import type {
   BannerProps,
   BannerType,
   BannerVariant,
-} from "@workspace/react/components/ui/banner";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/ui/banner";
+import { Button } from "composerkit/components/ui/button";
 import { CircleCheck, Info, Sparkles, TriangleAlert, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";

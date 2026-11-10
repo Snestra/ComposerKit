@@ -1,14 +1,14 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   formatAccelerator,
   Kbd,
   ShortcutLabel,
   ShortcutSearchInput,
-} from "@workspace/react/components/ui/keyboard-shortcut";
-import type { ShortcutPlatform } from "@workspace/react/components/ui/keyboard-shortcut";
-import { TooltipHint } from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/keyboard-shortcut";
+import type { ShortcutPlatform } from "composerkit/components/ui/keyboard-shortcut";
+import { TooltipHint } from "composerkit/components/ui/tooltip";
 import Link from "next/link";
 import { useState } from "react";
 import type { KeyboardEvent, ReactNode } from "react";

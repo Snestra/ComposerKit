@@ -1,6 +1,6 @@
 "use client";
 
-import { StatusBadgeIcon } from "@workspace/react/components/icon";
+import { StatusBadgeIcon } from "composerkit/components/icon";
 import {
   ArrowIcon,
   CheckIcon,
@@ -8,8 +8,8 @@ import {
   DocumentIcon,
   FolderIcon,
   SquareOnSquareIcon,
-} from "@workspace/react/components/icon/assets";
-import { CopyButton } from "@workspace/react/components/icon/copy-button";
+} from "composerkit/components/icon/assets";
+import { CopyButton } from "composerkit/components/icon/copy-button";
 import {
   CheckGlyph,
   ChevronDownGlyph,
@@ -20,19 +20,19 @@ import {
   SharedChevronRightIcon,
   SharedCloseIcon,
   XGlyph,
-} from "@workspace/react/components/icon/glyphs";
-import { NamedIcon } from "@workspace/react/components/icon/registry";
+} from "composerkit/components/icon/glyphs";
+import { NamedIcon } from "composerkit/components/icon/registry";
 import {
   CompactIcon,
   ResponsiveIcon,
-} from "@workspace/react/components/icon/responsive-icon";
-import type { IconComponent } from "@workspace/react/components/icon/responsive-icon";
+} from "composerkit/components/icon/responsive-icon";
+import type { IconComponent } from "composerkit/components/icon/responsive-icon";
 import {
   knownAppIcon,
   knownAppImage,
-} from "@workspace/react/components/settings/known-apps";
-import { Button } from "@workspace/react/components/ui/button";
-import { cn } from "@workspace/react/lib/utils";
+} from "composerkit/components/settings/known-apps";
+import { Button } from "composerkit/components/ui/button";
+import { cn } from "composerkit/lib/utils";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";

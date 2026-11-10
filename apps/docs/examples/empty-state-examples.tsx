@@ -1,17 +1,17 @@
 "use client";
 
-import { MagnifyingGlass24Icon } from "@workspace/react/components/empty-state/icons";
-import { Button } from "@workspace/react/components/ui/button";
+import { MagnifyingGlass24Icon } from "composerkit/components/empty-state/icons";
+import { Button } from "composerkit/components/ui/button";
 import {
   EmptyState,
   PageEmptyState,
   SearchEmptyState,
-} from "@workspace/react/components/ui/empty-state";
+} from "composerkit/components/ui/empty-state";
 import type {
   PageEmptyStateIllustrationSize,
   PageEmptyStateLayout,
-} from "@workspace/react/components/ui/empty-state";
-import { cn } from "@workspace/react/lib/utils";
+} from "composerkit/components/ui/empty-state";
+import { cn } from "composerkit/lib/utils";
 import { Inbox } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";

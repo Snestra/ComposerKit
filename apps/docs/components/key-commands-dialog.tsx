@@ -8,7 +8,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@workspace/react/components/ui/dialog";
+} from "composerkit/components/ui/dialog";
 import { useState } from "react";
 import type { RefObject } from "react";
 

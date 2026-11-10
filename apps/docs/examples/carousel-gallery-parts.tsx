@@ -2,7 +2,7 @@
 
 /* oxlint-disable shadcn/no-restyle, shadcn/no-arbitrary-values -- The gallery generates its example photos as inline SVG. */
 
-import type { CarouselImage } from "@workspace/react/components/ui/carousel";
+import type { CarouselImage } from "composerkit/components/ui/carousel";
 import type { ReactNode } from "react";
 
 const HUE_STEP = 47;

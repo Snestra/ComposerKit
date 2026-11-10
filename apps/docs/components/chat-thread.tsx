@@ -1,5 +1,5 @@
-import { MessageBubble } from "@workspace/react/components/ui/message-bubble";
 import { cn } from "cn";
+import { MessageBubble } from "composerkit/components/ui/message-bubble";
 import type { ComponentProps, ReactNode } from "react";
 
 interface ChatMessage {

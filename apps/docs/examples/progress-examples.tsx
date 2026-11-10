@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   BlossomShimmer,
   CircularProgress,
@@ -15,14 +15,14 @@ import {
   TypingDots,
   UploadOverlay,
   useResetFillAnimation,
-} from "@workspace/react/components/ui/progress";
-import { Slider } from "@workspace/react/components/ui/slider";
+} from "composerkit/components/ui/progress";
+import { Slider } from "composerkit/components/ui/slider";
 import {
   ReducedMotionAttribute,
   ReducedMotionProvider,
   useReducedMotion,
-} from "@workspace/react/lib/reduced-motion";
-import type { ReducedMotionPreference } from "@workspace/react/lib/reduced-motion";
+} from "composerkit/lib/reduced-motion";
+import type { ReducedMotionPreference } from "composerkit/lib/reduced-motion";
 import Link from "next/link";
 import { useId, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";

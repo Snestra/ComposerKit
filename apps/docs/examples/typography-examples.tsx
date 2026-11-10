@@ -1,21 +1,21 @@
 "use client";
 
-import { FilenameMiddleEllipsis } from "@workspace/react/components/typography/filename-middle-ellipsis";
-import { HeaderTitleChip } from "@workspace/react/components/typography/header-title-chip";
-import { Marquee } from "@workspace/react/components/typography/marquee";
-import { RollingNumber } from "@workspace/react/components/typography/rolling-number";
-import { Button } from "@workspace/react/components/ui/button";
+import { FilenameMiddleEllipsis } from "composerkit/components/typography/filename-middle-ellipsis";
+import { HeaderTitleChip } from "composerkit/components/typography/header-title-chip";
+import { Marquee } from "composerkit/components/typography/marquee";
+import { RollingNumber } from "composerkit/components/typography/rolling-number";
+import { Button } from "composerkit/components/ui/button";
 import {
   TooltipHint,
   TooltipProvider,
-} from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/tooltip";
 import {
   Heading,
   MiddleTruncatedBranchLabel,
   Text,
-} from "@workspace/react/components/ui/typography";
-import { ReducedMotionProvider } from "@workspace/react/lib/reduced-motion";
-import { cn } from "@workspace/react/lib/utils";
+} from "composerkit/components/ui/typography";
+import { ReducedMotionProvider } from "composerkit/lib/reduced-motion";
+import { cn } from "composerkit/lib/utils";
 import { FileText } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";

@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
-import { DisclosureToggle } from "@workspace/react/components/ui/disclosure";
+import { Button } from "composerkit/components/ui/button";
+import { DisclosureToggle } from "composerkit/components/ui/disclosure";
 import { Folder } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";

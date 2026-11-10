@@ -1,8 +1,8 @@
 "use client";
 
 import { Field } from "@base-ui/react/field";
-import { Select } from "@workspace/react/components/ui/select";
-import { cn } from "@workspace/react/lib/utils";
+import { Select } from "composerkit/components/ui/select";
+import { cn } from "composerkit/lib/utils";
 import { useTheme } from "next-themes";
 import { useId, useSyncExternalStore } from "react";
 

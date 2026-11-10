@@ -1,33 +1,33 @@
 "use client";
 
-import { ComposerEditor } from "@workspace/react/components/composer/editor/composer-editor";
-import type { ComposerEditorController } from "@workspace/react/components/composer/editor/controller";
+import { ComposerEditor } from "composerkit/components/composer/editor/composer-editor";
+import type { ComposerEditorController } from "composerkit/components/composer/editor/controller";
 import {
   addDraftAttachments,
   createDraft,
   createDraftStore,
-} from "@workspace/react/components/composer/editor/draft";
-import type { ComposerDraft } from "@workspace/react/components/composer/editor/draft";
-import type { ComposerMentionAttributes } from "@workspace/react/components/composer/editor/schema";
-import { ComposerFeatureGatesProvider } from "@workspace/react/components/composer/feature-gates";
+} from "composerkit/components/composer/editor/draft";
+import type { ComposerDraft } from "composerkit/components/composer/editor/draft";
+import type { ComposerMentionAttributes } from "composerkit/components/composer/editor/schema";
+import { ComposerFeatureGatesProvider } from "composerkit/components/composer/feature-gates";
 import {
   ComposerSendIcon,
   ComposerStopIcon,
   ComposerVoiceIcon,
-} from "@workspace/react/components/composer/icons";
-import type { ComposerMorphState } from "@workspace/react/components/composer/morph-geometry";
+} from "composerkit/components/composer/icons";
+import type { ComposerMorphState } from "composerkit/components/composer/morph-geometry";
 import type {
   ComposerEnterBehavior,
   FileAttachmentRef,
-} from "@workspace/react/components/composer/rules";
-import { Button } from "@workspace/react/components/ui/button";
-import { ComposerSubmitButton } from "@workspace/react/components/ui/composer";
-import type { SelectedMode } from "@workspace/react/components/ui/composer";
+} from "composerkit/components/composer/rules";
+import { Button } from "composerkit/components/ui/button";
+import { ComposerSubmitButton } from "composerkit/components/ui/composer";
+import type { SelectedMode } from "composerkit/components/ui/composer";
 import {
   ReducedMotionAttribute,
   ReducedMotionProvider,
-} from "@workspace/react/lib/reduced-motion";
-import type { ReducedMotionPreference } from "@workspace/react/lib/reduced-motion";
+} from "composerkit/lib/reduced-motion";
+import type { ReducedMotionPreference } from "composerkit/lib/reduced-motion";
 import type { Node as ProseMirrorNode } from "prosemirror-model";
 import { useRef, useState } from "react";
 import type { ReactNode } from "react";

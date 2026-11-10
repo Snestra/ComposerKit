@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 
 import { PreferencesScreen } from "@/components/preferences-screen";
@@ -117,7 +117,6 @@ const DemoScene = ({ onFinish }: { onFinish: (state: Playback) => void }) => {
 
     const onTransitionDone = (event: TransitionEvent) => {
       if (ownsTransition(event)) {
-        // oxlint-disable-next-line react/immutability -- local to this effect or callback, not render state; oxlint 1.91 misreports it
         running = Math.max(0, running - 1);
         startFollowing();
       }

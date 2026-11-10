@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   CodeDiff,
   DiffActionButton,
@@ -12,7 +12,7 @@ import {
   createFileDiff,
   parseUnifiedPatch,
   toCodeDiffData,
-} from "@workspace/react/components/ui/diff";
+} from "composerkit/components/ui/diff";
 import type {
   AnnotationSide,
   CodeDiffData,
@@ -23,9 +23,9 @@ import type {
   FileDiffMetadata,
   InlineReviewAction,
   SelectedLineRange,
-} from "@workspace/react/components/ui/diff";
-import type { MenuContextItem } from "@workspace/react/components/ui/menu";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/diff";
+import type { MenuContextItem } from "composerkit/components/ui/menu";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";

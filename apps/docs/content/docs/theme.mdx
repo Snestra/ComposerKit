@@ -9,7 +9,7 @@ Pick a seed color for each role.
 
 ```text
 on(seed change)
-  give every token in packages/react/DESIGN.md its role's hue and chroma
+  give every token in packages/composerkit/DESIGN.md its role's hue and chroma
   set lightness so luminance matches the default theme
   check 76 text and surface pairs, light and dark, against WCAG 4.5:1 and an APCA limit
   while a pair fails
@@ -22,6 +22,6 @@ on(seed change)
 
 ## Use the export
 
-- `DESIGN.md` replaces `packages/react/DESIGN.md`. Run `pnpm --filter composerkit export:design` to lint it and write `src/styles/design-tokens.css`.
+- `DESIGN.md` replaces `packages/composerkit/DESIGN.md`. Run `pnpm --filter composerkit export:design` to lint it and write `src/styles/design-tokens.css`.
 - The DTCG file follows the W3C Design Tokens format, version 2025.10.
-- The theme CSS sets the `--color-light-*` and `--color-dark-*` variables. Load it after `composerkit/styles.css`.
+- The theme CSS sets the `--color-light-*` and `--color-dark-*` variables. Import it after the ComposerKit styles in `src/styles/globals.css`.

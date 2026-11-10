@@ -6,17 +6,7 @@
 //   node scripts/install-matrix.ts [item...]
 
 import { execFile } from "node:child_process";
-import { createReadStream } from "node:fs";
-import {
-  mkdtemp,
-  readdir,
-  readFile,
-  rm,
-  stat,
-  writeFile,
-} from "node:fs/promises";
-import { createServer } from "node:http";
-import type { AddressInfo } from "node:net";
+import { mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -25,6 +15,7 @@ import { promisify } from "node:util";
 import nextManifest from "next/package.json" with { type: "json" };
 
 import registry from "../registry.json" with { type: "json" };
+import { startLocalRegistry } from "./registry-server.ts";
 
 const run = promisify(execFile);
 
@@ -126,7 +117,7 @@ const step = async (
   }
 };
 
-const componentsJson = (port: number) => ({
+const componentsJson = (origin: string) => ({
   $schema: "https://ui.shadcn.com/schema.json",
   aliases: {
     components: "@/components",
@@ -137,7 +128,7 @@ const componentsJson = (port: number) => ({
   },
   iconLibrary: "lucide",
   registries: {
-    [NAMESPACE]: `http://127.0.0.1:${port}/r/{name}.json`,
+    [NAMESPACE]: `${origin}/r/{name}.json`,
   },
   rsc: true,
   style: "new-york",
@@ -202,9 +193,9 @@ const checkFiles = (
   }
 };
 
-const installItem = async (name: string, port: number, root: string) => {
+const installItem = async (name: string, origin: string, root: string) => {
   const app = path.join(root, name);
-  const registryUrl = `http://127.0.0.1:${port}/r/${name}.json`;
+  const registryUrl = `${origin}/r/${name}.json`;
 
   try {
     await step(
@@ -232,7 +223,7 @@ const installItem = async (name: string, port: number, root: string) => {
     try {
       await writeFile(
         path.join(app, "components.json"),
-        `${JSON.stringify(componentsJson(port), null, 2)}\n`
+        `${JSON.stringify(componentsJson(origin), null, 2)}\n`
       );
     } catch (error) {
       throw new StepError("config", String(error));
@@ -276,35 +267,12 @@ const installItem = async (name: string, port: number, root: string) => {
   }
 };
 
-const serveRegistry = () =>
-  createServer(async (request, response) => {
-    const url = new URL(request.url ?? "/", "http://127.0.0.1");
-    const file = path.join(PUBLIC_R, path.basename(url.pathname));
-    const isFile = await stat(file).then(
-      (info) => info.isFile(),
-      () => false
-    );
-
-    if (!(url.pathname.startsWith("/r/") && isFile)) {
-      response.writeHead(404).end();
-
-      return;
-    }
-
-    response.writeHead(200, { "content-type": "application/json" });
-    createReadStream(file).pipe(response);
-  });
-
 const requested = process.argv.slice(2);
 const names = registry.items
   .map((item) => item.name)
   .filter((name) => requested.length === 0 || requested.includes(name));
 
-const server = serveRegistry();
-await new Promise<void>((resolve) => {
-  server.listen(0, "127.0.0.1", resolve);
-});
-const { port } = server.address() as AddressInfo;
+const localRegistry = await startLocalRegistry();
 const root = await mkdtemp(path.join(os.tmpdir(), "composerkit-matrix-"));
 
 const queue = [...names];
@@ -314,12 +282,12 @@ await Promise.all(
   Array.from({ length: CONCURRENCY }, async () => {
     while (queue.length > 0) {
       const name = queue.shift() ?? "";
-      results.push(await installItem(name, port, root));
+      results.push(await installItem(name, localRegistry.origin, root));
     }
   })
 );
 
-server.close();
+await localRegistry.close();
 await rm(root, { force: true, recursive: true });
 
 if (results.includes(false)) {

@@ -2,13 +2,13 @@
 
 /* oxlint-disable shadcn/no-inline-styles -- The examples pass `style` to PopoverContent to show its overflow behaviour; the component accepts a style prop there. */
 
-import { Coachmark } from "@workspace/react/components/popover/coachmark";
+import { Coachmark } from "composerkit/components/popover/coachmark";
 import type {
   CoachmarkAlign,
   CoachmarkSide,
   CoachmarkSize,
-} from "@workspace/react/components/popover/coachmark";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/popover/coachmark";
+import { Button } from "composerkit/components/ui/button";
 import {
   Popover,
   PopoverAnchor,
@@ -18,13 +18,13 @@ import {
   PopoverTitle,
   PopoverTrigger,
   PopoverUiScaleContext,
-} from "@workspace/react/components/ui/popover";
+} from "composerkit/components/ui/popover";
 import type {
   PopoverAlign,
   PopoverSide,
   PopoverSize,
   PopoverVariant,
-} from "@workspace/react/components/ui/popover";
+} from "composerkit/components/ui/popover";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 
@@ -499,7 +499,6 @@ const TrackingExample = () => {
         setGap(`${Math.round((panel.left - anchor.left) * 10) / 10}px`);
       }
 
-      // oxlint-disable-next-line react/immutability -- local to this effect or callback, not render state; oxlint 1.91 misreports it
       frame = requestAnimationFrame(measure);
     };
 

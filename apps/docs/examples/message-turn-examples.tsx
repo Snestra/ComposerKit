@@ -1,25 +1,25 @@
 "use client";
 
-import { ResourceRow } from "@workspace/react/components/list/rows";
-import { AssistantMessageBody } from "@workspace/react/components/ui/assistant-message-body";
-import { CollapsibleUserMessage } from "@workspace/react/components/ui/collapsible-user-message";
-import { MessageBubble } from "@workspace/react/components/ui/message-bubble";
+import { ResourceRow } from "composerkit/components/list/rows";
+import { AssistantMessageBody } from "composerkit/components/ui/assistant-message-body";
+import { CollapsibleUserMessage } from "composerkit/components/ui/collapsible-user-message";
+import { MessageBubble } from "composerkit/components/ui/message-bubble";
 import {
   CitationBibliography,
   CitationPill,
   ClinicalCitation,
-} from "@workspace/react/components/ui/message-citation";
-import type { CitationSource } from "@workspace/react/components/ui/message-citation";
+} from "composerkit/components/ui/message-citation";
+import type { CitationSource } from "composerkit/components/ui/message-citation";
 import {
   CollapsedTurnDisclosure,
   MessageTurnGap,
   TimestampSeparator,
   WorkedFor,
   WorkedForDivider,
-} from "@workspace/react/components/ui/message-turn-dividers";
-import type { WorkStatus } from "@workspace/react/components/ui/message-turn-dividers";
-import { RequestActionChip } from "@workspace/react/components/ui/request-action-chip";
-import { StreamingText } from "@workspace/react/components/ui/streaming-text";
+} from "composerkit/components/ui/message-turn-dividers";
+import type { WorkStatus } from "composerkit/components/ui/message-turn-dividers";
+import { RequestActionChip } from "composerkit/components/ui/request-action-chip";
+import { StreamingText } from "composerkit/components/ui/streaming-text";
 import Link from "next/link";
 import { useState } from "react";
 

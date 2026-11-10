@@ -9,23 +9,23 @@ import {
   useLinkComponent,
   usePlatform,
   usePortalContainer,
-} from "@workspace/react/components/platform-provider";
+} from "composerkit/components/platform-provider";
 import type {
   PlatformWidgets,
   PlatformLinkProps,
-} from "@workspace/react/components/platform-provider";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/platform-provider";
+import { Button } from "composerkit/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTitle,
   PopoverTrigger,
-} from "@workspace/react/components/ui/popover";
+} from "composerkit/components/ui/popover";
 import {
   SegmentedControl,
   SegmentedItem,
-} from "@workspace/react/components/ui/segmented-control";
-import { Switch } from "@workspace/react/components/ui/switch";
+} from "composerkit/components/ui/segmented-control";
+import { Switch } from "composerkit/components/ui/switch";
 import { useState } from "react";
 import type { ReactElement } from "react";
 

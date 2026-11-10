@@ -5,22 +5,22 @@ import {
   ApprovalRequestBody,
   ApprovalRequestCard,
   ApprovalSurface,
-} from "@workspace/react/components/composer/approval-card";
-import type { ApprovalActions } from "@workspace/react/components/composer/approval-card";
-import { CompoundButton } from "@workspace/react/components/composer/compound-button";
+} from "composerkit/components/composer/approval-card";
+import type { ApprovalActions } from "composerkit/components/composer/approval-card";
+import { CompoundButton } from "composerkit/components/composer/compound-button";
 import {
   ComposerControls,
   useAttachmentUndo,
   useFollowUpQueueMode,
-} from "@workspace/react/components/composer/controls";
+} from "composerkit/components/composer/controls";
 import {
   DEFAULT_KEYBINDINGS,
   findKeyConflicts,
   KeyCommandProvider,
   useKeyCommandRegistrations,
-} from "@workspace/react/components/composer/key-commands";
-import type { KeyCommandKeymap } from "@workspace/react/components/composer/key-commands";
-import { AvatarOverlayMaterial } from "@workspace/react/components/composer/overlay-material";
+} from "composerkit/components/composer/key-commands";
+import type { KeyCommandKeymap } from "composerkit/components/composer/key-commands";
+import { AvatarOverlayMaterial } from "composerkit/components/composer/overlay-material";
 import {
   composerPlaceholder,
   fileUploadErrorMessage,
@@ -28,20 +28,20 @@ import {
   dedupeFileAttachments,
   PASTED_TEXT_RESTORE_LIMIT,
   REMOTE_FOLDER_UNSUPPORTED_MESSAGE,
-} from "@workspace/react/components/composer/rules";
+} from "composerkit/components/composer/rules";
 import type {
   ComposerEnterBehavior,
   ComposerProductMode,
-} from "@workspace/react/components/composer/rules";
+} from "composerkit/components/composer/rules";
 import {
   composerSubmitErrorMessage,
   submitFailureMessage,
-} from "@workspace/react/components/composer/submit-error";
+} from "composerkit/components/composer/submit-error";
 import {
   ComposerBeaconTip,
   ComposerTip,
-} from "@workspace/react/components/composer/tip";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/composer/tip";
+import { Button } from "composerkit/components/ui/button";
 import {
   CommentComposerForm,
   ComposerReplacementConsumer,
@@ -57,22 +57,22 @@ import {
   handleComposerShortcutKey,
   resolveComposerEscape,
   useIsComposerReplaced,
-} from "@workspace/react/components/ui/composer";
+} from "composerkit/components/ui/composer";
 import type {
   ComposerEscapeState,
   SelectedMode,
   SubmitShortcutPreference,
-} from "@workspace/react/components/ui/composer";
-import { MenuItem } from "@workspace/react/components/ui/menu";
-import { ToastProvider } from "@workspace/react/components/ui/toast";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/composer";
+import { MenuItem } from "composerkit/components/ui/menu";
+import { ToastProvider } from "composerkit/components/ui/toast";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import {
   ReducedMotionAttribute,
   ReducedMotionProvider,
-} from "@workspace/react/lib/reduced-motion";
-import type { ReducedMotionPreference } from "@workspace/react/lib/reduced-motion";
-import { cn } from "@workspace/react/lib/utils";
-import { useEffect, useState } from "react";
+} from "composerkit/lib/reduced-motion";
+import type { ReducedMotionPreference } from "composerkit/lib/reduced-motion";
+import { cn } from "composerkit/lib/utils";
+import { useState } from "react";
 import type { ReactNode } from "react";
 
 import { AppearanceControl } from "@/components/appearance-control";

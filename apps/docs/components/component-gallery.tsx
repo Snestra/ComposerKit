@@ -1,7 +1,7 @@
 "use client";
 
-import { ToastProvider } from "@workspace/react/components/ui/toast";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
+import { ToastProvider } from "composerkit/components/ui/toast";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import Link from "next/link";
 import type { ReactNode } from "react";
 

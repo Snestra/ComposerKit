@@ -8,12 +8,12 @@ import {
   DialogShell,
   ModalDialog,
   ScrollFade,
-} from "@workspace/react/components/dialog/dialog-layout";
+} from "composerkit/components/dialog/dialog-layout";
 import {
   Modal,
   useModalRequestClose,
-} from "@workspace/react/components/dialog/modal";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/dialog/modal";
+import { Button } from "composerkit/components/ui/button";
 import {
   Dialog,
   DialogBackdropStyleProvider,
@@ -27,7 +27,7 @@ import {
   DialogSection,
   DialogTitle,
   DialogZoomProvider,
-} from "@workspace/react/components/ui/dialog";
+} from "composerkit/components/ui/dialog";
 import type {
   DialogBackdropKind,
   DialogCloseButtonSize,
@@ -36,8 +36,8 @@ import type {
   DialogRadius,
   DialogSize,
   DialogVariant,
-} from "@workspace/react/components/ui/dialog";
-import { cn } from "@workspace/react/lib/utils";
+} from "composerkit/components/ui/dialog";
+import { cn } from "composerkit/lib/utils";
 import Link from "next/link";
 import {
   createContext,

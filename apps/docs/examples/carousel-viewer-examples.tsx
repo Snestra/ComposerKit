@@ -6,17 +6,17 @@ import {
   ImageViewerDialog,
   ImageViewerHostContext,
   ImageViewerPortalContext,
-} from "@workspace/react/components/carousel/image-viewer";
+} from "composerkit/components/carousel/image-viewer";
 import type {
   ImageViewerDialogProps,
   ImageViewerHost,
-} from "@workspace/react/components/carousel/image-viewer";
+} from "composerkit/components/carousel/image-viewer";
 import {
   dispatchImageViewerZoom,
   registerImageViewerZoomHandler,
   useImageViewerActive,
-} from "@workspace/react/components/carousel/zoom-bridge";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/carousel/zoom-bridge";
+import { Button } from "composerkit/components/ui/button";
 import { Pencil, Share2 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";

@@ -1,14 +1,14 @@
 "use client";
 
-import { LoadingIndicator } from "@workspace/react/components/button/data-button";
-import { Badge, WebBadge } from "@workspace/react/components/ui/badge";
+import { LoadingIndicator } from "composerkit/components/button/data-button";
+import { Badge, WebBadge } from "composerkit/components/ui/badge";
 import type {
   BadgeColor,
   BadgeProps,
   BadgeSize,
   BadgeVariant,
-} from "@workspace/react/components/ui/badge";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/ui/badge";
+import { Button } from "composerkit/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";

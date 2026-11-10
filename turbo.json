@@ -8,7 +8,7 @@
     },
     "build": {
       "dependsOn": ["^export:design"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "outputs": [".next/**", "!.next/cache/**", "out/**"]
     },
     "dev": {
       "dependsOn": ["^export:design"],

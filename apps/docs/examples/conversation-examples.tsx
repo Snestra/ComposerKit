@@ -1,6 +1,6 @@
 "use client";
 
-import { useToast } from "@workspace/react/components/ui/toast";
+import { useToast } from "composerkit/components/ui/toast";
 import { useState } from "react";
 
 import { ChatComposer } from "@/components/chat-composer";

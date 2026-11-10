@@ -1,13 +1,13 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   supportsTextClipboard,
   copyEncodedImage,
   copyToClipboard,
   writeTextToClipboard,
-} from "@workspace/react/lib/clipboard";
-import { useState, useSyncExternalStore } from "react";
+} from "composerkit/lib/clipboard";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import type { ClipboardEvent } from "react";
 
 const IMAGE_SIZE = 64;
@@ -85,6 +85,17 @@ const ClipboardExample = () => {
   const [text, setText] = useState("Example text to copy");
   const [status, setStatus] = useState("Nothing copied yet.");
   const [pasted, setPasted] = useState<Pasted | null>(null);
+  const pastedImageUrl = pasted?.imageUrl;
+
+  // Free the pasted file when a new paste replaces it or the page unmounts.
+  useEffect(
+    () => () => {
+      if (pastedImageUrl !== undefined) {
+        URL.revokeObjectURL(pastedImageUrl);
+      }
+    },
+    [pastedImageUrl]
+  );
 
   const asyncApi = useSyncExternalStore(
     subscribeNothing,

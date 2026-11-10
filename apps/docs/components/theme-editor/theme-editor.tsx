@@ -10,7 +10,7 @@ const docsRoot =
 
 export const ThemeEditor = async () => {
   const designMd = await readFile(
-    path.join(docsRoot, "..", "..", "packages", "react", "DESIGN.md"),
+    path.join(docsRoot, "..", "..", "packages", "composerkit", "DESIGN.md"),
     "utf8"
   );
   return <ThemeEditorClient designMd={designMd} />;

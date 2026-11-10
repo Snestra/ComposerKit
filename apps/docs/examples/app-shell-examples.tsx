@@ -1,8 +1,8 @@
 "use client";
 
-import { AppShell } from "@workspace/react/components/ui/app-shell";
-import type { AppShellTabItem } from "@workspace/react/components/ui/app-shell";
-import { Button } from "@workspace/react/components/ui/button";
+import { AppShell } from "composerkit/components/ui/app-shell";
+import type { AppShellTabItem } from "composerkit/components/ui/app-shell";
+import { Button } from "composerkit/components/ui/button";
 import {
   Copy,
   GitFork,

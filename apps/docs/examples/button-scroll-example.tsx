@@ -1,7 +1,7 @@
 "use client";
 
-import { PlatformProvider } from "@workspace/react/components/platform-provider";
-import { ButtonLink } from "@workspace/react/components/ui/button";
+import { PlatformProvider } from "composerkit/components/platform-provider";
+import { ButtonLink } from "composerkit/components/ui/button";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 

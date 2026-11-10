@@ -18,4 +18,4 @@ pre-commit:
         - "*.yml"
       stage_fixed: true
     - run: pnpm --filter composerkit lint:design
-      glob: "packages/react/DESIGN.md"
+      glob: "packages/composerkit/DESIGN.md"

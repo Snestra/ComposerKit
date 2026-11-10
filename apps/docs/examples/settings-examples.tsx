@@ -5,12 +5,12 @@
 import {
   SettingsNavigationRequestContext,
   SettingsPageFrame,
-} from "@workspace/react/components/settings/page-frame";
+} from "composerkit/components/settings/page-frame";
 import {
   SettingsContentLayout,
   SettingsNavigationTarget,
-} from "@workspace/react/components/settings/page-layout";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/settings/page-layout";
+import { Button } from "composerkit/components/ui/button";
 import {
   DetailPropertyRow,
   PluginSettingsRow,
@@ -25,9 +25,9 @@ import {
   SettingsRows,
   SettingsSecondaryText,
   SettingsTertiaryText,
-} from "@workspace/react/components/ui/settings";
-import type { SettingsCardVariant } from "@workspace/react/components/ui/settings";
-import { Switch } from "@workspace/react/components/ui/switch";
+} from "composerkit/components/ui/settings";
+import type { SettingsCardVariant } from "composerkit/components/ui/settings";
+import { Switch } from "composerkit/components/ui/switch";
 import { Bell, Globe } from "lucide-react";
 import Link from "next/link";
 import { useContext, useState } from "react";
@@ -1180,14 +1180,6 @@ const PluginExamples = () => {
               logoUrl="/missing-registry-priority.png"
               onClick={() => {
                 setLog("Known app pressed");
-              }}
-            />
-            <PluginSettingsRow
-              description="A source-style /images/ URL maps to the packaged app icon"
-              label="Packaged app icon"
-              logoUrl="/images/ecosystem/apps/flight_search/icon.png"
-              onClick={() => {
-                setLog("Packaged pressed");
               }}
             />
             <PluginSettingsRow

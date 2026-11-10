@@ -26,7 +26,7 @@ const run = promisify(execFile);
 const pagesRoot = path.join(docsRoot, "content/docs/components");
 const componentsRoot = path.join(
   repositoryRoot,
-  "packages/react/src/components"
+  "packages/composerkit/src/components"
 );
 const failures = new Map<string, string[]>();
 
@@ -85,7 +85,6 @@ const typecheckSnippets = async (
         compilerOptions: {
           allowImportingTsExtensions: true,
           allowJs: true,
-          baseUrl: docsRoot,
           esModuleInterop: true,
           forceConsistentCasingInFileNames: true,
           jsx: "react-jsx",
@@ -93,10 +92,18 @@ const typecheckSnippets = async (
           module: "esnext",
           moduleResolution: "bundler",
           noEmit: true,
+          // TypeScript 7 has no baseUrl, and this config lives in a temporary
+          // folder, so the paths are absolute.
           paths: {
-            "@/*": ["./*"],
-            "@workspace/react/*": ["../../packages/react/src/*"],
-            "composerkit/*": ["../../packages/react/src/*"],
+            // A documented import such as @/components/ui/button names the
+            // library file a registry install writes, so @/ falls back to it.
+            "@/*": [
+              path.join(docsRoot, "*"),
+              path.join(docsRoot, "../../packages/composerkit/src/*"),
+            ],
+            "composerkit/*": [
+              path.join(docsRoot, "../../packages/composerkit/src/*"),
+            ],
           },
           resolveJsonModule: true,
           skipLibCheck: true,

@@ -1,11 +1,8 @@
 "use client";
 
-import { LabelledSwitch } from "@workspace/react/components/ui/labelled-switch";
-import { Switch } from "@workspace/react/components/ui/switch";
-import type {
-  SwitchSize,
-  SwitchTone,
-} from "@workspace/react/components/ui/switch";
+import { LabelledSwitch } from "composerkit/components/ui/labelled-switch";
+import { Switch } from "composerkit/components/ui/switch";
+import type { SwitchSize, SwitchTone } from "composerkit/components/ui/switch";
 import { useState } from "react";
 
 type Theme = "light" | "dark";

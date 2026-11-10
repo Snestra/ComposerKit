@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
+import { Button } from "composerkit/components/ui/button";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import { useState } from "react";
 
 import { ChatComposer } from "@/components/chat-composer";

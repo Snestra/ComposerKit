@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   dismissTooltips,
   Tooltip,
@@ -12,12 +12,12 @@ import {
   TooltipTrigger,
   TooltipTriggerDecorator,
   TooltipZoomProvider,
-} from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/tooltip";
 import type {
   TooltipProviderProps,
   TooltipColor,
-} from "@workspace/react/components/ui/tooltip";
-import { cn } from "@workspace/react/lib/utils";
+} from "composerkit/components/ui/tooltip";
+import { cn } from "composerkit/lib/utils";
 import { useCallback, useState } from "react";
 import type { ReactNode } from "react";
 

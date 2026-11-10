@@ -1,20 +1,20 @@
 "use client";
 
-import { AnimatedSegmentedToggle } from "@workspace/react/components/segmented-control/animated-segmented-toggle";
-import type { AnimatedSegmentedToggleSize } from "@workspace/react/components/segmented-control/animated-segmented-toggle";
-import { ModeToggle } from "@workspace/react/components/segmented-control/mode-toggle";
+import { AnimatedSegmentedToggle } from "composerkit/components/segmented-control/animated-segmented-toggle";
+import type { AnimatedSegmentedToggleSize } from "composerkit/components/segmented-control/animated-segmented-toggle";
+import { ModeToggle } from "composerkit/components/segmented-control/mode-toggle";
 import type {
   ModeToggleOption,
   ModeToggleTipContent,
-} from "@workspace/react/components/segmented-control/mode-toggle";
+} from "composerkit/components/segmented-control/mode-toggle";
 import {
   SegmentedControl,
   SegmentedItem,
-} from "@workspace/react/components/ui/segmented-control";
+} from "composerkit/components/ui/segmented-control";
 import type {
   SegmentedControlGutterSize,
   SegmentedControlSize,
-} from "@workspace/react/components/ui/segmented-control";
+} from "composerkit/components/ui/segmented-control";
 import { Columns3, LayoutGrid, List } from "lucide-react";
 import { startTransition, useEffect, useState } from "react";
 import type { ReactNode } from "react";

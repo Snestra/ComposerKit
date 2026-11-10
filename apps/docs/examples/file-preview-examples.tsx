@@ -12,21 +12,21 @@ import {
   PdfPreviewPanel,
   docxAnnotationLabels,
   pdfAnnotationLabels,
-} from "@workspace/react/components/file-preview/document-panels";
-import type { NotebookCell } from "@workspace/react/components/file-preview/document-panels";
-import { FilePreviewFallback } from "@workspace/react/components/file-preview/file-preview-fallback";
-import { FileReferenceChip } from "@workspace/react/components/file-preview/file-reference-chip";
-import type { FileReferencePresentation } from "@workspace/react/components/file-preview/file-reference-chip";
-import { FileTypeIcon } from "@workspace/react/components/file-preview/file-type-icon";
+} from "composerkit/components/file-preview/document-panels";
+import type { NotebookCell } from "composerkit/components/file-preview/document-panels";
+import { FilePreviewFallback } from "composerkit/components/file-preview/file-preview-fallback";
+import { FileReferenceChip } from "composerkit/components/file-preview/file-reference-chip";
+import type { FileReferencePresentation } from "composerkit/components/file-preview/file-reference-chip";
+import { FileTypeIcon } from "composerkit/components/file-preview/file-type-icon";
 import {
   ImageLightbox,
   ImageThumbnail,
-} from "@workspace/react/components/file-preview/image-lightbox";
-import { ImagePreviewDialog } from "@workspace/react/components/file-preview/image-preview-dialog";
-import { VideoLightbox } from "@workspace/react/components/file-preview/video-lightbox";
-import { VideoPlayer } from "@workspace/react/components/file-preview/video-player";
-import { Button } from "@workspace/react/components/ui/button";
-import { ToastProvider } from "@workspace/react/components/ui/toast";
+} from "composerkit/components/file-preview/image-lightbox";
+import { ImagePreviewDialog } from "composerkit/components/file-preview/image-preview-dialog";
+import { VideoLightbox } from "composerkit/components/file-preview/video-lightbox";
+import { VideoPlayer } from "composerkit/components/file-preview/video-player";
+import { Button } from "composerkit/components/ui/button";
+import { ToastProvider } from "composerkit/components/ui/toast";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import type { ReactNode } from "react";

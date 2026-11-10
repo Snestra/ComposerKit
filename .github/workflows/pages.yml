@@ -1,7 +1,6 @@
-# Publishes the shadcn registry under /r on every merge to main. This workflow
-# does not build or deploy the docs and gallery apps. While the repository is
-# private it only builds and checks the registry, because a Pages site is
-# public even for a private repository.
+# Builds the docs site, gallery and shadcn registry as static files and
+# publishes them to GitHub Pages on every merge to main. The registry is served
+# under /r of the same site.
 name: Pages
 
 on:
@@ -21,9 +20,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
           node-version: 26
@@ -31,20 +32,23 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm registry:build
       - name: Registry matches registry.json
-        run: git diff --exit-code -- apps/docs/public/r
-      - name: Stage the registry alone
-        if: ${{ !github.event.repository.private }}
-        run: mkdir -p _site && cp -R apps/docs/public/r _site/r
-      - if: ${{ !github.event.repository.private }}
-        uses: actions/configure-pages@v6
-      - if: ${{ !github.event.repository.private }}
-        uses: actions/upload-pages-artifact@v5
+        # Fails on changed and on new untracked files, so a missing item shows up too.
+        run: |
+          changes="$(git status --porcelain -- apps/docs/public/r apps/docs/registry.json)"
+          if [ -n "$changes" ]; then
+            echo "$changes"
+            git diff -- apps/docs/public/r apps/docs/registry.json
+            exit 1
+          fi
+      # next.config.ts sets output: "export", so the build writes apps/docs/out.
+      - run: pnpm turbo run build --filter docs
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
-          path: _site
+          path: apps/docs/out
 
   deploy:
     needs: build
-    if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages

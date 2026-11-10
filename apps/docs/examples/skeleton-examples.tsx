@@ -1,16 +1,16 @@
 "use client";
 
-import { ThinkingShimmer } from "@workspace/react/components/skeleton/cadenced-shimmer";
-import { Button } from "@workspace/react/components/ui/button";
+import { ThinkingShimmer } from "composerkit/components/skeleton/cadenced-shimmer";
+import { Button } from "composerkit/components/ui/button";
 import {
   LoadingPlaceholder,
   LoadingResultsShimmer,
   LoadingResultsShimmerLines,
-} from "@workspace/react/components/ui/skeleton";
+} from "composerkit/components/ui/skeleton";
 import Link from "next/link";
 import { useState } from "react";
 
-import styles from "@workspace/react/components/skeleton/skeleton.module.css";
+import styles from "composerkit/components/skeleton/skeleton.module.css";
 
 const SkeletonGalleryExample = () => {
   const [paused, setPaused] = useState(false);

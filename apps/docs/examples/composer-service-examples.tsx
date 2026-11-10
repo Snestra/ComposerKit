@@ -1,20 +1,20 @@
 "use client";
 
-import { createErrorAnalyticsDelivery } from "@workspace/react/components/composer/analytics-delivery";
-import type { AnalyticsEventPayload } from "@workspace/react/components/composer/analytics-delivery";
-import { ApprovalReason } from "@workspace/react/components/composer/approval-card";
+import { createErrorAnalyticsDelivery } from "composerkit/components/composer/analytics-delivery";
+import type { AnalyticsEventPayload } from "composerkit/components/composer/analytics-delivery";
+import { ApprovalReason } from "composerkit/components/composer/approval-card";
 import {
   createDiagnosticsHost,
   createDiagnosticsStore,
-} from "@workspace/react/components/composer/diagnostics-host";
+} from "composerkit/components/composer/diagnostics-host";
 import type {
   DiagnosticsRouter,
   DiagnosticsViewContext,
-} from "@workspace/react/components/composer/diagnostics-host";
-import { ComposerEditor } from "@workspace/react/components/composer/editor/composer-editor";
-import type { ComposerEditorController } from "@workspace/react/components/composer/editor/controller";
-import { ApprovalReasonLink } from "@workspace/react/components/composer/reason-link";
-import type { ReasonLinkAppearance } from "@workspace/react/components/composer/reason-link";
+} from "composerkit/components/composer/diagnostics-host";
+import { ComposerEditor } from "composerkit/components/composer/editor/composer-editor";
+import type { ComposerEditorController } from "composerkit/components/composer/editor/controller";
+import { ApprovalReasonLink } from "composerkit/components/composer/reason-link";
+import type { ReasonLinkAppearance } from "composerkit/components/composer/reason-link";
 import {
   AppHttpError,
   AppRequestError,
@@ -24,29 +24,29 @@ import {
   PresentationSuggestionCloudUnsupportedError,
   ProjectContextSyncError,
   ReplyTextOnlyError,
-} from "@workspace/react/components/composer/submit-error";
+} from "composerkit/components/composer/submit-error";
 import {
   COMPOSER_TIP_CATALOG,
   ComposerTipSelector,
   createImpressionLog,
   SITES_PLUGIN_ID,
-} from "@workspace/react/components/composer/tip-selection";
+} from "composerkit/components/composer/tip-selection";
 import type {
   ComposerTipBeacon,
   ComposerTipEligibility,
   ComposerTipEvent,
   ComposerTipHost,
-} from "@workspace/react/components/composer/tip-selection";
+} from "composerkit/components/composer/tip-selection";
 import {
   ExternalResourcePolicyContext,
   LinkProviderContext,
-} from "@workspace/react/components/markdown/external-link";
+} from "composerkit/components/markdown/external-link";
 import type {
   ExternalResourcePolicy,
   LinkProviderProps,
-} from "@workspace/react/components/markdown/external-link";
-import { Button } from "@workspace/react/components/ui/button";
-import { ToastProvider, useToast } from "@workspace/react/components/ui/toast";
+} from "composerkit/components/markdown/external-link";
+import { Button } from "composerkit/components/ui/button";
+import { ToastProvider, useToast } from "composerkit/components/ui/toast";
 import {
   useEffect,
   useMemo,

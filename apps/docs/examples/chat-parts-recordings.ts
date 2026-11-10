@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import type { ChatStreamProvider } from "@workspace/react/lib/chat-stream";
+import type { ChatStreamProvider } from "composerkit/lib/chat-stream";
 
 interface ChatPartRecording {
   id: string;

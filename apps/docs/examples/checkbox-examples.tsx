@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
-import { Checkbox } from "@workspace/react/components/ui/checkbox";
-import type { CheckedState } from "@workspace/react/components/ui/checkbox";
+import { Button } from "composerkit/components/ui/button";
+import { Checkbox } from "composerkit/components/ui/checkbox";
+import type { CheckedState } from "composerkit/components/ui/checkbox";
 import Link from "next/link";
 import { useState } from "react";
 import type { SyntheticEvent } from "react";

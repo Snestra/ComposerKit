@@ -1,27 +1,27 @@
 "use client";
 
-import { Presence } from "@workspace/react/components/layout/motion";
-import { PageSearchInput } from "@workspace/react/components/layout/page-search-input";
-import type { PageSearchVariant } from "@workspace/react/components/layout/page-search-input";
+import { Presence } from "composerkit/components/layout/motion";
+import { PageSearchInput } from "composerkit/components/layout/page-search-input";
+import type { PageSearchVariant } from "composerkit/components/layout/page-search-input";
 import {
   ResizeObserverProvider,
   useResizeObserver,
-} from "@workspace/react/components/layout/resize-observer";
+} from "composerkit/components/layout/resize-observer";
 import {
   SearchableHeaderShell,
   SearchableHeaderToolbar,
   SearchablePageLayout,
-} from "@workspace/react/components/layout/searchable-page-layout";
+} from "composerkit/components/layout/searchable-page-layout";
 import type {
   ContentWidth,
   HeaderVariant,
   SearchablePlacement,
-} from "@workspace/react/components/layout/searchable-page-layout";
+} from "composerkit/components/layout/searchable-page-layout";
 import {
   ScrollMaskHost,
   StickySection,
-} from "@workspace/react/components/layout/sticky-section";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/layout/sticky-section";
+import { Button } from "composerkit/components/ui/button";
 import {
   BulletSeparator,
   ContentGrid,
@@ -32,11 +32,11 @@ import {
   OnboardingPage,
   PageHeader,
   ToolbarBreadcrumb,
-} from "@workspace/react/components/ui/layout";
-import type { PageHeaderVariant } from "@workspace/react/components/ui/layout";
-import { ReducedMotionProvider } from "@workspace/react/lib/reduced-motion";
-import type { ReducedMotionPreference } from "@workspace/react/lib/reduced-motion";
-import { cn } from "@workspace/react/lib/utils";
+} from "composerkit/components/ui/layout";
+import type { PageHeaderVariant } from "composerkit/components/ui/layout";
+import { ReducedMotionProvider } from "composerkit/lib/reduced-motion";
+import type { ReducedMotionPreference } from "composerkit/lib/reduced-motion";
+import { cn } from "composerkit/lib/utils";
 import Link from "next/link";
 import { useId, useState } from "react";
 import type { ReactNode } from "react";

@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import type {
   ButtonColor,
   ButtonRadius,
-} from "@workspace/react/components/ui/button";
+} from "composerkit/components/ui/button";
 import {
   BackForwardButtons,
   CloudSettingsToolbar,
@@ -13,12 +13,12 @@ import {
   Toolbar,
   ToolbarRow,
   ToolbarSizeControl,
-} from "@workspace/react/components/ui/toolbar";
+} from "composerkit/components/ui/toolbar";
 import type {
   FindBarSearchTarget,
   ToolbarVariant,
-} from "@workspace/react/components/ui/toolbar";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/toolbar";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import Link from "next/link";
 import { useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";

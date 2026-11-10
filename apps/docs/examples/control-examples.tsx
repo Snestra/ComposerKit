@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   Dialog,
   DialogBody,
@@ -8,25 +8,25 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@workspace/react/components/ui/dialog";
+} from "composerkit/components/ui/dialog";
 import {
   NavigationTab as Tab,
   NavigationTabs as Tabs,
   NavigationTabsList as TabsList,
   NavigationTabsPanel as TabsPanel,
-} from "@workspace/react/components/ui/navigation-tabs";
+} from "composerkit/components/ui/navigation-tabs";
 import {
   Popover,
   PopoverContent,
   PopoverTitle,
   PopoverTrigger,
-} from "@workspace/react/components/ui/popover";
-import { Select } from "@workspace/react/components/ui/select";
+} from "composerkit/components/ui/popover";
+import { Select } from "composerkit/components/ui/select";
 import {
   Tooltip,
   TooltipPopup,
   TooltipTrigger,
-} from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/tooltip";
 import { useState } from "react";
 
 const ButtonGalleryExample = () => (

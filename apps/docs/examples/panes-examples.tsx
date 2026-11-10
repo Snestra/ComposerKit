@@ -2,34 +2,31 @@
 
 /* oxlint-disable shadcn/no-arbitrary-values, shadcn/no-restyle, shadcn/no-inline-styles -- The demonstration sizes its containers with local state through custom properties and puts classes on Buttons. */
 
-import { Button } from "@workspace/react/components/ui/button";
-import { Menu, MenuItem } from "@workspace/react/components/ui/menu";
-import { PanelResizer } from "@workspace/react/components/ui/panel-resizer";
-import type { ResizerEdge } from "@workspace/react/components/ui/panel-resizer";
+import { Button } from "composerkit/components/ui/button";
+import { Menu, MenuItem } from "composerkit/components/ui/menu";
+import { PanelResizer } from "composerkit/components/ui/panel-resizer";
+import type { ResizerEdge } from "composerkit/components/ui/panel-resizer";
 import {
   FloatingComposerInset,
   FloatingSurface,
   PanelHeader,
   SidePanel,
-} from "@workspace/react/components/ui/panes";
+} from "composerkit/components/ui/panes";
 import type {
   FloatingSurfaceVariant,
   SidePanelSide,
-} from "@workspace/react/components/ui/panes";
+} from "composerkit/components/ui/panes";
 import {
   PreviewComposer,
   PreviewLayout,
-} from "@workspace/react/components/ui/preview-layout";
-import type { ComposerPresentation } from "@workspace/react/components/ui/preview-layout";
-import {
-  SplitView,
-  useSplitView,
-} from "@workspace/react/components/ui/split-view";
+} from "composerkit/components/ui/preview-layout";
+import type { ComposerPresentation } from "composerkit/components/ui/preview-layout";
+import { SplitView, useSplitView } from "composerkit/components/ui/split-view";
 import {
   ExpandableList,
   SummaryRow,
   SummarySection,
-} from "@workspace/react/components/ui/summary-list";
+} from "composerkit/components/ui/summary-list";
 import { GripVertical } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";

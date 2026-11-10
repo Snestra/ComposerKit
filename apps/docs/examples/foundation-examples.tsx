@@ -1,8 +1,8 @@
 import {
   defaultThemeVariables,
   resolveStaticVariables,
-} from "@workspace/react/lib/theme-variables";
-import type { ThemeVariant } from "@workspace/react/lib/theme-variables";
+} from "composerkit/lib/theme-variables";
+import type { ThemeVariant } from "composerkit/lib/theme-variables";
 import Link from "next/link";
 
 import { ClipboardExample } from "@/examples/clipboard-examples";

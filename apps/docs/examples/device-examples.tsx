@@ -1,25 +1,25 @@
 "use client";
 
-import { CheckIcon } from "@workspace/react/components/icon";
-import { Button } from "@workspace/react/components/ui/button";
+import { CheckIcon } from "composerkit/components/icon";
+import { Button } from "composerkit/components/ui/button";
 import {
   SegmentedControl,
   SegmentedItem,
-} from "@workspace/react/components/ui/segmented-control";
-import { Switch } from "@workspace/react/components/ui/switch";
+} from "composerkit/components/ui/segmented-control";
+import { Switch } from "composerkit/components/ui/switch";
 import {
   useDarkMode,
   useDeviceLocales,
   usePrefersReducedMotion,
   useViewport,
-} from "@workspace/react/hooks/use-device";
+} from "composerkit/hooks/use-device";
 import {
   motionDuration,
   getAppearancePreference,
   prefersRightToLeft,
   watchDarkAppearance,
   setAppearancePreference,
-} from "@workspace/react/lib/device";
+} from "composerkit/lib/device";
 import { useEffect, useState } from "react";
 
 const MOTION_DURATION_MS = 600;

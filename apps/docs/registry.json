@@ -33,7 +33,6 @@
         "@composerkit/dismissable-layer",
         "@composerkit/empty-state",
         "@composerkit/file-preview",
-        "@composerkit/host",
         "@composerkit/icon",
         "@composerkit/icon-markup",
         "@composerkit/keyboard-shortcut",
@@ -94,11 +93,11 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/app-shell.tsx",
+          "path": "../../packages/composerkit/src/components/ui/app-shell.tsx",
           "target": "~/src/components/ui/app-shell.tsx",
           "type": "registry:file"
         }
@@ -120,7 +119,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/assistant-message-body.tsx",
+          "path": "../../packages/composerkit/src/components/ui/assistant-message-body.tsx",
           "target": "~/src/components/ui/assistant-message-body.tsx",
           "type": "registry:file"
         }
@@ -141,7 +140,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/attachment/attachment.tsx",
+          "path": "../../packages/composerkit/src/components/attachment/attachment.tsx",
           "target": "~/src/components/attachment/attachment.tsx",
           "type": "registry:file"
         }
@@ -158,39 +157,28 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/avatar/account.tsx",
-          "target": "~/src/components/avatar/account.tsx",
-          "type": "registry:file"
-        },
-        {
-          "path": "../../packages/react/src/components/avatar/avatar-shape.tsx",
+          "path": "../../packages/composerkit/src/components/avatar/avatar-shape.tsx",
           "target": "~/src/components/avatar/avatar-shape.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/avatar/facepile.tsx",
+          "path": "../../packages/composerkit/src/components/avatar/facepile.tsx",
           "target": "~/src/components/avatar/facepile.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/avatar/profile-image.tsx",
-          "target": "~/src/components/avatar/profile-image.tsx",
-          "type": "registry:file"
-        },
-        {
-          "path": "../../packages/react/src/components/ui/avatar.module.css",
+          "path": "../../packages/composerkit/src/components/ui/avatar.module.css",
           "target": "~/src/components/ui/avatar.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/avatar.tsx",
+          "path": "../../packages/composerkit/src/components/ui/avatar.tsx",
           "target": "~/src/components/ui/avatar.tsx",
           "type": "registry:file"
         }
       ],
       "name": "avatar",
       "registryDependencies": [
-        "@composerkit/host",
         "@composerkit/icon",
         "@composerkit/reduced-motion",
         "@composerkit/styles",
@@ -203,7 +191,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/badge.tsx",
+          "path": "../../packages/composerkit/src/components/ui/badge.tsx",
           "target": "~/src/components/ui/badge.tsx",
           "type": "registry:file"
         }
@@ -219,17 +207,17 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/banner/icons.tsx",
+          "path": "../../packages/composerkit/src/components/banner/icons.tsx",
           "target": "~/src/components/banner/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/banner.module.css",
+          "path": "../../packages/composerkit/src/components/ui/banner.module.css",
           "target": "~/src/components/ui/banner.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/banner.tsx",
+          "path": "../../packages/composerkit/src/components/ui/banner.tsx",
           "target": "~/src/components/ui/banner.tsx",
           "type": "registry:file"
         }
@@ -250,27 +238,27 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/button/button-group.module.css",
+          "path": "../../packages/composerkit/src/components/button/button-group.module.css",
           "target": "~/src/components/button/button-group.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/button/button-group.tsx",
+          "path": "../../packages/composerkit/src/components/button/button-group.tsx",
           "target": "~/src/components/button/button-group.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/button/data-button.module.css",
+          "path": "../../packages/composerkit/src/components/button/data-button.module.css",
           "target": "~/src/components/button/data-button.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/button/data-button.tsx",
+          "path": "../../packages/composerkit/src/components/button/data-button.tsx",
           "target": "~/src/components/button/data-button.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/button.tsx",
+          "path": "../../packages/composerkit/src/components/ui/button.tsx",
           "target": "~/src/components/ui/button.tsx",
           "type": "registry:file"
         }
@@ -288,17 +276,17 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/card/icons.tsx",
+          "path": "../../packages/composerkit/src/components/card/icons.tsx",
           "target": "~/src/components/card/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/card.module.css",
+          "path": "../../packages/composerkit/src/components/ui/card.module.css",
           "target": "~/src/components/ui/card.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/card.tsx",
+          "path": "../../packages/composerkit/src/components/ui/card.tsx",
           "target": "~/src/components/ui/card.tsx",
           "type": "registry:file"
         }
@@ -318,32 +306,32 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/carousel/icons.tsx",
+          "path": "../../packages/composerkit/src/components/carousel/icons.tsx",
           "target": "~/src/components/carousel/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/carousel/image-source.ts",
+          "path": "../../packages/composerkit/src/components/carousel/image-source.ts",
           "target": "~/src/components/carousel/image-source.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/carousel/image-viewer.tsx",
+          "path": "../../packages/composerkit/src/components/carousel/image-viewer.tsx",
           "target": "~/src/components/carousel/image-viewer.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/carousel/zoom-bridge.ts",
+          "path": "../../packages/composerkit/src/components/carousel/zoom-bridge.ts",
           "target": "~/src/components/carousel/zoom-bridge.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/carousel.module.css",
+          "path": "../../packages/composerkit/src/components/ui/carousel.module.css",
           "target": "~/src/components/ui/carousel.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/carousel.tsx",
+          "path": "../../packages/composerkit/src/components/ui/carousel.tsx",
           "target": "~/src/components/ui/carousel.tsx",
           "type": "registry:file"
         }
@@ -363,7 +351,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/chat-part-state.ts",
+          "path": "../../packages/composerkit/src/lib/chat-part-state.ts",
           "target": "~/src/lib/chat-part-state.ts",
           "type": "registry:file"
         }
@@ -375,32 +363,32 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/chat-sidebar/chat-sidebar.tsx",
+          "path": "../../packages/composerkit/src/components/chat-sidebar/chat-sidebar.tsx",
           "target": "~/src/components/chat-sidebar/chat-sidebar.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/chat-sidebar/hover-cards.tsx",
+          "path": "../../packages/composerkit/src/components/chat-sidebar/hover-cards.tsx",
           "target": "~/src/components/chat-sidebar/hover-cards.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/chat-sidebar/icons.tsx",
+          "path": "../../packages/composerkit/src/components/chat-sidebar/icons.tsx",
           "target": "~/src/components/chat-sidebar/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/chat-sidebar/menus.tsx",
+          "path": "../../packages/composerkit/src/components/chat-sidebar/menus.tsx",
           "target": "~/src/components/chat-sidebar/menus.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/chat-sidebar/relative-time.ts",
+          "path": "../../packages/composerkit/src/components/chat-sidebar/relative-time.ts",
           "target": "~/src/components/chat-sidebar/relative-time.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/chat-sidebar/reorder.tsx",
+          "path": "../../packages/composerkit/src/components/chat-sidebar/reorder.tsx",
           "target": "~/src/components/chat-sidebar/reorder.tsx",
           "type": "registry:file"
         }
@@ -422,7 +410,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/chat-stream.ts",
+          "path": "../../packages/composerkit/src/lib/chat-stream.ts",
           "target": "~/src/lib/chat-stream.ts",
           "type": "registry:file"
         }
@@ -437,7 +425,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/checkbox.tsx",
+          "path": "../../packages/composerkit/src/components/ui/checkbox.tsx",
           "target": "~/src/components/ui/checkbox.tsx",
           "type": "registry:file"
         }
@@ -453,7 +441,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/clipboard.ts",
+          "path": "../../packages/composerkit/src/lib/clipboard.ts",
           "target": "~/src/lib/clipboard.ts",
           "type": "registry:file"
         }
@@ -464,11 +452,11 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/collapsible-user-message.tsx",
+          "path": "../../packages/composerkit/src/components/ui/collapsible-user-message.tsx",
           "target": "~/src/components/ui/collapsible-user-message.tsx",
           "type": "registry:file"
         }
@@ -488,133 +476,133 @@
         "prosemirror-history@^1.5.1",
         "prosemirror-inputrules@^1.5.1",
         "prosemirror-keymap@^1.2.3",
-        "prosemirror-model@^1.25.12",
+        "prosemirror-model@^1.25.13",
         "prosemirror-state@^1.4.4",
         "prosemirror-view@^1.42.9"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/composer/analytics-delivery.ts",
+          "path": "../../packages/composerkit/src/components/composer/analytics-delivery.ts",
           "target": "~/src/components/composer/analytics-delivery.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/approval-card.tsx",
+          "path": "../../packages/composerkit/src/components/composer/approval-card.tsx",
           "target": "~/src/components/composer/approval-card.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/composer.module.css",
+          "path": "../../packages/composerkit/src/components/composer/composer.module.css",
           "target": "~/src/components/composer/composer.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/compound-button.tsx",
+          "path": "../../packages/composerkit/src/components/composer/compound-button.tsx",
           "target": "~/src/components/composer/compound-button.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/controls.tsx",
+          "path": "../../packages/composerkit/src/components/composer/controls.tsx",
           "target": "~/src/components/composer/controls.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/diagnostics-host.ts",
+          "path": "../../packages/composerkit/src/components/composer/diagnostics-host.ts",
           "target": "~/src/components/composer/diagnostics-host.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/diagnostics-patterns.ts",
+          "path": "../../packages/composerkit/src/components/composer/diagnostics-patterns.ts",
           "target": "~/src/components/composer/diagnostics-patterns.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/diagnostics-report.ts",
+          "path": "../../packages/composerkit/src/components/composer/diagnostics-report.ts",
           "target": "~/src/components/composer/diagnostics-report.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/editor/composer-editor.tsx",
+          "path": "../../packages/composerkit/src/components/composer/editor/composer-editor.tsx",
           "target": "~/src/components/composer/editor/composer-editor.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/editor/controller.ts",
+          "path": "../../packages/composerkit/src/components/composer/editor/controller.ts",
           "target": "~/src/components/composer/editor/controller.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/editor/draft.ts",
+          "path": "../../packages/composerkit/src/components/composer/editor/draft.ts",
           "target": "~/src/components/composer/editor/draft.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/editor/editor.module.css",
+          "path": "../../packages/composerkit/src/components/composer/editor/editor.module.css",
           "target": "~/src/components/composer/editor/editor.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/editor/schema.ts",
+          "path": "../../packages/composerkit/src/components/composer/editor/schema.ts",
           "target": "~/src/components/composer/editor/schema.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/feature-gates.tsx",
+          "path": "../../packages/composerkit/src/components/composer/feature-gates.tsx",
           "target": "~/src/components/composer/feature-gates.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/icons.tsx",
+          "path": "../../packages/composerkit/src/components/composer/icons.tsx",
           "target": "~/src/components/composer/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/key-commands.tsx",
+          "path": "../../packages/composerkit/src/components/composer/key-commands.tsx",
           "target": "~/src/components/composer/key-commands.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/morph-geometry.ts",
+          "path": "../../packages/composerkit/src/components/composer/morph-geometry.ts",
           "target": "~/src/components/composer/morph-geometry.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/overlay-material.tsx",
+          "path": "../../packages/composerkit/src/components/composer/overlay-material.tsx",
           "target": "~/src/components/composer/overlay-material.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/reason-link.tsx",
+          "path": "../../packages/composerkit/src/components/composer/reason-link.tsx",
           "target": "~/src/components/composer/reason-link.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/rules.ts",
+          "path": "../../packages/composerkit/src/components/composer/rules.ts",
           "target": "~/src/components/composer/rules.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/submit-error.tsx",
+          "path": "../../packages/composerkit/src/components/composer/submit-error.tsx",
           "target": "~/src/components/composer/submit-error.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/submit-morph.tsx",
+          "path": "../../packages/composerkit/src/components/composer/submit-morph.tsx",
           "target": "~/src/components/composer/submit-morph.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/tip-selection.tsx",
+          "path": "../../packages/composerkit/src/components/composer/tip-selection.tsx",
           "target": "~/src/components/composer/tip-selection.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/composer/tip.tsx",
+          "path": "../../packages/composerkit/src/components/composer/tip.tsx",
           "target": "~/src/components/composer/tip.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/composer.tsx",
+          "path": "../../packages/composerkit/src/components/ui/composer.tsx",
           "target": "~/src/components/ui/composer.tsx",
           "type": "registry:file"
         }
@@ -639,11 +627,11 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/conversation-view.tsx",
+          "path": "../../packages/composerkit/src/components/ui/conversation-view.tsx",
           "target": "~/src/components/ui/conversation-view.tsx",
           "type": "registry:file"
         }
@@ -666,66 +654,66 @@
     {
       "dependencies": [
         "@floating-ui/react-dom@^2.1.9",
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/date-picker/date-picker.module.css",
+          "path": "../../packages/composerkit/src/components/date-picker/date-picker.module.css",
           "target": "~/src/components/date-picker/date-picker.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/date-time.ts",
+          "path": "../../packages/composerkit/src/components/date-picker/date-time.ts",
           "target": "~/src/components/date-picker/date-time.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/format-tokens.ts",
+          "path": "../../packages/composerkit/src/components/date-picker/format-tokens.ts",
           "target": "~/src/components/date-picker/format-tokens.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/hover-grace.ts",
+          "path": "../../packages/composerkit/src/components/date-picker/hover-grace.ts",
           "target": "~/src/components/date-picker/hover-grace.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/locale.ts",
+          "path": "../../packages/composerkit/src/components/date-picker/locale.ts",
           "target": "~/src/components/date-picker/locale.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/popover-context.ts",
+          "path": "../../packages/composerkit/src/components/date-picker/popover-context.ts",
           "target": "~/src/components/date-picker/popover-context.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/popover-position.ts",
+          "path": "../../packages/composerkit/src/components/date-picker/popover-position.ts",
           "target": "~/src/components/date-picker/popover-position.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/popover.tsx",
+          "path": "../../packages/composerkit/src/components/date-picker/popover.tsx",
           "target": "~/src/components/date-picker/popover.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/select-control.tsx",
+          "path": "../../packages/composerkit/src/components/date-picker/select-control.tsx",
           "target": "~/src/components/date-picker/select-control.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/transition-group.tsx",
+          "path": "../../packages/composerkit/src/components/date-picker/transition-group.tsx",
           "target": "~/src/components/date-picker/transition-group.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/date-picker/zone.ts",
+          "path": "../../packages/composerkit/src/components/date-picker/zone.ts",
           "target": "~/src/components/date-picker/zone.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/date-picker.tsx",
+          "path": "../../packages/composerkit/src/components/ui/date-picker.tsx",
           "target": "~/src/components/ui/date-picker.tsx",
           "type": "registry:file"
         }
@@ -745,7 +733,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/device.ts",
+          "path": "../../packages/composerkit/src/lib/device.ts",
           "target": "~/src/lib/device.ts",
           "type": "registry:file"
         }
@@ -757,31 +745,31 @@
     {
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/dialog/dialog-layer.ts",
+          "path": "../../packages/composerkit/src/components/dialog/dialog-layer.ts",
           "target": "~/src/components/dialog/dialog-layer.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/dialog/dialog-layout.tsx",
+          "path": "../../packages/composerkit/src/components/dialog/dialog-layout.tsx",
           "target": "~/src/components/dialog/dialog-layout.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/dialog/modal.tsx",
+          "path": "../../packages/composerkit/src/components/dialog/modal.tsx",
           "target": "~/src/components/dialog/modal.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/dialog.module.css",
+          "path": "../../packages/composerkit/src/components/ui/dialog.module.css",
           "target": "~/src/components/ui/dialog.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/dialog.tsx",
+          "path": "../../packages/composerkit/src/components/ui/dialog.tsx",
           "target": "~/src/components/ui/dialog.tsx",
           "type": "registry:file"
         }
@@ -800,327 +788,327 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0",
+        "lucide-react@^1.70.0",
         "refractor@^5.0.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/diff/code-diff-context-menu.tsx",
+          "path": "../../packages/composerkit/src/components/diff/code-diff-context-menu.tsx",
           "target": "~/src/components/diff/code-diff-context-menu.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/code-themes.ts",
+          "path": "../../packages/composerkit/src/components/diff/code-themes.ts",
           "target": "~/src/components/diff/code-themes.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/developer-dark-theme.ts",
+          "path": "../../packages/composerkit/src/components/diff/developer-dark-theme.ts",
           "target": "~/src/components/diff/developer-dark-theme.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/developer-light-theme.ts",
+          "path": "../../packages/composerkit/src/components/diff/developer-light-theme.ts",
           "target": "~/src/components/diff/developer-light-theme.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/diff-model.ts",
+          "path": "../../packages/composerkit/src/components/diff/diff-model.ts",
           "target": "~/src/components/diff/diff-model.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/diff-view.tsx",
+          "path": "../../packages/composerkit/src/components/diff/diff-view.tsx",
           "target": "~/src/components/diff/diff-view.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/error-boundary.tsx",
+          "path": "../../packages/composerkit/src/components/diff/error-boundary.tsx",
           "target": "~/src/components/diff/error-boundary.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/file-type-icon-data.ts",
+          "path": "../../packages/composerkit/src/components/diff/file-type-icon-data.ts",
           "target": "~/src/components/diff/file-type-icon-data.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/file-type-icon.tsx",
+          "path": "../../packages/composerkit/src/components/diff/file-type-icon.tsx",
           "target": "~/src/components/diff/file-type-icon.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/line-selection.ts",
+          "path": "../../packages/composerkit/src/components/diff/line-selection.ts",
           "target": "~/src/components/diff/line-selection.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/seeded-random.ts",
+          "path": "../../packages/composerkit/src/components/diff/seeded-random.ts",
           "target": "~/src/components/diff/seeded-random.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/syntax-grammars.ts",
+          "path": "../../packages/composerkit/src/components/diff/syntax-grammars.ts",
           "target": "~/src/components/diff/syntax-grammars.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/syntax-highlight.ts",
+          "path": "../../packages/composerkit/src/components/diff/syntax-highlight.ts",
           "target": "~/src/components/diff/syntax-highlight.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/syntax-languages.ts",
+          "path": "../../packages/composerkit/src/components/diff/syntax-languages.ts",
           "target": "~/src/components/diff/syntax-languages.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/syntax-line.tsx",
+          "path": "../../packages/composerkit/src/components/diff/syntax-line.tsx",
           "target": "~/src/components/diff/syntax-line.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/syntax-pool.ts",
+          "path": "../../packages/composerkit/src/components/diff/syntax-pool.ts",
           "target": "~/src/components/diff/syntax-pool.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/syntax-refractor.d.ts",
+          "path": "../../packages/composerkit/src/components/diff/syntax-refractor.d.ts",
           "target": "~/src/components/diff/syntax-refractor.d.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/syntax-refractor.js",
+          "path": "../../packages/composerkit/src/components/diff/syntax-refractor.js",
           "target": "~/src/components/diff/syntax-refractor.js",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/syntax-theme.ts",
+          "path": "../../packages/composerkit/src/components/diff/syntax-theme.ts",
           "target": "~/src/components/diff/syntax-theme.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/syntax-worker.ts",
+          "path": "../../packages/composerkit/src/components/diff/syntax-worker.ts",
           "target": "~/src/components/diff/syntax-worker.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/ayu-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/ayu-dark.ts",
           "target": "~/src/components/diff/themes/ayu-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/catppuccin-latte.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/catppuccin-latte.ts",
           "target": "~/src/components/diff/themes/catppuccin-latte.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/catppuccin-mocha.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/catppuccin-mocha.ts",
           "target": "~/src/components/diff/themes/catppuccin-mocha.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/dark-plus.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/dark-plus.ts",
           "target": "~/src/components/diff/themes/dark-plus.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/developer-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/developer-dark.ts",
           "target": "~/src/components/diff/themes/developer-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/developer-light.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/developer-light.ts",
           "target": "~/src/components/diff/themes/developer-light.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/dracula.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/dracula.ts",
           "target": "~/src/components/diff/themes/dracula.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/everforest-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/everforest-dark.ts",
           "target": "~/src/components/diff/themes/everforest-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/everforest-light.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/everforest-light.ts",
           "target": "~/src/components/diff/themes/everforest-light.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/github-dark-default.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/github-dark-default.ts",
           "target": "~/src/components/diff/themes/github-dark-default.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/github-light-default.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/github-light-default.ts",
           "target": "~/src/components/diff/themes/github-light-default.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/gruvbox-dark-medium.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/gruvbox-dark-medium.ts",
           "target": "~/src/components/diff/themes/gruvbox-dark-medium.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/gruvbox-light-medium.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/gruvbox-light-medium.ts",
           "target": "~/src/components/diff/themes/gruvbox-light-medium.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/light-plus.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/light-plus.ts",
           "target": "~/src/components/diff/themes/light-plus.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/linear-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/linear-dark.ts",
           "target": "~/src/components/diff/themes/linear-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/linear-light.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/linear-light.ts",
           "target": "~/src/components/diff/themes/linear-light.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/material-theme-darker.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/material-theme-darker.ts",
           "target": "~/src/components/diff/themes/material-theme-darker.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/matrix-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/matrix-dark.ts",
           "target": "~/src/components/diff/themes/matrix-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/monokai.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/monokai.ts",
           "target": "~/src/components/diff/themes/monokai.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/night-owl.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/night-owl.ts",
           "target": "~/src/components/diff/themes/night-owl.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/nord.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/nord.ts",
           "target": "~/src/components/diff/themes/nord.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/notion-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/notion-dark.ts",
           "target": "~/src/components/diff/themes/notion-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/notion-light.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/notion-light.ts",
           "target": "~/src/components/diff/themes/notion-light.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/og-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/og-dark.ts",
           "target": "~/src/components/diff/themes/og-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/one-dark-pro.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/one-dark-pro.ts",
           "target": "~/src/components/diff/themes/one-dark-pro.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/one-light.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/one-light.ts",
           "target": "~/src/components/diff/themes/one-light.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/raycast-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/raycast-dark.ts",
           "target": "~/src/components/diff/themes/raycast-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/raycast-light.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/raycast-light.ts",
           "target": "~/src/components/diff/themes/raycast-light.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/rose-pine-dawn.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/rose-pine-dawn.ts",
           "target": "~/src/components/diff/themes/rose-pine-dawn.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/rose-pine-moon.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/rose-pine-moon.ts",
           "target": "~/src/components/diff/themes/rose-pine-moon.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/sentry-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/sentry-dark.ts",
           "target": "~/src/components/diff/themes/sentry-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/solarized-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/solarized-dark.ts",
           "target": "~/src/components/diff/themes/solarized-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/solarized-light.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/solarized-light.ts",
           "target": "~/src/components/diff/themes/solarized-light.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/tokyo-night.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/tokyo-night.ts",
           "target": "~/src/components/diff/themes/tokyo-night.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/vercel-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/vercel-dark.ts",
           "target": "~/src/components/diff/themes/vercel-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/vercel-light.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/vercel-light.ts",
           "target": "~/src/components/diff/themes/vercel-light.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/xcode-dark.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/xcode-dark.ts",
           "target": "~/src/components/diff/themes/xcode-dark.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/themes/xcode-light.ts",
+          "path": "../../packages/composerkit/src/components/diff/themes/xcode-light.ts",
           "target": "~/src/components/diff/themes/xcode-light.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/use-code-themes.ts",
+          "path": "../../packages/composerkit/src/components/diff/use-code-themes.ts",
           "target": "~/src/components/diff/use-code-themes.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/use-diff-context-loader.ts",
+          "path": "../../packages/composerkit/src/components/diff/use-diff-context-loader.ts",
           "target": "~/src/components/diff/use-diff-context-loader.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/use-diff-tokens.ts",
+          "path": "../../packages/composerkit/src/components/diff/use-diff-tokens.ts",
           "target": "~/src/components/diff/use-diff-tokens.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/diff/use-toggle-all-diffs.ts",
+          "path": "../../packages/composerkit/src/components/diff/use-toggle-all-diffs.ts",
           "target": "~/src/components/diff/use-toggle-all-diffs.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/diff.module.css",
+          "path": "../../packages/composerkit/src/components/ui/diff.module.css",
           "target": "~/src/components/ui/diff.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/diff.tsx",
+          "path": "../../packages/composerkit/src/components/ui/diff.tsx",
           "target": "~/src/components/ui/diff.tsx",
           "type": "registry:file"
         }
@@ -1139,11 +1127,11 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/disclosure.tsx",
+          "path": "../../packages/composerkit/src/components/ui/disclosure.tsx",
           "target": "~/src/components/ui/disclosure.tsx",
           "type": "registry:file"
         }
@@ -1161,12 +1149,12 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/discrete-slider.module.css",
+          "path": "../../packages/composerkit/src/components/ui/discrete-slider.module.css",
           "target": "~/src/components/ui/discrete-slider.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/discrete-slider.tsx",
+          "path": "../../packages/composerkit/src/components/ui/discrete-slider.tsx",
           "target": "~/src/components/ui/discrete-slider.tsx",
           "type": "registry:file"
         }
@@ -1184,7 +1172,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/dismissable-layer.ts",
+          "path": "../../packages/composerkit/src/lib/dismissable-layer.ts",
           "target": "~/src/lib/dismissable-layer.ts",
           "type": "registry:file"
         }
@@ -1196,12 +1184,12 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/empty-state/icons.tsx",
+          "path": "../../packages/composerkit/src/components/empty-state/icons.tsx",
           "target": "~/src/components/empty-state/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/empty-state.tsx",
+          "path": "../../packages/composerkit/src/components/ui/empty-state.tsx",
           "target": "~/src/components/ui/empty-state.tsx",
           "type": "registry:file"
         }
@@ -1218,67 +1206,67 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/file-preview/document-panels.tsx",
+          "path": "../../packages/composerkit/src/components/file-preview/document-panels.tsx",
           "target": "~/src/components/file-preview/document-panels.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/file-classification.ts",
+          "path": "../../packages/composerkit/src/components/file-preview/file-classification.ts",
           "target": "~/src/components/file-preview/file-classification.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/file-preview-fallback.tsx",
+          "path": "../../packages/composerkit/src/components/file-preview/file-preview-fallback.tsx",
           "target": "~/src/components/file-preview/file-preview-fallback.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/file-reference-chip.tsx",
+          "path": "../../packages/composerkit/src/components/file-preview/file-reference-chip.tsx",
           "target": "~/src/components/file-preview/file-reference-chip.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/file-type-artwork.ts",
+          "path": "../../packages/composerkit/src/components/file-preview/file-type-artwork.ts",
           "target": "~/src/components/file-preview/file-type-artwork.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/file-type-icon.tsx",
+          "path": "../../packages/composerkit/src/components/file-preview/file-type-icon.tsx",
           "target": "~/src/components/file-preview/file-type-icon.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/image-lightbox.tsx",
+          "path": "../../packages/composerkit/src/components/file-preview/image-lightbox.tsx",
           "target": "~/src/components/file-preview/image-lightbox.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/image-preview-dialog.tsx",
+          "path": "../../packages/composerkit/src/components/file-preview/image-preview-dialog.tsx",
           "target": "~/src/components/file-preview/image-preview-dialog.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/mounted-file-provider.ts",
+          "path": "../../packages/composerkit/src/components/file-preview/mounted-file-provider.ts",
           "target": "~/src/components/file-preview/mounted-file-provider.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/video-control-icons.ts",
+          "path": "../../packages/composerkit/src/components/file-preview/video-control-icons.ts",
           "target": "~/src/components/file-preview/video-control-icons.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/video-lightbox.tsx",
+          "path": "../../packages/composerkit/src/components/file-preview/video-lightbox.tsx",
           "target": "~/src/components/file-preview/video-lightbox.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/video-player.module.css",
+          "path": "../../packages/composerkit/src/components/file-preview/video-player.module.css",
           "target": "~/src/components/file-preview/video-player.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/file-preview/video-player.tsx",
+          "path": "../../packages/composerkit/src/components/file-preview/video-player.tsx",
           "target": "~/src/components/file-preview/video-player.tsx",
           "type": "registry:file"
         }
@@ -1306,74 +1294,62 @@
       "type": "registry:item"
     },
     {
-      "files": [
-        {
-          "path": "../../packages/react/src/lib/host.ts",
-          "target": "~/src/lib/host.ts",
-          "type": "registry:file"
-        }
-      ],
-      "name": "host",
-      "title": "Host",
-      "type": "registry:item"
-    },
-    {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/icon.tsx",
+          "path": "../../packages/composerkit/src/components/icon.tsx",
           "target": "~/src/components/icon.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/assets.ts",
+          "path": "../../packages/composerkit/src/components/icon/assets.ts",
           "target": "~/src/components/icon/assets.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/copy-button.tsx",
+          "path": "../../packages/composerkit/src/components/icon/copy-button.tsx",
           "target": "~/src/components/icon/copy-button.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/glyphs.tsx",
+          "path": "../../packages/composerkit/src/components/icon/glyphs.tsx",
           "target": "~/src/components/icon/glyphs.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/icon-aliases.json",
+          "path": "../../packages/composerkit/src/components/icon/icon-aliases.json",
           "target": "~/src/components/icon/icon-aliases.json",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/icon-swap.module.css",
+          "path": "../../packages/composerkit/src/components/icon/icon-swap.module.css",
           "target": "~/src/components/icon/icon-swap.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/lucide.license",
+          "path": "../../packages/composerkit/src/components/icon/lucide.license",
           "target": "~/src/components/icon/lucide.license",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/registry.tsx",
+          "path": "../../packages/composerkit/src/components/icon/registry.tsx",
           "target": "~/src/components/icon/registry.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/responsive-icon.module.css",
+          "path": "../../packages/composerkit/src/components/icon/responsive-icon.module.css",
           "target": "~/src/components/icon/responsive-icon.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/responsive-icon.tsx",
+          "path": "../../packages/composerkit/src/components/icon/responsive-icon.tsx",
           "target": "~/src/components/icon/responsive-icon.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/icon/vendor/evernote.tsx",
+          "path": "../../packages/composerkit/src/components/icon/vendor/evernote.tsx",
           "target": "~/src/components/icon/vendor/evernote.tsx",
           "type": "registry:file"
         }
@@ -1392,7 +1368,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/icon-markup.ts",
+          "path": "../../packages/composerkit/src/lib/icon-markup.ts",
           "target": "~/src/lib/icon-markup.ts",
           "type": "registry:file"
         }
@@ -1404,7 +1380,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/keyboard-shortcut.tsx",
+          "path": "../../packages/composerkit/src/components/ui/keyboard-shortcut.tsx",
           "target": "~/src/components/ui/keyboard-shortcut.tsx",
           "type": "registry:file"
         }
@@ -1424,12 +1400,12 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/labelled-switch.module.css",
+          "path": "../../packages/composerkit/src/components/ui/labelled-switch.module.css",
           "target": "~/src/components/ui/labelled-switch.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/labelled-switch.tsx",
+          "path": "../../packages/composerkit/src/components/ui/labelled-switch.tsx",
           "target": "~/src/components/ui/labelled-switch.tsx",
           "type": "registry:file"
         }
@@ -1444,46 +1420,46 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/layout/layout.module.css",
+          "path": "../../packages/composerkit/src/components/layout/layout.module.css",
           "target": "~/src/components/layout/layout.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/layout/motion.tsx",
+          "path": "../../packages/composerkit/src/components/layout/motion.tsx",
           "target": "~/src/components/layout/motion.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/layout/page-search-input.tsx",
+          "path": "../../packages/composerkit/src/components/layout/page-search-input.tsx",
           "target": "~/src/components/layout/page-search-input.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/layout/resize-observer.tsx",
+          "path": "../../packages/composerkit/src/components/layout/resize-observer.tsx",
           "target": "~/src/components/layout/resize-observer.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/layout/searchable-page-layout.tsx",
+          "path": "../../packages/composerkit/src/components/layout/searchable-page-layout.tsx",
           "target": "~/src/components/layout/searchable-page-layout.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/layout/sticky-section.tsx",
+          "path": "../../packages/composerkit/src/components/layout/sticky-section.tsx",
           "target": "~/src/components/layout/sticky-section.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/layout/titlebar-inset.tsx",
+          "path": "../../packages/composerkit/src/components/layout/titlebar-inset.tsx",
           "target": "~/src/components/layout/titlebar-inset.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/layout.tsx",
+          "path": "../../packages/composerkit/src/components/ui/layout.tsx",
           "target": "~/src/components/ui/layout.tsx",
           "type": "registry:file"
         }
@@ -1504,7 +1480,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/link-destination.ts",
+          "path": "../../packages/composerkit/src/lib/link-destination.ts",
           "target": "~/src/lib/link-destination.ts",
           "type": "registry:file"
         }
@@ -1515,141 +1491,141 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/list/app-link.tsx",
+          "path": "../../packages/composerkit/src/components/list/app-link.tsx",
           "target": "~/src/components/list/app-link.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/arch-dark.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/arch-dark.svg",
           "target": "~/src/components/list/avatars/arch-dark.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/arch-light.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/arch-light.svg",
           "target": "~/src/components/list/avatars/arch-light.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/blocks-dark.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/blocks-dark.svg",
           "target": "~/src/components/list/avatars/blocks-dark.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/blocks-light.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/blocks-light.svg",
           "target": "~/src/components/list/avatars/blocks-light.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/diamond-dark.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/diamond-dark.svg",
           "target": "~/src/components/list/avatars/diamond-dark.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/diamond-light.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/diamond-light.svg",
           "target": "~/src/components/list/avatars/diamond-light.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/orbit-dark.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/orbit-dark.svg",
           "target": "~/src/components/list/avatars/orbit-dark.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/orbit-light.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/orbit-light.svg",
           "target": "~/src/components/list/avatars/orbit-light.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/rings-dark.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/rings-dark.svg",
           "target": "~/src/components/list/avatars/rings-dark.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/rings-light.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/rings-light.svg",
           "target": "~/src/components/list/avatars/rings-light.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/steps-dark.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/steps-dark.svg",
           "target": "~/src/components/list/avatars/steps-dark.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/avatars/steps-light.svg",
+          "path": "../../packages/composerkit/src/components/list/avatars/steps-light.svg",
           "target": "~/src/components/list/avatars/steps-light.svg",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/icons.tsx",
+          "path": "../../packages/composerkit/src/components/list/icons.tsx",
           "target": "~/src/components/list/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/list-viewport.module.css",
+          "path": "../../packages/composerkit/src/components/list/list-viewport.module.css",
           "target": "~/src/components/list/list-viewport.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/list-viewport.tsx",
+          "path": "../../packages/composerkit/src/components/list/list-viewport.tsx",
           "target": "~/src/components/list/list-viewport.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/marquee-text.module.css",
+          "path": "../../packages/composerkit/src/components/list/marquee-text.module.css",
           "target": "~/src/components/list/marquee-text.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/marquee-text.tsx",
+          "path": "../../packages/composerkit/src/components/list/marquee-text.tsx",
           "target": "~/src/components/list/marquee-text.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/resource-citation.tsx",
+          "path": "../../packages/composerkit/src/components/list/resource-citation.tsx",
           "target": "~/src/components/list/resource-citation.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/rows.tsx",
+          "path": "../../packages/composerkit/src/components/list/rows.tsx",
           "target": "~/src/components/list/rows.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/selectable-row.module.css",
+          "path": "../../packages/composerkit/src/components/list/selectable-row.module.css",
           "target": "~/src/components/list/selectable-row.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/selectable-row.tsx",
+          "path": "../../packages/composerkit/src/components/list/selectable-row.tsx",
           "target": "~/src/components/list/selectable-row.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/selection-list.tsx",
+          "path": "../../packages/composerkit/src/components/list/selection-list.tsx",
           "target": "~/src/components/list/selection-list.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/subagent-avatar.tsx",
+          "path": "../../packages/composerkit/src/components/list/subagent-avatar.tsx",
           "target": "~/src/components/list/subagent-avatar.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/thumbnail-rail.module.css",
+          "path": "../../packages/composerkit/src/components/list/thumbnail-rail.module.css",
           "target": "~/src/components/list/thumbnail-rail.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/list/thumbnail-rail.tsx",
+          "path": "../../packages/composerkit/src/components/list/thumbnail-rail.tsx",
           "target": "~/src/components/list/thumbnail-rail.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/list.tsx",
+          "path": "../../packages/composerkit/src/components/ui/list.tsx",
           "target": "~/src/components/ui/list.tsx",
           "type": "registry:file"
         }
@@ -1697,7 +1673,7 @@
         "@codemirror/view@^6.43.15",
         "@lezer/highlight@^1.2.5",
         "katex@^0.19.1",
-        "lucide-react@^1.66.0",
+        "lucide-react@^1.70.0",
         "mermaid@^12.3.0",
         "next-themes@^0.4.6",
         "refractor@^5.0.0"
@@ -1707,127 +1683,127 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/markdown/ansi-block.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/ansi-block.tsx",
           "target": "~/src/components/markdown/ansi-block.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/ansi.ts",
+          "path": "../../packages/composerkit/src/components/markdown/ansi.ts",
           "target": "~/src/components/markdown/ansi.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/assistant-text.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/assistant-text.tsx",
           "target": "~/src/components/markdown/assistant-text.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/chat-code-block.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/chat-code-block.tsx",
           "target": "~/src/components/markdown/chat-code-block.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/chat-code-icons.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/chat-code-icons.tsx",
           "target": "~/src/components/markdown/chat-code-icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/code-editor-languages.ts",
+          "path": "../../packages/composerkit/src/components/markdown/code-editor-languages.ts",
           "target": "~/src/components/markdown/code-editor-languages.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/code-editor.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/code-editor.tsx",
           "target": "~/src/components/markdown/code-editor.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/copy-action-button.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/copy-action-button.tsx",
           "target": "~/src/components/markdown/copy-action-button.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/copy-serialization.ts",
+          "path": "../../packages/composerkit/src/components/markdown/copy-serialization.ts",
           "target": "~/src/components/markdown/copy-serialization.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/external-link.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/external-link.tsx",
           "target": "~/src/components/markdown/external-link.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/fade.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/fade.tsx",
           "target": "~/src/components/markdown/fade.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/front-matter.ts",
+          "path": "../../packages/composerkit/src/components/markdown/front-matter.ts",
           "target": "~/src/components/markdown/front-matter.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/highlight-view.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/highlight-view.tsx",
           "target": "~/src/components/markdown/highlight-view.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/highlight.ts",
+          "path": "../../packages/composerkit/src/components/markdown/highlight.ts",
           "target": "~/src/components/markdown/highlight.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/icons.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/icons.tsx",
           "target": "~/src/components/markdown/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/math.ts",
+          "path": "../../packages/composerkit/src/components/markdown/math.ts",
           "target": "~/src/components/markdown/math.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/mermaid-diagram.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/mermaid-diagram.tsx",
           "target": "~/src/components/markdown/mermaid-diagram.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/metadata.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/metadata.tsx",
           "target": "~/src/components/markdown/metadata.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/parse.ts",
+          "path": "../../packages/composerkit/src/components/markdown/parse.ts",
           "target": "~/src/components/markdown/parse.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/prose.module.css",
+          "path": "../../packages/composerkit/src/components/markdown/prose.module.css",
           "target": "~/src/components/markdown/prose.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/prose.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/prose.tsx",
           "target": "~/src/components/markdown/prose.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/render.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/render.tsx",
           "target": "~/src/components/markdown/render.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/transition.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/transition.tsx",
           "target": "~/src/components/markdown/transition.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/markdown/writing-block.tsx",
+          "path": "../../packages/composerkit/src/components/markdown/writing-block.tsx",
           "target": "~/src/components/markdown/writing-block.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/markdown.tsx",
+          "path": "../../packages/composerkit/src/components/ui/markdown.tsx",
           "target": "~/src/components/ui/markdown.tsx",
           "type": "registry:file"
         }
@@ -1852,12 +1828,12 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/mention/mention.module.css",
+          "path": "../../packages/composerkit/src/components/mention/mention.module.css",
           "target": "~/src/components/mention/mention.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/mention.tsx",
+          "path": "../../packages/composerkit/src/components/ui/mention.tsx",
           "target": "~/src/components/ui/mention.tsx",
           "type": "registry:file"
         }
@@ -1874,11 +1850,11 @@
     {
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/menu.tsx",
+          "path": "../../packages/composerkit/src/components/ui/menu.tsx",
           "target": "~/src/components/ui/menu.tsx",
           "type": "registry:file"
         }
@@ -1898,11 +1874,11 @@
     {
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/menu-list.tsx",
+          "path": "../../packages/composerkit/src/components/ui/menu-list.tsx",
           "target": "~/src/components/ui/menu-list.tsx",
           "type": "registry:file"
         }
@@ -1921,7 +1897,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/message-bubble.tsx",
+          "path": "../../packages/composerkit/src/components/ui/message-bubble.tsx",
           "target": "~/src/components/ui/message-bubble.tsx",
           "type": "registry:file"
         }
@@ -1936,11 +1912,11 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/message-citation.tsx",
+          "path": "../../packages/composerkit/src/components/ui/message-citation.tsx",
           "target": "~/src/components/ui/message-citation.tsx",
           "type": "registry:file"
         }
@@ -1957,11 +1933,11 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/message-turn-dividers.tsx",
+          "path": "../../packages/composerkit/src/components/ui/message-turn-dividers.tsx",
           "target": "~/src/components/ui/message-turn-dividers.tsx",
           "type": "registry:file"
         }
@@ -1980,31 +1956,31 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/navigation-rail/icons.tsx",
+          "path": "../../packages/composerkit/src/components/navigation-rail/icons.tsx",
           "target": "~/src/components/navigation-rail/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/navigation-rail/navigation-rail.module.css",
+          "path": "../../packages/composerkit/src/components/navigation-rail/navigation-rail.module.css",
           "target": "~/src/components/navigation-rail/navigation-rail.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/navigation-rail/output-chips.tsx",
+          "path": "../../packages/composerkit/src/components/navigation-rail/output-chips.tsx",
           "target": "~/src/components/navigation-rail/output-chips.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/navigation-rail/output-icons.tsx",
+          "path": "../../packages/composerkit/src/components/navigation-rail/output-icons.tsx",
           "target": "~/src/components/navigation-rail/output-icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/navigation-rail.tsx",
+          "path": "../../packages/composerkit/src/components/ui/navigation-rail.tsx",
           "target": "~/src/components/ui/navigation-rail.tsx",
           "type": "registry:file"
         }
@@ -2028,7 +2004,7 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/navigation-tabs.tsx",
+          "path": "../../packages/composerkit/src/components/ui/navigation-tabs.tsx",
           "target": "~/src/components/ui/navigation-tabs.tsx",
           "type": "registry:file"
         }
@@ -2044,7 +2020,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/panel-resizer.tsx",
+          "path": "../../packages/composerkit/src/components/ui/panel-resizer.tsx",
           "target": "~/src/components/ui/panel-resizer.tsx",
           "type": "registry:file"
         }
@@ -2060,26 +2036,26 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/panes/panes.module.css",
+          "path": "../../packages/composerkit/src/components/panes/panes.module.css",
           "target": "~/src/components/panes/panes.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/panes/split-math.ts",
+          "path": "../../packages/composerkit/src/components/panes/split-math.ts",
           "target": "~/src/components/panes/split-math.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/panes/spring.ts",
+          "path": "../../packages/composerkit/src/components/panes/spring.ts",
           "target": "~/src/components/panes/spring.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/panes.tsx",
+          "path": "../../packages/composerkit/src/components/ui/panes.tsx",
           "target": "~/src/components/ui/panes.tsx",
           "type": "registry:file"
         }
@@ -2097,7 +2073,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/phone-as-you-type.ts",
+          "path": "../../packages/composerkit/src/lib/phone-as-you-type.ts",
           "target": "~/src/lib/phone-as-you-type.ts",
           "type": "registry:file"
         }
@@ -2113,11 +2089,11 @@
     {
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/phone-input.tsx",
+          "path": "../../packages/composerkit/src/components/ui/phone-input.tsx",
           "target": "~/src/components/ui/phone-input.tsx",
           "type": "registry:file"
         }
@@ -2138,7 +2114,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/phone-input-format.ts",
+          "path": "../../packages/composerkit/src/lib/phone-input-format.ts",
           "target": "~/src/lib/phone-input-format.ts",
           "type": "registry:file"
         }
@@ -2155,7 +2131,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/phone-input-state.ts",
+          "path": "../../packages/composerkit/src/lib/phone-input-state.ts",
           "target": "~/src/lib/phone-input-state.ts",
           "type": "registry:file"
         }
@@ -2172,7 +2148,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/phone-metadata.ts",
+          "path": "../../packages/composerkit/src/lib/phone-metadata.ts",
           "target": "~/src/lib/phone-metadata.ts",
           "type": "registry:file"
         }
@@ -2184,7 +2160,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/phone-number.ts",
+          "path": "../../packages/composerkit/src/lib/phone-number.ts",
           "target": "~/src/lib/phone-number.ts",
           "type": "registry:file"
         }
@@ -2199,7 +2175,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/platform-provider.tsx",
+          "path": "../../packages/composerkit/src/components/platform-provider.tsx",
           "target": "~/src/components/platform-provider.tsx",
           "type": "registry:file"
         }
@@ -2218,17 +2194,17 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/popover/coachmark.tsx",
+          "path": "../../packages/composerkit/src/components/popover/coachmark.tsx",
           "target": "~/src/components/popover/coachmark.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/popover/popover.module.css",
+          "path": "../../packages/composerkit/src/components/popover/popover.module.css",
           "target": "~/src/components/popover/popover.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/popover.tsx",
+          "path": "../../packages/composerkit/src/components/ui/popover.tsx",
           "target": "~/src/components/ui/popover.tsx",
           "type": "registry:file"
         }
@@ -2247,7 +2223,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/present.ts",
+          "path": "../../packages/composerkit/src/lib/present.ts",
           "target": "~/src/lib/present.ts",
           "type": "registry:file"
         }
@@ -2258,11 +2234,11 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/preview-layout.tsx",
+          "path": "../../packages/composerkit/src/components/ui/preview-layout.tsx",
           "target": "~/src/components/ui/preview-layout.tsx",
           "type": "registry:file"
         }
@@ -2278,16 +2254,16 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/progress.module.css",
+          "path": "../../packages/composerkit/src/components/ui/progress.module.css",
           "target": "~/src/components/ui/progress.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/progress.tsx",
+          "path": "../../packages/composerkit/src/components/ui/progress.tsx",
           "target": "~/src/components/ui/progress.tsx",
           "type": "registry:file"
         }
@@ -2304,17 +2280,17 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/qr-code/encoder.ts",
+          "path": "../../packages/composerkit/src/components/qr-code/encoder.ts",
           "target": "~/src/components/qr-code/encoder.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/qr-code/silhouette.ts",
+          "path": "../../packages/composerkit/src/components/qr-code/silhouette.ts",
           "target": "~/src/components/qr-code/silhouette.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/qr-code.tsx",
+          "path": "../../packages/composerkit/src/components/ui/qr-code.tsx",
           "target": "~/src/components/ui/qr-code.tsx",
           "type": "registry:file"
         }
@@ -2333,7 +2309,7 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/radio-group.tsx",
+          "path": "../../packages/composerkit/src/components/ui/radio-group.tsx",
           "target": "~/src/components/ui/radio-group.tsx",
           "type": "registry:file"
         }
@@ -2349,7 +2325,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/reasoning/reasoning.tsx",
+          "path": "../../packages/composerkit/src/components/reasoning/reasoning.tsx",
           "target": "~/src/components/reasoning/reasoning.tsx",
           "type": "registry:file"
         }
@@ -2366,7 +2342,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/reduced-motion.tsx",
+          "path": "../../packages/composerkit/src/lib/reduced-motion.tsx",
           "target": "~/src/lib/reduced-motion.tsx",
           "type": "registry:file"
         }
@@ -2378,7 +2354,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/request-action-chip.tsx",
+          "path": "../../packages/composerkit/src/components/ui/request-action-chip.tsx",
           "target": "~/src/components/ui/request-action-chip.tsx",
           "type": "registry:file"
         }
@@ -2398,22 +2374,22 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/segmented-control/animated-segmented-toggle.tsx",
+          "path": "../../packages/composerkit/src/components/segmented-control/animated-segmented-toggle.tsx",
           "target": "~/src/components/segmented-control/animated-segmented-toggle.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/segmented-control/mode-toggle-tip.tsx",
+          "path": "../../packages/composerkit/src/components/segmented-control/mode-toggle-tip.tsx",
           "target": "~/src/components/segmented-control/mode-toggle-tip.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/segmented-control/mode-toggle.tsx",
+          "path": "../../packages/composerkit/src/components/segmented-control/mode-toggle.tsx",
           "target": "~/src/components/segmented-control/mode-toggle.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/segmented-control.tsx",
+          "path": "../../packages/composerkit/src/components/ui/segmented-control.tsx",
           "target": "~/src/components/ui/segmented-control.tsx",
           "type": "registry:file"
         }
@@ -2432,31 +2408,31 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/select/autocomplete-listbox.tsx",
+          "path": "../../packages/composerkit/src/components/select/autocomplete-listbox.tsx",
           "target": "~/src/components/select/autocomplete-listbox.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/select/clearable-trigger.tsx",
+          "path": "../../packages/composerkit/src/components/select/clearable-trigger.tsx",
           "target": "~/src/components/select/clearable-trigger.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/select/options.ts",
+          "path": "../../packages/composerkit/src/components/select/options.ts",
           "target": "~/src/components/select/options.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/select/select.module.css",
+          "path": "../../packages/composerkit/src/components/select/select.module.css",
           "target": "~/src/components/select/select.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/select.tsx",
+          "path": "../../packages/composerkit/src/components/ui/select.tsx",
           "target": "~/src/components/ui/select.tsx",
           "type": "registry:file"
         }
@@ -2481,51 +2457,51 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/settings/icons.tsx",
+          "path": "../../packages/composerkit/src/components/settings/icons.tsx",
           "target": "~/src/components/settings/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/settings/known-app-icons.tsx",
+          "path": "../../packages/composerkit/src/components/settings/known-app-icons.tsx",
           "target": "~/src/components/settings/known-app-icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/settings/known-app-images.ts",
+          "path": "../../packages/composerkit/src/components/settings/known-app-images.ts",
           "target": "~/src/components/settings/known-app-images.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/settings/known-apps.tsx",
+          "path": "../../packages/composerkit/src/components/settings/known-apps.tsx",
           "target": "~/src/components/settings/known-apps.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/settings/logo.tsx",
+          "path": "../../packages/composerkit/src/components/settings/logo.tsx",
           "target": "~/src/components/settings/logo.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/settings/page-frame.tsx",
+          "path": "../../packages/composerkit/src/components/settings/page-frame.tsx",
           "target": "~/src/components/settings/page-frame.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/settings/page-layout.tsx",
+          "path": "../../packages/composerkit/src/components/settings/page-layout.tsx",
           "target": "~/src/components/settings/page-layout.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/settings.module.css",
+          "path": "../../packages/composerkit/src/components/ui/settings.module.css",
           "target": "~/src/components/ui/settings.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/settings.tsx",
+          "path": "../../packages/composerkit/src/components/ui/settings.tsx",
           "target": "~/src/components/ui/settings.tsx",
           "type": "registry:file"
         }
@@ -2533,7 +2509,6 @@
       "name": "settings",
       "registryDependencies": [
         "@composerkit/button",
-        "@composerkit/host",
         "@composerkit/icon",
         "@composerkit/layout",
         "@composerkit/menu",
@@ -2550,17 +2525,17 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/skeleton/cadenced-shimmer.tsx",
+          "path": "../../packages/composerkit/src/components/skeleton/cadenced-shimmer.tsx",
           "target": "~/src/components/skeleton/cadenced-shimmer.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/skeleton/skeleton.module.css",
+          "path": "../../packages/composerkit/src/components/skeleton/skeleton.module.css",
           "target": "~/src/components/skeleton/skeleton.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/skeleton.tsx",
+          "path": "../../packages/composerkit/src/components/ui/skeleton.tsx",
           "target": "~/src/components/ui/skeleton.tsx",
           "type": "registry:file"
         }
@@ -2580,7 +2555,7 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/slider.tsx",
+          "path": "../../packages/composerkit/src/components/ui/slider.tsx",
           "target": "~/src/components/ui/slider.tsx",
           "type": "registry:file"
         }
@@ -2596,7 +2571,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/split-view.tsx",
+          "path": "../../packages/composerkit/src/components/ui/split-view.tsx",
           "target": "~/src/components/ui/split-view.tsx",
           "type": "registry:file"
         }
@@ -2613,7 +2588,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/streaming-text.tsx",
+          "path": "../../packages/composerkit/src/components/ui/streaming-text.tsx",
           "target": "~/src/components/ui/streaming-text.tsx",
           "type": "registry:file"
         }
@@ -2633,12 +2608,12 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/styles/design-tokens.css",
+          "path": "../../packages/composerkit/src/styles/design-tokens.css",
           "target": "~/src/styles/design-tokens.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/styles/globals.css",
+          "path": "../../packages/composerkit/src/styles/globals.css",
           "target": "~/src/styles/globals.css",
           "type": "registry:file"
         }
@@ -2650,7 +2625,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/summary-list.tsx",
+          "path": "../../packages/composerkit/src/components/ui/summary-list.tsx",
           "target": "~/src/components/ui/summary-list.tsx",
           "type": "registry:file"
         }
@@ -2668,7 +2643,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/switch.tsx",
+          "path": "../../packages/composerkit/src/components/ui/switch.tsx",
           "target": "~/src/components/ui/switch.tsx",
           "type": "registry:file"
         }
@@ -2683,11 +2658,11 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/tabs.tsx",
+          "path": "../../packages/composerkit/src/components/ui/tabs.tsx",
           "target": "~/src/components/ui/tabs.tsx",
           "type": "registry:file"
         }
@@ -2704,16 +2679,16 @@
     },
     {
       "dependencies": [
-        "lucide-react@^1.66.0"
+        "lucide-react@^1.70.0"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/text-field-autofill.css",
+          "path": "../../packages/composerkit/src/components/ui/text-field-autofill.css",
           "target": "~/src/components/ui/text-field-autofill.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/text-field.tsx",
+          "path": "../../packages/composerkit/src/components/ui/text-field.tsx",
           "target": "~/src/components/ui/text-field.tsx",
           "type": "registry:file"
         }
@@ -2729,7 +2704,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/lib/theme-variables.ts",
+          "path": "../../packages/composerkit/src/lib/theme-variables.ts",
           "target": "~/src/lib/theme-variables.ts",
           "type": "registry:file"
         }
@@ -2741,32 +2716,32 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/toast/alert.tsx",
+          "path": "../../packages/composerkit/src/components/toast/alert.tsx",
           "target": "~/src/components/toast/alert.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/toast/manager.tsx",
+          "path": "../../packages/composerkit/src/components/toast/manager.tsx",
           "target": "~/src/components/toast/manager.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/toast/sonner.tsx",
+          "path": "../../packages/composerkit/src/components/toast/sonner.tsx",
           "target": "~/src/components/toast/sonner.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/toast/toast.module.css",
+          "path": "../../packages/composerkit/src/components/toast/toast.module.css",
           "target": "~/src/components/toast/toast.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/toast/types.ts",
+          "path": "../../packages/composerkit/src/components/toast/types.ts",
           "target": "~/src/components/toast/types.ts",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/toast.tsx",
+          "path": "../../packages/composerkit/src/components/ui/toast.tsx",
           "target": "~/src/components/ui/toast.tsx",
           "type": "registry:file"
         }
@@ -2784,7 +2759,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/tool-call/tool-call.tsx",
+          "path": "../../packages/composerkit/src/components/tool-call/tool-call.tsx",
           "target": "~/src/components/tool-call/tool-call.tsx",
           "type": "registry:file"
         }
@@ -2801,12 +2776,12 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/toolbar/icons.tsx",
+          "path": "../../packages/composerkit/src/components/toolbar/icons.tsx",
           "target": "~/src/components/toolbar/icons.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/toolbar.tsx",
+          "path": "../../packages/composerkit/src/components/ui/toolbar.tsx",
           "target": "~/src/components/ui/toolbar.tsx",
           "type": "registry:file"
         }
@@ -2829,7 +2804,7 @@
       ],
       "files": [
         {
-          "path": "../../packages/react/src/components/ui/tooltip.tsx",
+          "path": "../../packages/composerkit/src/components/ui/tooltip.tsx",
           "target": "~/src/components/ui/tooltip.tsx",
           "type": "registry:file"
         }
@@ -2849,32 +2824,32 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/components/typography/filename-middle-ellipsis.tsx",
+          "path": "../../packages/composerkit/src/components/typography/filename-middle-ellipsis.tsx",
           "target": "~/src/components/typography/filename-middle-ellipsis.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/typography/header-title-chip.tsx",
+          "path": "../../packages/composerkit/src/components/typography/header-title-chip.tsx",
           "target": "~/src/components/typography/header-title-chip.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/typography/marquee.tsx",
+          "path": "../../packages/composerkit/src/components/typography/marquee.tsx",
           "target": "~/src/components/typography/marquee.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/typography/rolling-number.tsx",
+          "path": "../../packages/composerkit/src/components/typography/rolling-number.tsx",
           "target": "~/src/components/typography/rolling-number.tsx",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/typography/typography.module.css",
+          "path": "../../packages/composerkit/src/components/typography/typography.module.css",
           "target": "~/src/components/typography/typography.module.css",
           "type": "registry:file"
         },
         {
-          "path": "../../packages/react/src/components/ui/typography.tsx",
+          "path": "../../packages/composerkit/src/components/ui/typography.tsx",
           "target": "~/src/components/ui/typography.tsx",
           "type": "registry:file"
         }
@@ -2892,7 +2867,7 @@
     {
       "files": [
         {
-          "path": "../../packages/react/src/hooks/use-device.ts",
+          "path": "../../packages/composerkit/src/hooks/use-device.ts",
           "target": "~/src/hooks/use-device.ts",
           "type": "registry:file"
         }
@@ -2906,11 +2881,11 @@
     },
     {
       "dependencies": [
-        "cn@^0.5.1"
+        "cn@^0.5.2"
       ],
       "files": [
         {
-          "path": "../../packages/react/src/lib/utils.ts",
+          "path": "../../packages/composerkit/src/lib/utils.ts",
           "target": "~/src/lib/utils.ts",
           "type": "registry:file"
         }

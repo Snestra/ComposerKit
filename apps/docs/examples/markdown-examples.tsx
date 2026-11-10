@@ -1,19 +1,19 @@
 "use client";
 
-import { AnsiBlock } from "@workspace/react/components/markdown/ansi-block";
-import { CodeEditor } from "@workspace/react/components/markdown/code-editor";
+import { AnsiBlock } from "composerkit/components/markdown/ansi-block";
+import { CodeEditor } from "composerkit/components/markdown/code-editor";
 import {
   MarkdownFilePreview,
   MarkdownMetadata,
   MarkdownSurface,
-} from "@workspace/react/components/markdown/metadata";
-import type { HastNode } from "@workspace/react/components/markdown/parse";
+} from "composerkit/components/markdown/metadata";
+import type { HastNode } from "composerkit/components/markdown/parse";
 import {
   MarkdownProse,
   MarkdownProseTable,
-} from "@workspace/react/components/markdown/prose";
-import type { HastRoot } from "@workspace/react/components/markdown/render";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/markdown/prose";
+import type { HastRoot } from "composerkit/components/markdown/render";
+import { Button } from "composerkit/components/ui/button";
 import {
   CodeBlock,
   CodeBlockCode,
@@ -21,7 +21,7 @@ import {
   CopyButton,
   Markdown,
   TextLink,
-} from "@workspace/react/components/ui/markdown";
+} from "composerkit/components/ui/markdown";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";

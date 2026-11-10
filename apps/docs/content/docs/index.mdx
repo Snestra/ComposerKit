@@ -5,69 +5,78 @@ description: "Add one ComposerKit message box to a new Next.js app."
 
 A page with one Composer, a message box you can type into. Sending shows the text below the box. No AI service or API key is needed.
 
-Use Node.js 26 and npm, in an empty folder named `composerkit-demo`.
+Use Node.js 26 and npm, in an empty folder named `composerkit-demo`. ComposerKit installs through the shadcn registry, which copies the component source into your app.
 
 ## 1. Create the app
 
 ```bash
-npx --yes create-next-app@latest . --yes --use-npm --disable-git
+npx --yes create-next-app@latest . --yes --use-npm --disable-git --src-dir
 ```
 
-## 2. Install ComposerKit
+## 2. Add the ComposerKit registry
+
+The first command sets up shadcn in the app. The second command tells shadcn where the `@composerkit` components live.
 
 ```bash
-npm install composerkit@0.1.2
+npx shadcn@latest init --defaults --yes
+npx shadcn registry add '@composerkit=https://snestra.github.io/ComposerKit/r/{name}.json'
 ```
 
-## 3. Add the styles
+## 3. Add the Composer
 
-Keep the ComposerKit import after Tailwind.
+The command copies the Composer, the components it uses and the ComposerKit styles into `src`. It replaces the `src/lib/utils.ts` file that shadcn created with the ComposerKit version.
 
-```css title="app/globals.css"
-@import "tailwindcss";
-@import "composerkit/styles.css";
+```bash
+npx shadcn add @composerkit/composer --overwrite --yes
+```
+
+Replace the global styles with the ComposerKit styles, which include Tailwind CSS.
+
+```css title="src/app/globals.css"
+@import "../styles/globals.css";
 ```
 
 ## 4. Render the Composer
 
-Replace `app/page.tsx` with the file below. Keep `"use client"` at the top, because the controller hook runs in the browser.
+Replace `src/app/page.tsx` with the file below. Keep `"use client"` at the top, because the page keeps the draft in React state in the browser.
 
-```tsx title="app/page.tsx"
+```tsx title="src/app/page.tsx"
 "use client";
 
-import { Composer } from "composerkit/components/composer/composer";
-import { initialComposer } from "composerkit/components/composer/machine";
-import type { ComposerOptions } from "composerkit/components/composer/options";
-import { useComposerController } from "composerkit/components/composer/use-composer-controller";
-import { TipProvider } from "composerkit/components/ui/tip";
+import { InlineComposer } from "@/components/ui/composer";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { useState } from "react";
 
-const options: ComposerOptions = {
-	efforts: [{ id: "normal", label: "Normal" }],
-	models: [{ id: "fast", label: "Fast" }],
-	permissions: [{ id: "ask", label: "Ask first" }],
-};
-
 export default function Home() {
+	const [draft, setDraft] = useState("");
 	const [sentText, setSentText] = useState("");
-	const composer = useComposerController(
-		(sent) => setSentText(sent.draft),
-		initialComposer(options)
-	);
 
 	return (
 		<main className="bg-background text-foreground min-h-dvh p-8">
 			<div className="mx-auto max-w-2xl">
-				<TipProvider>
-					<Composer
-						dispatch={composer.dispatch}
-						handlers={composer.handlers}
-						mode="chat"
-						options={options}
-						projects={[]}
-						state={composer.state}
-					/>
-				</TipProvider>
+				<TooltipProvider>
+					<InlineComposer
+						canCancel={false}
+						canSubmit={draft.trim() !== ""}
+						label="Write a message"
+						multiline
+						onCancel={() => {}}
+						onSubmit={() => {
+							setSentText(draft);
+							setDraft("");
+						}}
+						submitLabel="Send"
+					>
+						<textarea
+							aria-label="Write a message"
+							className="w-full resize-none bg-transparent outline-none"
+							onChange={(event) => setDraft(event.target.value)}
+							placeholder="Write a message"
+							rows={1}
+							value={draft}
+						/>
+					</InlineComposer>
+				</TooltipProvider>
 				<p aria-live="polite" className="mt-4">
 					{sentText}
 				</p>

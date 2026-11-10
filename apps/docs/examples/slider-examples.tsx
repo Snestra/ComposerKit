@@ -1,14 +1,14 @@
 "use client";
 
 import { DirectionProvider } from "@base-ui/react/direction-provider";
-import { DiscreteSlider } from "@workspace/react/components/ui/discrete-slider";
+import { DiscreteSlider } from "composerkit/components/ui/discrete-slider";
 import {
   Slider,
   SliderRange,
   SliderRoot,
   SliderThumb,
   SliderTrack,
-} from "@workspace/react/components/ui/slider";
+} from "composerkit/components/ui/slider";
 import Link from "next/link";
 import { useId, useState } from "react";
 

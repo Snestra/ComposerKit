@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { gitConfig } from "@/lib/shared";
+import { withBasePath } from "@/lib/site";
 import registry from "@/registry.json";
 
 /* Software. Palette forest-pale-lime gives the developer tool a dark reading
@@ -99,7 +100,7 @@ export default function HomePage() {
                 data-enter-media
               >
                 <iframe
-                  src="/preview/composer"
+                  src={withBasePath("/preview/composer/")}
                   title="Try the ComposerKit message composer"
                   className="composer-frame"
                 />
@@ -158,7 +159,7 @@ export default function HomePage() {
               </div>
               <div className="app-frame conversation-frame">
                 <iframe
-                  src="/gallery/conversation-view"
+                  src={withBasePath("/gallery/conversation-view/")}
                   title="ComposerKit conversation with code and replies"
                   loading="lazy"
                 />

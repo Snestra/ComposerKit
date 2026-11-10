@@ -1,49 +1,32 @@
 "use client";
 
-import { AccountServicesProvider } from "@workspace/react/components/avatar/account";
 /* oxlint-disable anti-slop/no-shape-in-symbol-names -- The public names are shape, animateShape and AvatarShape. */
-import type {
-  AccountServices,
-  ProfileUsage,
-  WorkspaceSettings,
-} from "@workspace/react/components/avatar/account";
-import { Facepile } from "@workspace/react/components/avatar/facepile";
-import type { FacepilePerson } from "@workspace/react/components/avatar/facepile";
+import { Facepile } from "composerkit/components/avatar/facepile";
+import type { FacepilePerson } from "composerkit/components/avatar/facepile";
 import {
-  clearProfileImageCache,
-  ProfileImageProvider,
-} from "@workspace/react/components/avatar/profile-image";
-import type {
-  AssetResolution,
-  ProfileImageResolver,
-} from "@workspace/react/components/avatar/profile-image";
-import {
-  AccountAvatar,
   Avatar,
   GroupAvatar,
   GroupAvatarIcon,
-} from "@workspace/react/components/ui/avatar";
+} from "composerkit/components/ui/avatar";
 import type {
   AvatarShapeOption,
   AvatarSize,
-} from "@workspace/react/components/ui/avatar";
-import { Button } from "@workspace/react/components/ui/button";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
-import {
-  ATTACHMENT_CONTENT_URL,
-  HOST_AUTH_HEADER,
-} from "@workspace/react/lib/host";
+} from "composerkit/components/ui/avatar";
+import { Button } from "composerkit/components/ui/button";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import {
   ReducedMotionAttribute,
   ReducedMotionProvider,
   useReducedMotion,
-} from "@workspace/react/lib/reduced-motion";
-import type { ReducedMotionPreference } from "@workspace/react/lib/reduced-motion";
+} from "composerkit/lib/reduced-motion";
+import type { ReducedMotionPreference } from "composerkit/lib/reduced-motion";
 import Link from "next/link";
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 
 import { AppearanceControl } from "@/components/appearance-control";
+import { AvatarImageWorker } from "@/components/avatar-image-worker";
+import { withBasePath } from "@/lib/site";
 
 type Scope = "dark" | "light";
 
@@ -91,7 +74,9 @@ const names = [
 ] as const;
 
 const imageUrl = (delay: number, tone = 0, nonce = 0, format = "svg") =>
-  `/gallery/avatar/image?delay=${delay}&tone=${tone}&n=${nonce}&format=${format}`;
+  withBasePath(
+    `/gallery/avatar/image?delay=${delay}&tone=${tone}&n=${nonce}&format=${format}`
+  );
 
 const heading = "text-title-md font-semibold";
 const note = "text-sm text-muted-foreground";
@@ -281,7 +266,7 @@ const ImageExample = () => {
                 setErrors((count) => count + 1);
               }}
               size="lg"
-              src="/gallery/avatar/missing.png"
+              src={withBasePath("/gallery/avatar/missing.png")}
             />
           </span>
         </Labelled>
@@ -508,7 +493,7 @@ const GroupExample = () => (
       </Labelled>
       <Labelled label="broken picture">
         <GroupAvatar
-          avatar={{ url: "/gallery/avatar/missing.png" }}
+          avatar={{ url: withBasePath("/gallery/avatar/missing.png") }}
           size="md"
         />
       </Labelled>
@@ -850,617 +835,6 @@ const FacepileFadeExample = () => {
   );
 };
 
-const ESTUARY = ATTACHMENT_CONTENT_URL;
-
-// Local asset resolver for the profile pictures. The id in the picture
-// address picks the answer: a slow or quick download served by the local
-// image route, a failure, or a deleted file. Everything else of the
-// profile picture source (the address classification, the request, the data
-// URL, the cache) runs unchanged.
-const resolveCounts = new Map<string, number>();
-
-// Whether the example asset service answers the "outage" picture.
-const backend = { up: false };
-const countListeners = new Set<() => void>();
-
-const subscribeCounts = (onChange: () => void) => {
-  countListeners.add(onChange);
-
-  return () => {
-    countListeners.delete(onChange);
-  };
-};
-
-const countResolves = (address: string) => {
-  resolveCounts.set(address, (resolveCounts.get(address) ?? 0) + 1);
-
-  for (const listener of countListeners) {
-    listener();
-  }
-};
-
-const localResolver: ProfileImageResolver = {
-  cacheKey: ["profile-picture"],
-  // oxlint-disable-next-line require-await -- The resolver interface is asynchronous.
-  resolveAsset: async (address): Promise<AssetResolution> => {
-    countResolves(address);
-
-    const query = new URL(address).searchParams;
-    const id = query.get("id");
-
-    if (id === "error") {
-      throw new Error("The asset lookup returned no result");
-    }
-
-    if (id === "outage" && !backend.up) {
-      throw new Error("The asset service is offline");
-    }
-
-    if (id === "trashed") {
-      return { kind: "trashed" };
-    }
-
-    if (id === "http503") {
-      return {
-        downloadUrl: "/gallery/avatar/image?status=503",
-        kind: "available",
-        requestHeaders: { [HOST_AUTH_HEADER]: "1" },
-      };
-    }
-
-    return {
-      downloadUrl: imageUrl(
-        Number(query.get("delay")) || 0,
-        Number(query.get("tone")) || 0,
-        0,
-        id === "png" ? "png" : "svg"
-      ),
-      kind: "available",
-      requestHeaders: { [HOST_AUTH_HEADER]: "1" },
-    };
-  },
-};
-
-const estuaryUrl = (id: string, delay: number, tone: number) =>
-  `${ESTUARY}?id=${id}&delay=${delay}&tone=${tone}`;
-
-const loadingChip = (
-  <span className="flex size-12 items-center justify-center rounded-full bg-fill-secondary-soft text-xs">
-    Loading
-  </span>
-);
-
-type Plan = "business" | "plus" | "unknown";
-
-type Members = "disabled" | "enabled" | "loading";
-
-type Picture = "auth0" | "direct" | "estuary" | "none";
-
-interface Scenario {
-  accountLoading: boolean;
-  authMethod: "account" | "none";
-  members: Members;
-  picture: Picture;
-  plan: Plan;
-  profileLoading: boolean;
-}
-
-const initialScenario: Scenario = {
-  accountLoading: false,
-  authMethod: "account",
-  members: "enabled",
-  picture: "estuary",
-  plan: "business",
-  profileLoading: false,
-};
-
-const SIGNED_IN_USER = "user-1__acct-1";
-
-const pictureFor = (picture: Picture) => {
-  switch (picture) {
-    case "auth0": {
-      return "https://cdn.auth0.com/avatars/ax.png";
-    }
-
-    case "direct": {
-      return imageUrl(0, 2);
-    }
-
-    case "estuary": {
-      return estuaryUrl("signed-in", 300, 1);
-    }
-
-    case "none": {
-      return null;
-    }
-
-    default: {
-      return null;
-    }
-  }
-};
-
-// The pictures the example person lookup knows, by account user id.
-const PEOPLE_PICTURES = new Map([
-  ["user-3__acct-1", imageUrl(0, 4)],
-  ["user-4__acct-1", imageUrl(0, 3)],
-]);
-
-// The answers the example services have given, by query key, like the data
-// of a query cache. A disabled read answers what is cached for its key and
-// fetches nothing.
-interface ServiceCache {
-  person: Map<string, string>;
-  profile: Map<string, ProfileUsage>;
-  settings: Map<string, WorkspaceSettings>;
-}
-
-const createServiceCache = (): ServiceCache => ({
-  person: new Map(),
-  profile: new Map(),
-  settings: new Map(),
-});
-
-interface CachedRead<Data> {
-  data: Data | null;
-  isLoading: boolean;
-}
-
-const readCached = <Data,>(
-  cache: Map<string, Data>,
-  key: readonly (string | null)[],
-  enabled: boolean,
-  read: () => CachedRead<Data>
-): CachedRead<Data> => {
-  const cacheKey = JSON.stringify(key);
-
-  if (!enabled) {
-    return {
-      data: cache.get(cacheKey) ?? null,
-      isLoading: false,
-    };
-  }
-
-  const answer = read();
-
-  if (answer.data !== null) {
-    cache.set(cacheKey, answer.data);
-  }
-
-  return answer;
-};
-
-// Local account data standing in for the application's account, workspace
-// settings and person lookups.
-const servicesFor = (
-  scenario: Scenario,
-  cache: ServiceCache
-): AccountServices => ({
-  accountCheck: {
-    data: {
-      account_ordering: ["acct-1"],
-      accounts: [
-        {
-          id: "acct-1",
-          plan_type: scenario.plan === "unknown" ? null : scenario.plan,
-        },
-      ],
-    },
-    isError: false,
-    isLoading: scenario.accountLoading,
-  },
-  auth: {
-    accountId: "acct-1",
-    authMethod: scenario.authMethod === "account" ? "account" : null,
-    isLoading: false,
-    planAtLogin: null,
-    userId: SIGNED_IN_USER,
-  },
-  readProfileUsage: ({ enabled, queryKey }) =>
-    readCached(cache.profile, queryKey, enabled, () =>
-      scenario.profileLoading
-        ? { data: null, isLoading: true }
-        : {
-            data: { imageUrl: pictureFor(scenario.picture) },
-            isLoading: false,
-          }
-    ),
-  readSpacePersonAvatar: (accountUserId, enabled) =>
-    readCached(cache.person, ["person", accountUserId], enabled, () => ({
-      data: PEOPLE_PICTURES.get(accountUserId) ?? null,
-      isLoading: false,
-    })).data,
-  readWorkspaceSettings: (accountId, enabled) =>
-    readCached(cache.settings, ["workspace-settings", accountId], enabled, () =>
-      scenario.members === "loading"
-        ? { data: null, isLoading: true }
-        : {
-            data: {
-              member_profiles_enabled: scenario.members === "enabled",
-            },
-            isLoading: false,
-          }
-    ),
-});
-
-const Choice = <Value extends string>({
-  label,
-  onChange,
-  options,
-  value,
-}: {
-  label: string;
-  onChange: (value: Value) => void;
-  options: readonly Value[];
-  value: Value;
-}) => (
-  <fieldset className="flex flex-wrap items-center gap-2">
-    <legend className="sr-only">{label}</legend>
-    <span className="text-sm">{label}:</span>
-    {options.map((option) => (
-      <Button
-        aria-pressed={value === option}
-        key={option}
-        onClick={() => {
-          onChange(option);
-        }}
-        size="compact"
-        color={value === option ? "primary" : "outline"}
-      >
-        {option}
-      </Button>
-    ))}
-  </fieldset>
-);
-
-const ProfileExample = () => {
-  const [scenario, setScenario] = useState(initialScenario);
-  const [nonce, setNonce] = useState(0);
-  const [reuse, setReuse] = useState(false);
-  const serviceCache = useMemo(() => createServiceCache(), []);
-  const [lookupOn, setLookupOn] = useState(true);
-  const [pngShown, setPngShown] = useState(true);
-  const [outageNonce, setOutageNonce] = useState(0);
-
-  const services = useMemo(
-    () => servicesFor(scenario, serviceCache),
-    [scenario, serviceCache]
-  );
-
-  const slowUrl = estuaryUrl(`slow-${nonce}`, 2500, 3);
-
-  const downloads = useSyncExternalStore(
-    subscribeCounts,
-    () => resolveCounts.get(slowUrl) ?? 0,
-    () => 0
-  );
-
-  const outageUrl = estuaryUrl("outage", 0, 2);
-
-  const outageAttempts = useSyncExternalStore(
-    subscribeCounts,
-    () => resolveCounts.get(outageUrl) ?? 0,
-    () => 0
-  );
-
-  const update = (patch: Partial<Scenario>) => {
-    setScenario((current) => ({ ...current, ...patch }));
-  };
-
-  return (
-    <Section
-      id="profile"
-      note="Profile pictures follow the account. They show for a account sign-in with a known plan, and on a workspace plan only while the workspace allows member profiles. An address under the host content endpoint is fetched with the session headers and shown as a data URL, kept in a cache for four minutes. Other addresses are used as they are. The account here is local example data."
-      title="Profile and account avatars"
-    >
-      <AccountServicesProvider services={services}>
-        <ProfileImageProvider resolver={localResolver}>
-          <div className="flex flex-col gap-2">
-            <Choice
-              label="Sign-in"
-              onChange={(authMethod) => {
-                update({ authMethod });
-              }}
-              options={["account", "none"] as const}
-              value={scenario.authMethod}
-            />
-            <Choice
-              label="Plan"
-              onChange={(plan: Plan) => {
-                update({ plan });
-              }}
-              options={["plus", "business", "unknown"] as const}
-              value={scenario.plan}
-            />
-            <Choice
-              label="Member profiles"
-              onChange={(members: Members) => {
-                update({ members });
-              }}
-              options={["enabled", "disabled", "loading"] as const}
-              value={scenario.members}
-            />
-            <Choice
-              label="Signed-in user picture"
-              onChange={(picture: Picture) => {
-                update({ picture });
-              }}
-              options={["estuary", "direct", "auth0", "none"] as const}
-              value={scenario.picture}
-            />
-            <label className="flex items-center gap-2 text-sm">
-              <input
-                checked={scenario.accountLoading}
-                onChange={(event) => {
-                  update({ accountLoading: event.currentTarget.checked });
-                }}
-                type="checkbox"
-              />
-              account check loading
-            </label>
-            <label className="flex items-center gap-2 text-sm">
-              <input
-                checked={scenario.profileLoading}
-                onChange={(event) => {
-                  update({ profileLoading: event.currentTarget.checked });
-                }}
-                type="checkbox"
-              />
-              profile query loading
-            </label>
-          </div>
-          <div className="flex flex-wrap items-end gap-4">
-            <Labelled label="estuary, slow">
-              <span data-testid="profile-estuary" key={nonce}>
-                <AccountAvatar
-                  accountUserId="user-2__acct-1"
-                  avatarUrl={slowUrl}
-                  loadingFallback={loadingChip}
-                  name="Robin Placeholder"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="estuary, same address">
-              {reuse ? (
-                <span data-testid="profile-estuary-reuse">
-                  <AccountAvatar
-                    accountUserId="user-2__acct-1"
-                    avatarUrl={slowUrl}
-                    loadingFallback={loadingChip}
-                    name="Robin Placeholder"
-                    size="picker"
-                  />
-                </span>
-              ) : (
-                <span className="text-xs text-muted-foreground">
-                  not mounted
-                </span>
-              )}
-            </Labelled>
-            <Labelled label="estuary, fails">
-              <span data-testid="profile-estuary-error">
-                <AccountAvatar
-                  accountUserId="user-2__acct-1"
-                  avatarUrl={estuaryUrl("error", 0, 0)}
-                  loadingFallback={loadingChip}
-                  name="Kit Example"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="estuary, HTTP 503">
-              <span data-testid="profile-estuary-http503">
-                <AccountAvatar
-                  accountUserId="user-2__acct-1"
-                  avatarUrl={estuaryUrl("http503", 0, 3)}
-                  loadingFallback={loadingChip}
-                  name="Sam Example"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="estuary, PNG">
-              {pngShown ? (
-                <span data-testid="profile-estuary-png">
-                  <AccountAvatar
-                    accountUserId="user-2__acct-1"
-                    avatarUrl={estuaryUrl("png", 0, 1)}
-                    loadingFallback={loadingChip}
-                    name="Robin Placeholder"
-                    size="picker"
-                  />
-                </span>
-              ) : (
-                <span className="text-xs text-muted-foreground">
-                  not mounted
-                </span>
-              )}
-            </Labelled>
-            <Labelled label="estuary, service down">
-              <span data-testid="profile-estuary-outage" key={outageNonce}>
-                <AccountAvatar
-                  accountUserId="user-2__acct-1"
-                  avatarUrl={outageUrl}
-                  loadingFallback={loadingChip}
-                  name="Kit Example"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="estuary, deleted">
-              <span data-testid="profile-estuary-trashed">
-                <AccountAvatar
-                  accountUserId="user-2__acct-1"
-                  avatarUrl={estuaryUrl("trashed", 0, 0)}
-                  loadingFallback={loadingChip}
-                  name="Ada Example"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="direct address">
-              <span data-testid="profile-direct">
-                <AccountAvatar
-                  accountUserId="user-2__acct-1"
-                  avatarUrl={imageUrl(0, 2)}
-                  name="Sam Example"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="signed-in user">
-              <span data-testid="account-signed-in">
-                <AccountAvatar
-                  accountUserId="user-1__other-suffix"
-                  loadingFallback={loadingChip}
-                  name="Alex Sample"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="signed-in, explicit address">
-              <span data-testid="account-signed-in-explicit">
-                <AccountAvatar
-                  accountUserId="user-1__other-suffix"
-                  avatarUrl={imageUrl(0, 4)}
-                  loadingFallback={loadingChip}
-                  name="Alex Sample"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="person lookup">
-              <span data-testid="account-lookup">
-                <AccountAvatar
-                  accountUserId="user-3__acct-1"
-                  name="Lee Example"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label={lookupOn ? "lookup on" : "lookup turned off"}>
-              <span data-testid="account-lookup-toggle">
-                <AccountAvatar
-                  accountUserId="user-3__acct-1"
-                  name="Lee Example"
-                  profileQueryEnabled={lookupOn}
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="lookup off, nothing cached">
-              <span data-testid="account-lookup-off">
-                <AccountAvatar
-                  accountUserId="user-4__acct-1"
-                  name="Lee Example"
-                  profileQueryEnabled={false}
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="no match, no address">
-              <span data-testid="account-no-match">
-                <AccountAvatar
-                  accountUserId="user-9__acct-1"
-                  name="Max Example"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="loading prop">
-              <span data-testid="account-loading">
-                <AccountAvatar
-                  accountUserId="user-9__acct-1"
-                  loading
-                  loadingFallback={loadingChip}
-                  name="Max Example"
-                  size="picker"
-                />
-              </span>
-            </Labelled>
-            <Labelled label="default size">
-              <span data-testid="account-default-size">
-                <AccountAvatar
-                  accountUserId="user-9__acct-1"
-                  name="Max Example"
-                />
-              </span>
-            </Labelled>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <Button
-              onClick={() => {
-                setReuse(true);
-              }}
-              size="compact"
-              color="outline"
-            >
-              Mount a second avatar with the same address
-            </Button>
-            <Button
-              aria-pressed={lookupOn}
-              onClick={() => {
-                setLookupOn((on) => !on);
-              }}
-              size="compact"
-              color="outline"
-            >
-              {lookupOn ? "Turn the lookup off" : "Turn the lookup on"}
-            </Button>
-            <label className="flex items-center gap-2 text-sm">
-              <input
-                defaultChecked={backend.up}
-                onChange={(event) => {
-                  backend.up = event.currentTarget.checked;
-                }}
-                type="checkbox"
-              />
-              asset service up
-            </label>
-            <Button
-              aria-pressed={pngShown}
-              onClick={() => {
-                setPngShown((shown) => !shown);
-              }}
-              size="compact"
-              color="outline"
-            >
-              {pngShown ? "Unmount the PNG avatar" : "Mount the PNG avatar"}
-            </Button>
-            <output className="text-sm" data-testid="profile-outage-attempts">
-              attempts for the service down address: {outageAttempts}
-            </output>
-            <Button
-              onClick={() => {
-                setOutageNonce((count) => count + 1);
-              }}
-              size="compact"
-              color="outline"
-            >
-              Remount the service down avatar
-            </Button>
-            <Button
-              onClick={() => {
-                clearProfileImageCache();
-                setReuse(false);
-                setNonce((count) => count + 1);
-              }}
-              size="compact"
-              color="outline"
-            >
-              Clear cache and reload
-            </Button>
-            <output className="text-sm" data-testid="profile-fetch-count">
-              downloads of the slow address: {downloads}
-            </output>
-          </div>
-        </ProfileImageProvider>
-      </AccountServicesProvider>
-    </Section>
-  );
-};
-
 const AvatarGalleryExample = () => (
   <main className="mx-auto flex max-w-6xl flex-col gap-8 bg-background p-4 text-foreground">
     <header className="flex flex-wrap items-center gap-4">
@@ -1470,38 +844,39 @@ const AvatarGalleryExample = () => (
       <h1 className="text-title-lg font-semibold">Avatar</h1>
       <AppearanceControl id="avatar-appearance" />
     </header>
-    <MotionSettings>
-      <SizesExample />
-      <InitialsExample />
-      <ImageExample />
-      <ProfileExample />
-      <MutedExample />
-      <ShapesExample />
-      <GroupExample />
-      <FacepileExample />
-      <FacepileFadeExample />
-    </MotionSettings>
-    <Section
-      id="appearance"
-      note="Each panel sets its own theme scope. The two lower panels nest the opposite theme inside. Avatar colors are fixed values; the group background and the facepile border follow the nearest scope."
-      title="States in light and dark"
-    >
-      <div className="grid gap-4 md:grid-cols-2">
-        <AppearancePanel id="appearance-light" scope="light" />
-        <AppearancePanel id="appearance-dark" scope="dark" />
-        <AppearancePanel
-          id="appearance-dark-light"
-          nested="light"
-          scope="dark"
-        />
-        <AppearancePanel
-          id="appearance-light-dark"
-          nested="dark"
-          scope="light"
-        />
-      </div>
-    </Section>
-    <RtlExample />
+    <AvatarImageWorker>
+      <MotionSettings>
+        <SizesExample />
+        <InitialsExample />
+        <ImageExample />
+        <MutedExample />
+        <ShapesExample />
+        <GroupExample />
+        <FacepileExample />
+        <FacepileFadeExample />
+      </MotionSettings>
+      <Section
+        id="appearance"
+        note="Each panel sets its own theme scope. The two lower panels nest the opposite theme inside. Avatar colors are fixed values; the group background and the facepile border follow the nearest scope."
+        title="States in light and dark"
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          <AppearancePanel id="appearance-light" scope="light" />
+          <AppearancePanel id="appearance-dark" scope="dark" />
+          <AppearancePanel
+            id="appearance-dark-light"
+            nested="light"
+            scope="dark"
+          />
+          <AppearancePanel
+            id="appearance-light-dark"
+            nested="dark"
+            scope="light"
+          />
+        </div>
+      </Section>
+      <RtlExample />
+    </AvatarImageWorker>
   </main>
 );
 

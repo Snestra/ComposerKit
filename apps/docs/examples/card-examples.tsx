@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   CardStatusIndicator,
   CardTile,
@@ -10,9 +10,9 @@ import {
   DocumentCard,
   SuggestionCard,
   WritingBlockSurface,
-} from "@workspace/react/components/ui/card";
-import type { CardTilePresentation } from "@workspace/react/components/ui/card";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/card";
+import type { CardTilePresentation } from "composerkit/components/ui/card";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import {
   BookOpen,
   Check,

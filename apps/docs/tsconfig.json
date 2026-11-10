@@ -22,8 +22,8 @@
       "@/*": [
         "./*"
       ],
-      "@workspace/react/*": [
-        "../../packages/react/src/*"
+      "composerkit/*": [
+        "../../packages/composerkit/src/*"
       ],
       "collections/*": [
         "./.source/*"
@@ -45,6 +45,7 @@
     "**/*.mts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "out"
   ]
 }

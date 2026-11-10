@@ -23,11 +23,11 @@ export default defineConfig({
     "apps/docs/components/mdx.tsx",
     "apps/docs/content/**",
     "apps/docs/lib/**",
-    "packages/react/src/components/diff/syntax-refractor.js",
+    "packages/composerkit/src/components/diff/syntax-refractor.js",
   ],
   sortTailwindcss: {
     ...ultraciteTailwind,
     // Point the class sorter at our theme so custom tokens sort like built-in ones.
-    stylesheet: "./packages/react/src/styles/globals.css",
+    stylesheet: "./packages/composerkit/src/styles/globals.css",
   },
 });

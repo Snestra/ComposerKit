@@ -1,14 +1,14 @@
 "use client";
 
-import { AutocompleteListbox } from "@workspace/react/components/select/autocomplete-listbox";
-import type { AutocompleteOption } from "@workspace/react/components/select/autocomplete-listbox";
-import { ClearableSelectorTrigger } from "@workspace/react/components/select/clearable-trigger";
-import { Button } from "@workspace/react/components/ui/button";
-import { Select } from "@workspace/react/components/ui/select";
+import { AutocompleteListbox } from "composerkit/components/select/autocomplete-listbox";
+import type { AutocompleteOption } from "composerkit/components/select/autocomplete-listbox";
+import { ClearableSelectorTrigger } from "composerkit/components/select/clearable-trigger";
+import { Button } from "composerkit/components/ui/button";
+import { Select } from "composerkit/components/ui/select";
 import type {
   SelectOption,
   SelectOptionGroup,
-} from "@workspace/react/components/ui/select";
+} from "composerkit/components/ui/select";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { ReactNode, SubmitEvent } from "react";

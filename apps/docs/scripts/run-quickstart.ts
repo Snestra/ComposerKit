@@ -5,6 +5,9 @@ import { tmpdir } from "node:os";
 import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { setTimeout } from "node:timers/promises";
 
+import { basePath, site } from "../lib/site.ts";
+import { startLocalRegistry } from "./registry-server.ts";
+
 type Step =
   | { kind: "command"; command: string; server?: string }
   | { kind: "file"; path: string; content: string };
@@ -66,7 +69,7 @@ const runCommand = async (
       if (!response.ok) {
         throw new Error(`Development page returned HTTP ${response.status}`);
       }
-      if (!(await response.text()).includes('data-slot="composer-field"')) {
+      if (!(await response.text()).includes("data-ck-inline-composer")) {
         throw new Error("Development page did not render the Composer");
       }
       process.stdout.write("PASS development page renders Composer\n");
@@ -85,12 +88,15 @@ const runCommand = async (
 
 let currentStep = "read tutorial";
 let directory: string | undefined;
+// The tutorial installs from the published registry at site.url. The run
+// serves this checkout's public/r instead, so it tests the registry as built.
+const localRegistry = await startLocalRegistry(basePath);
 try {
   const source = await readFile(
     new URL("../content/docs/index.mdx", import.meta.url),
     "utf8"
   );
-  const steps = parseSteps(source);
+  const steps = parseSteps(source.replaceAll(site.url, localRegistry.origin));
   const final = steps.at(-1);
   if (final?.kind !== "command" || final.command !== "npx next build") {
     throw new Error("The tutorial must end with npx next build");
@@ -118,6 +124,7 @@ try {
   process.stderr.write(`FAIL ${currentStep}\n${String(error)}\n`);
   process.exitCode = 1;
 } finally {
+  await localRegistry.close();
   if (directory) {
     await rm(directory, { force: true, recursive: true });
   }

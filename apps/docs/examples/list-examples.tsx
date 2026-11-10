@@ -2,34 +2,31 @@
 
 /* oxlint-disable eslint/complexity, eslint/max-lines-per-function, shadcn/no-restyle, shadcn/no-arbitrary-values -- The gallery draws one example per list option and measured frames around them. */
 
-import { AppLink } from "@workspace/react/components/list/app-link";
+import { AppLink } from "composerkit/components/list/app-link";
 import type {
   AppLinkServices,
   LinkOpenRequest,
-} from "@workspace/react/components/list/app-link";
-import { ListViewport } from "@workspace/react/components/list/list-viewport";
+} from "composerkit/components/list/app-link";
+import { ListViewport } from "composerkit/components/list/list-viewport";
 import {
   MarqueeText,
   MarqueeZoomProvider,
-} from "@workspace/react/components/list/marquee-text";
-import { ResourceCitation } from "@workspace/react/components/list/resource-citation";
-import {
-  ResourceRow,
-  SubagentRow,
-} from "@workspace/react/components/list/rows";
+} from "composerkit/components/list/marquee-text";
+import { ResourceCitation } from "composerkit/components/list/resource-citation";
+import { ResourceRow, SubagentRow } from "composerkit/components/list/rows";
 import {
   SelectableListLoading,
   SelectableListRow,
   SelectableListRowGroup,
   SelectableListRowGroupItem,
-} from "@workspace/react/components/list/selectable-row";
+} from "composerkit/components/list/selectable-row";
 import {
   SelectionList,
   SelectionListRow,
-} from "@workspace/react/components/list/selection-list";
-import { SubagentAvatar } from "@workspace/react/components/list/subagent-avatar";
-import { ThumbnailRail } from "@workspace/react/components/list/thumbnail-rail";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/list/selection-list";
+import { SubagentAvatar } from "composerkit/components/list/subagent-avatar";
+import { ThumbnailRail } from "composerkit/components/list/thumbnail-rail";
+import { Button } from "composerkit/components/ui/button";
 import {
   DividedRows,
   DynamicIsleList,
@@ -53,14 +50,14 @@ import {
   ListPanel,
   ListSectionActions,
   ListSectionIconButton,
-} from "@workspace/react/components/ui/list";
+} from "composerkit/components/ui/list";
 import type {
   ListLeadingVariant,
   ListTone,
-} from "@workspace/react/components/ui/list";
-import { SettingsCard } from "@workspace/react/components/ui/settings";
-import { ToastProvider } from "@workspace/react/components/ui/toast";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/list";
+import { SettingsCard } from "composerkit/components/ui/settings";
+import { ToastProvider } from "composerkit/components/ui/toast";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import {
   Check,
   File,

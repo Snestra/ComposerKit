@@ -1,4 +1,4 @@
-import { QrCode } from "@workspace/react/components/ui/qr-code";
+import { QrCode } from "composerkit/components/ui/qr-code";
 import Link from "next/link";
 
 const EXAMPLE_URL = "https://example.com/request/0000";

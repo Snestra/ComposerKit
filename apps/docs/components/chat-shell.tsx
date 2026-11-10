@@ -1,8 +1,8 @@
 "use client";
 
 import { Dialog } from "@base-ui/react/dialog";
-import { Button } from "@workspace/react/components/ui/button";
 import { cn } from "cn";
+import { Button } from "composerkit/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";

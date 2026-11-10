@@ -1,19 +1,19 @@
 "use client";
 
-import { DataButton } from "@workspace/react/components/button/data-button";
-import { DateTime } from "@workspace/react/components/date-picker/date-time";
+import { DataButton } from "composerkit/components/button/data-button";
+import { DateTime } from "composerkit/components/date-picker/date-time";
 import {
   Popover,
   PopoverContent,
   usePopoverTrigger,
-} from "@workspace/react/components/date-picker/popover";
-import { usePopoverContext } from "@workspace/react/components/date-picker/popover-context";
-import { SelectControl } from "@workspace/react/components/date-picker/select-control";
-import { useIsClient } from "@workspace/react/components/dialog/dialog-layer";
-import { PlatformProvider } from "@workspace/react/components/platform-provider";
-import { DatePicker } from "@workspace/react/components/ui/date-picker";
-import type { DatePickerProps } from "@workspace/react/components/ui/date-picker";
-import { cn } from "@workspace/react/lib/utils";
+} from "composerkit/components/date-picker/popover";
+import { usePopoverContext } from "composerkit/components/date-picker/popover-context";
+import { SelectControl } from "composerkit/components/date-picker/select-control";
+import { useIsClient } from "composerkit/components/dialog/dialog-layer";
+import { PlatformProvider } from "composerkit/components/platform-provider";
+import { DatePicker } from "composerkit/components/ui/date-picker";
+import type { DatePickerProps } from "composerkit/components/ui/date-picker";
+import { cn } from "composerkit/lib/utils";
 import { Component, useEffect, useId, useRef, useState } from "react";
 import type { ReactNode } from "react";
 

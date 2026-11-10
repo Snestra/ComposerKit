@@ -1,10 +1,10 @@
 "use client";
 
-import { ChatSidebar } from "@workspace/react/components/chat-sidebar/chat-sidebar";
+import { ChatSidebar } from "composerkit/components/chat-sidebar/chat-sidebar";
 import type {
   ChatSidebarProject,
   ChatSidebarThread,
-} from "@workspace/react/components/chat-sidebar/chat-sidebar";
+} from "composerkit/components/chat-sidebar/chat-sidebar";
 import { useState } from "react";
 
 // Minutes since each chat's last activity, and the unread ones.

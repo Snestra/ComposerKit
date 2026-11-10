@@ -2,28 +2,25 @@
 
 /* oxlint-disable eslint/no-empty-function -- The example actions do nothing; they only show the toast buttons. */
 
-import {
-  ToastAlert,
-  ToastContent,
-} from "@workspace/react/components/toast/alert";
-import { ToastContentAnchor } from "@workspace/react/components/toast/manager";
-import type { ToastRenderContext } from "@workspace/react/components/toast/manager";
+import { ToastAlert, ToastContent } from "composerkit/components/toast/alert";
+import { ToastContentAnchor } from "composerkit/components/toast/manager";
+import type { ToastRenderContext } from "composerkit/components/toast/manager";
 import {
   SonnerToaster,
   sonnerToast,
-} from "@workspace/react/components/toast/sonner";
-import { Button } from "@workspace/react/components/ui/button";
+} from "composerkit/components/toast/sonner";
+import { Button } from "composerkit/components/ui/button";
 import {
   ToastProvider,
   getActiveToastManager,
   showToastOnBoundManager,
   useToast,
-} from "@workspace/react/components/ui/toast";
+} from "composerkit/components/ui/toast";
 import type {
   ToastHandle,
   ToastOptions,
-} from "@workspace/react/components/ui/toast";
-import { cn } from "@workspace/react/lib/utils";
+} from "composerkit/components/ui/toast";
+import { cn } from "composerkit/lib/utils";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import type { ReactNode } from "react";

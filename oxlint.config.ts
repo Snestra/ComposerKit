@@ -10,14 +10,14 @@ export default defineConfig({
   extends: [core, react, next, shadcn, antiSlop],
   ignorePatterns: [
     ...(core.ignorePatterns ?? []),
-    "packages/react/src/components/diff/syntax-refractor.js",
+    "packages/composerkit/src/components/diff/syntax-refractor.js",
   ],
   jsPlugins: shadcn.jsPlugins,
   options: { typeAware: true },
   overrides: [
     {
       // shadcn generates these files. Keep its code style so `shadcn add` updates merge cleanly.
-      files: ["packages/react/src/components/ui/**"],
+      files: ["packages/composerkit/src/components/ui/**"],
       rules: {
         "func-style": "off",
         "import/consistent-type-specifier-style": "off",

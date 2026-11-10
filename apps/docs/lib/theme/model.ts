@@ -229,7 +229,7 @@ export interface ThemeToken {
   name: string;
   mode: Mode | undefined;
   role: RoleId | undefined;
-  /** The value in packages/react/DESIGN.md. */
+  /** The value in packages/composerkit/DESIGN.md. */
   source: string;
   /** The seed recolor with the token's lightness kept, before any limit. */
   raw: string;

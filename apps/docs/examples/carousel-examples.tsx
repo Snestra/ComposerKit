@@ -2,22 +2,22 @@
 
 /* oxlint-disable shadcn/no-restyle, shadcn/no-arbitrary-values, shadcn/no-inline-styles -- The gallery draws measured frames and generates its example photos as inline SVG. */
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   BaseCarousel,
   ImageGroupCarousel,
   OptionCarousel,
   useCarousel,
-} from "@workspace/react/components/ui/carousel";
+} from "composerkit/components/ui/carousel";
 import type {
   ImageGroupCarouselHandle,
   OptionCarouselLayout,
-} from "@workspace/react/components/ui/carousel";
+} from "composerkit/components/ui/carousel";
 import {
   ReducedMotionProvider,
   useReducedMotion,
-} from "@workspace/react/lib/reduced-motion";
-import type { ReducedMotionPreference } from "@workspace/react/lib/reduced-motion";
+} from "composerkit/lib/reduced-motion";
+import type { ReducedMotionPreference } from "composerkit/lib/reduced-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState } from "react";

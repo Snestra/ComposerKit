@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-import ts from "typescript";
+import { parseSync } from "oxc-parser";
 
 import registry from "../registry.json" with { type: "json" };
 
@@ -41,8 +41,8 @@ export interface LoadedComponentPage extends ComponentPage {
 
 export const packageImportSource = (page: ComponentPage): string =>
   page.packageImport.symbol
-    ? `import { ${page.packageImport.symbol} } from "composerkit/${page.packageImport.path}";`
-    : `import "composerkit/${page.packageImport.path}";`;
+    ? `import { ${page.packageImport.symbol} } from "@/${page.packageImport.path}";`
+    : `import "@/${page.packageImport.path}";`;
 
 export const docsRoot =
   path.basename(process.cwd()) === "docs"
@@ -334,35 +334,28 @@ const exportedPropTypes = (
   filePath: string,
   sourceText: string
 ): PropTypeReference[] => {
-  const source = ts.createSourceFile(
-    filePath,
-    sourceText,
-    ts.ScriptTarget.Latest,
-    true,
-    ts.ScriptKind.TSX
-  );
+  const { errors, program } = parseSync(filePath, sourceText, { lang: "tsx" });
+  if (errors.length > 0) {
+    throw new Error(`Cannot parse ${filePath}: ${errors[0]?.message}`);
+  }
   const names = new Set<string>();
 
-  for (const statement of source.statements) {
+  for (const statement of program.body) {
+    if (statement.type !== "ExportNamedDeclaration") continue;
+
+    const { declaration } = statement;
     if (
-      ts.isInterfaceDeclaration(statement) ||
-      ts.isTypeAliasDeclaration(statement)
+      (declaration?.type === "TSInterfaceDeclaration" ||
+        declaration?.type === "TSTypeAliasDeclaration") &&
+      declaration.id.name.endsWith("Props")
     ) {
-      const exported = statement.modifiers?.some(
-        (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword
-      );
-      if (exported && statement.name.text.endsWith("Props"))
-        names.add(statement.name.text);
+      names.add(declaration.id.name);
     }
 
-    if (
-      ts.isExportDeclaration(statement) &&
-      statement.exportClause &&
-      ts.isNamedExports(statement.exportClause)
-    ) {
-      for (const element of statement.exportClause.elements) {
-        if (element.name.text.endsWith("Props")) names.add(element.name.text);
-      }
+    for (const specifier of statement.specifiers) {
+      const { exported } = specifier;
+      const name = exported.type === "Literal" ? exported.value : exported.name;
+      if (name.endsWith("Props")) names.add(name);
     }
   }
 

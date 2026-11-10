@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
-import { InlineComposer } from "@workspace/react/components/ui/composer";
 import { cn } from "cn";
+import { Button } from "composerkit/components/ui/button";
+import { InlineComposer } from "composerkit/components/ui/composer";
 import { useId } from "react";
 import type { ComponentProps } from "react";
 

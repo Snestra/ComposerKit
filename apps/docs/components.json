@@ -5,7 +5,7 @@
   "tsx": true,
   "tailwind": {
     "config": "",
-    "css": "../../packages/react/src/styles/globals.css",
+    "css": "../../packages/composerkit/src/styles/globals.css",
     "baseColor": "neutral",
     "cssVariables": true,
     "prefix": ""
@@ -16,8 +16,8 @@
     "components": "@/components",
     "hooks": "@/hooks",
     "lib": "@/lib",
-    "utils": "@workspace/react/lib/utils",
-    "ui": "@workspace/react/components/ui"
+    "utils": "composerkit/lib/utils",
+    "ui": "composerkit/components/ui"
   },
   "menuColor": "default",
   "menuAccent": "subtle",

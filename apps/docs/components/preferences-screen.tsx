@@ -4,26 +4,23 @@
 
 /* oxlint-disable react/no-unstable-nested-components -- A row control is a render function of the label and description ids. */
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   NavigationTab,
   NavigationTabs,
   NavigationTabsList,
   NavigationTabsPanel,
-} from "@workspace/react/components/ui/navigation-tabs";
-import {
-  SettingsCard,
-  SettingsRow,
-} from "@workspace/react/components/ui/settings";
-import { Switch } from "@workspace/react/components/ui/switch";
-import { ToastProvider, useToast } from "@workspace/react/components/ui/toast";
-import type { ToastHandle } from "@workspace/react/components/ui/toast";
+} from "composerkit/components/ui/navigation-tabs";
+import { SettingsCard, SettingsRow } from "composerkit/components/ui/settings";
+import { Switch } from "composerkit/components/ui/switch";
+import { ToastProvider, useToast } from "composerkit/components/ui/toast";
+import type { ToastHandle } from "composerkit/components/ui/toast";
 import {
   Tooltip,
   TooltipPopup,
   TooltipProvider,
   TooltipTrigger,
-} from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/tooltip";
 import { RotateCcw } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";

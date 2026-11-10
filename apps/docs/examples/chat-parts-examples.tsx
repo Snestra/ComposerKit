@@ -1,11 +1,11 @@
 "use client";
 
-import { AttachmentPart } from "@workspace/react/components/attachment/attachment";
-import { ReasoningPart } from "@workspace/react/components/reasoning/reasoning";
-import { ToolCallPart } from "@workspace/react/components/tool-call/tool-call";
-import type { ChatPartState } from "@workspace/react/lib/chat-part-state";
-import { replayChatStream } from "@workspace/react/lib/chat-stream";
-import { useReducedMotion } from "@workspace/react/lib/reduced-motion";
+import { AttachmentPart } from "composerkit/components/attachment/attachment";
+import { ReasoningPart } from "composerkit/components/reasoning/reasoning";
+import { ToolCallPart } from "composerkit/components/tool-call/tool-call";
+import type { ChatPartState } from "composerkit/lib/chat-part-state";
+import { replayChatStream } from "composerkit/lib/chat-stream";
+import { useReducedMotion } from "composerkit/lib/reduced-motion";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";

@@ -1,23 +1,23 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
+import { Button } from "composerkit/components/ui/button";
 import {
   NavigationTab,
   NavigationTabs,
   NavigationTabsList,
   NavigationTabsPanel,
-} from "@workspace/react/components/ui/navigation-tabs";
+} from "composerkit/components/ui/navigation-tabs";
 import {
   AppShellTab,
   AppShellTabList,
   NewTabButton,
   Tabs,
-} from "@workspace/react/components/ui/tabs";
+} from "composerkit/components/ui/tabs";
 import type {
   TabItem,
   TabsActivationMode,
   TabsVariant,
-} from "@workspace/react/components/ui/tabs";
+} from "composerkit/components/ui/tabs";
 import {
   FileText,
   Folder,

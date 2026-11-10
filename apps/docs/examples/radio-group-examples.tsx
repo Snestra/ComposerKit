@@ -3,7 +3,7 @@
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@workspace/react/components/ui/radio-group";
+} from "composerkit/components/ui/radio-group";
 /* oxlint-disable anti-slop/no-runtime-typeof -- FormData entries are strings or files. */
 import { useState } from "react";
 import type { ReactNode } from "react";

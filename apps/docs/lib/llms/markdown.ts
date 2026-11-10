@@ -94,7 +94,7 @@ const renderComponent = async (
   );
   const demos = component.demos.map(
     (demo) =>
-      `### ${demo.name}\n\n\`\`\`tsx\n${demo.source.replaceAll(/@workspace\/react\//gu, "@/").trimEnd()}\n\`\`\``
+      `### ${demo.name}\n\n\`\`\`tsx\n${demo.source.replaceAll(/composerkit\//gu, "@/").trimEnd()}\n\`\`\``
   );
   const tables = await Promise.all(
     component.props.map(async (reference) => {
@@ -124,8 +124,6 @@ The files land in \`src/components\`, imported as \`@/components/...\`.
 \`\`\`bash
 ${install.join("\n")}
 \`\`\`
-
-The npm package \`composerkit\` lags these docs and has a different API. Do not mix it with the registry source.
 
 ## Usage
 

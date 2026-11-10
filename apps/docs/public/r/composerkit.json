@@ -30,7 +30,6 @@
     "@composerkit/dismissable-layer",
     "@composerkit/empty-state",
     "@composerkit/file-preview",
-    "@composerkit/host",
     "@composerkit/icon",
     "@composerkit/icon-markup",
     "@composerkit/keyboard-shortcut",

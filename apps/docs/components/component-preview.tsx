@@ -3,6 +3,7 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useRef, useState } from 'react';
 import { galleryRoute } from '@/lib/shared';
+import { withBasePath } from '@/lib/site';
 
 // Same messages as components/gallery-frame-theme.tsx.
 const pingMessage = 'composerkit:gallery-ping';
@@ -17,7 +18,7 @@ export function ComponentPreview({ name }: { name: string }) {
   const { resolvedTheme } = useTheme();
   const [ready, setReady] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
-  const src = `${galleryRoute}/${name}`;
+  const src = withBasePath(`${galleryRoute}/${name}/`);
 
   useEffect(() => {
     // The gallery is served by this app, so the frame shares this origin.

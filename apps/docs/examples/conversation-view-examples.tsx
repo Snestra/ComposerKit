@@ -2,12 +2,12 @@
 
 /* oxlint-disable typescript/consistent-return -- The effect returns a cleanup only when it starts a timer. */
 
-import { Button } from "@workspace/react/components/ui/button";
-import { ConversationView } from "@workspace/react/components/ui/conversation-view";
+import { Button } from "composerkit/components/ui/button";
+import { ConversationView } from "composerkit/components/ui/conversation-view";
 import type {
   ConversationAssistantAction,
   ConversationTurn,
-} from "@workspace/react/components/ui/conversation-view";
+} from "composerkit/components/ui/conversation-view";
 import { useEffect, useState } from "react";
 
 const CONVERSATION_ID = "019a0000-0000-7000-8000-000000000001";

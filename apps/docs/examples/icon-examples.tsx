@@ -5,7 +5,7 @@ import {
   CloseIcon,
   SearchIcon,
   StatusBadgeIcon,
-} from "@workspace/react/components/icon";
+} from "composerkit/components/icon";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 

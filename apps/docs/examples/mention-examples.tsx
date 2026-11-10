@@ -7,9 +7,9 @@ import {
   MentionPill,
   MentionText,
   UnderlinedMentionScope,
-} from "@workspace/react/components/ui/mention";
-import type { MentionTone } from "@workspace/react/components/ui/mention";
-import { TooltipProvider } from "@workspace/react/components/ui/tooltip";
+} from "composerkit/components/ui/mention";
+import type { MentionTone } from "composerkit/components/ui/mention";
+import { TooltipProvider } from "composerkit/components/ui/tooltip";
 import { FileText, Folder, Globe } from "lucide-react";
 import Link from "next/link";
 

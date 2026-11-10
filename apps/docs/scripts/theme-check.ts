@@ -17,7 +17,7 @@ import { presets } from "../lib/theme/presets.ts";
 const execFileAsync = promisify(execFile);
 const docsRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const repoRoot = resolve(docsRoot, "..", "..");
-const designPath = join(repoRoot, "packages", "react", "DESIGN.md");
+const designPath = join(repoRoot, "packages", "composerkit", "DESIGN.md");
 const outputRoot = join(tmpdir(), "composerkit-theme-check");
 const sourceDesignMd = readFileSync(designPath, "utf8");
 const source = parseDesignColors(sourceDesignMd);

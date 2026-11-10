@@ -1,4 +1,4 @@
-import "@workspace/react/globals.css";
+import "composerkit/globals.css";
 import "./fonts.css";
 import "./site.css";
 import { siteMetadata, siteViewport } from "@/lib/site";

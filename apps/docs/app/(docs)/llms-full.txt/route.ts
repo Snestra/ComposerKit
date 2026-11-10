@@ -1,7 +1,7 @@
 import { site } from '@/lib/site';
 import { createDocsLlms } from '@/lib/source';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
 export async function GET() {
   const content = await createDocsLlms(site.url).full();

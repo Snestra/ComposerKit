@@ -10,7 +10,7 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 /* The library's own light and dark tokens, for the preview panel ground. */
-@import '../../../../packages/react/src/styles/design-tokens.css';
+@import '../../../../packages/composerkit/src/styles/design-tokens.css';
 
 :root {
   --color-fd-background: #f5f7f2;

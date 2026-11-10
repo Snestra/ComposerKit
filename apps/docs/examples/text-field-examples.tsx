@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@workspace/react/components/ui/button";
-import { PhoneInput } from "@workspace/react/components/ui/phone-input";
-import type { PhoneInputProps } from "@workspace/react/components/ui/phone-input";
+import { Button } from "composerkit/components/ui/button";
+import { PhoneInput } from "composerkit/components/ui/phone-input";
+import type { PhoneInputProps } from "composerkit/components/ui/phone-input";
 import {
   FieldError,
   Input,
@@ -11,7 +11,7 @@ import {
   Textarea,
   TextareaField,
   TextInput,
-} from "@workspace/react/components/ui/text-field";
+} from "composerkit/components/ui/text-field";
 import type {
   ControlSize,
   GutterSize,
@@ -19,13 +19,14 @@ import type {
   TagDensity,
   TextareaFieldVariant,
   TextInputVariant,
-} from "@workspace/react/components/ui/text-field";
+} from "composerkit/components/ui/text-field";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import type { ReactNode } from "react";
 
 import { AppearanceControl } from "@/components/appearance-control";
+import { withBasePath } from "@/lib/site";
 
 type Scope = "dark" | "light";
 
@@ -124,19 +125,23 @@ const Section = ({
   </section>
 );
 
-// The flags come from a local route (app/gallery/text-field/flags/[code]), so
-// the demonstration needs no network. The component default is a remote flag URL.
-const LOCAL_FLAG_URL = "/gallery/text-field/flags/{XX}";
+// The flags come from a local route (app/gallery/text-field/flags/[file]), so
+// the demonstration needs no network.
+const LOCAL_FLAG_URL = withBasePath("/gallery/text-field/flags/{XX}.svg");
 
 // A phone input with its own value state and a readout of the E.164 value.
 const PhoneField = ({
-  flagUrl = LOCAL_FLAG_URL,
   id,
   initialValue = "",
   label,
+  showCountryFlag = false,
   ...props
-}: Omit<PhoneInputProps, "onChange" | "value"> & {
+}: Omit<
+  PhoneInputProps,
+  "flagUrl" | "onChange" | "showCountryFlag" | "value"
+> & {
   id: string;
+  showCountryFlag?: boolean;
   initialValue?: string;
   label: string;
 }) => {
@@ -145,14 +150,25 @@ const PhoneField = ({
   return (
     <div className="flex min-w-0 flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
-      <PhoneInput
-        aria-label={label}
-        flagUrl={flagUrl}
-        id={id}
-        onChange={setValue}
-        value={value}
-        {...props}
-      />
+      {showCountryFlag ? (
+        <PhoneInput
+          aria-label={label}
+          flagUrl={LOCAL_FLAG_URL}
+          id={id}
+          onChange={setValue}
+          showCountryFlag
+          value={value}
+          {...props}
+        />
+      ) : (
+        <PhoneInput
+          aria-label={label}
+          id={id}
+          onChange={setValue}
+          value={value}
+          {...props}
+        />
+      )}
       <span
         className="text-xs text-muted-foreground"
         data-testid={`${id}-value`}

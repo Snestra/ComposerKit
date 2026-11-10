@@ -1,4 +1,4 @@
-// Writes registry.json from the import graph of packages/react/src, so each
+// Writes registry.json from the import graph of packages/composerkit/src, so each
 // item lists exactly the files its entry files reach. Files that another item
 // owns become a registryDependency on that item instead.
 //
@@ -6,9 +6,9 @@
 
 import { writeFileSync } from "node:fs";
 
-import manifest from "../../../packages/react/package.json" with { type: "json" };
-import { readImportGraph } from "../../../packages/react/scripts/source-files.ts";
-import type { ImportGraph } from "../../../packages/react/scripts/source-files.ts";
+import manifest from "../../../packages/composerkit/package.json" with { type: "json" };
+import { readImportGraph } from "../../../packages/composerkit/scripts/source-files.ts";
+import type { ImportGraph } from "../../../packages/composerkit/scripts/source-files.ts";
 import registry from "../registry.json" with { type: "json" };
 
 /** Items depend on each other through this namespace, so any host serves them. */
@@ -70,7 +70,7 @@ const versioned = (name: string): string => {
 
   if (range === undefined) {
     throw new Error(
-      `${name} is imported but not in packages/react/package.json`
+      `${name} is imported but not in packages/composerkit/package.json`
     );
   }
 
@@ -239,11 +239,11 @@ if (blocking.length > 0) {
 }
 
 if (items.some((item) => item.name === ALL_ITEMS)) {
-  throw new Error(`An item in packages/react/src is named ${ALL_ITEMS}`);
+  throw new Error(`An item in packages/composerkit/src is named ${ALL_ITEMS}`);
 }
 
 const fileEntry = (file: string) => ({
-  path: `../../packages/react/src/${file}`,
+  path: `../../packages/composerkit/src/${file}`,
   target: `~/src/${file}`,
   type: "registry:file",
 });

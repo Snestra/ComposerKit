@@ -5,13 +5,21 @@ packages:
 # Every app and the ui package must load the same React and Next.js, or hooks
 # and context break across the package boundary.
 catalog:
-  "@types/node": ^20
-  "@types/react": ^19
-  "@types/react-dom": ^19
-  next: 16.4.3
+  "@types/node": ^26.6.6
+  "@types/react": ^19.3.0
+  "@types/react-dom": ^19.3.0
+  next: 16.4.5
   react: 19.3.1
   react-dom: 19.3.1
 
 allowBuilds:
   esbuild: false
   lefthook: false
+
+# dependency-cruiser reads the import graph that splits the registry into
+# items. Its stable release parses with TypeScript 6 and older, so it gets the
+# last TypeScript 6 release while the repo builds with TypeScript 7.
+packageExtensions:
+  dependency-cruiser:
+    dependencies:
+      typescript: 6.0.3

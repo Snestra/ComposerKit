@@ -3,7 +3,7 @@
 import {
   SegmentedControl,
   SegmentedItem,
-} from "@workspace/react/components/ui/segmented-control";
+} from "composerkit/components/ui/segmented-control";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
 

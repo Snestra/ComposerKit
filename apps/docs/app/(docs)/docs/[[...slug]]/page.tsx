@@ -14,6 +14,7 @@ import { getMDXComponents } from '@/components/mdx';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { getPageImageUrl, getPageMarkdownUrl, gitConfig } from '@/lib/shared';
+import { withBasePath } from '@/lib/site';
 
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const params = await props.params;
@@ -21,7 +22,8 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   if (!page) notFound();
 
   const MDX = page.data.body;
-  const markdownUrl = getPageMarkdownUrl(page).url;
+  // These buttons fetch and link the URL as it is, so it needs the base path.
+  const markdownUrl = withBasePath(getPageMarkdownUrl(page).url);
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
