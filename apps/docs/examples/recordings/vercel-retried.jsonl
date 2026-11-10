@@ -1,0 +1,15 @@
+{"_comment":"Source: https://ai-sdk.dev/docs/ai-sdk-ui/stream-protocol. Published event shapes arranged as a failed attempt followed by a new start event and a successful retry. No API key was used."}
+{"type":"start","messageId":"msg_retry_failed"}
+{"type":"tool-input-start","toolCallId":"call_retry_failed","toolName":"getWeather"}
+{"type":"tool-input-delta","toolCallId":"call_retry_failed","inputTextDelta":"{\"city\":\"San"}
+{"type":"error","errorText":"The first attempt lost its connection."}
+{"type":"start","messageId":"msg_retry_done"}
+{"type":"reasoning-start","id":"reasoning_retry"}
+{"type":"reasoning-delta","id":"reasoning_retry","delta":"The retry succeeded."}
+{"type":"reasoning-end","id":"reasoning_retry"}
+{"type":"tool-input-start","toolCallId":"call_retry_done","toolName":"getWeather"}
+{"type":"tool-input-delta","toolCallId":"call_retry_done","inputTextDelta":"{\"city\":\"San Francisco\"}"}
+{"type":"tool-input-available","toolCallId":"call_retry_done","toolName":"getWeather","input":{"city":"San Francisco"}}
+{"type":"file","url":"https://example.com/retry-weather-chart.png","mediaType":"image/png"}
+{"type":"finish"}
+"[DONE]"

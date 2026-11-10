@@ -1,0 +1,17 @@
+{
+  "palettes": ["forest-pale-lime"],
+  "types": ["instrument"],
+  "dealt": ["instrument", "funnel", "epilogue"],
+  "moments": [
+    {
+      "id": "counter-rolls",
+      "at": "2026-11-08T18:46:57.360Z",
+      "seed": "a5310d7f"
+    },
+    {
+      "id": "letters-assemble",
+      "at": "2026-11-08T18:47:23.538Z",
+      "seed": "95b67ac9"
+    }
+  ]
+}

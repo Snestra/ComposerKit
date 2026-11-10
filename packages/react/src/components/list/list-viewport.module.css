@@ -1,0 +1,48 @@
+/*
+ * Scroll fade mask. The component declares the mask only inside
+ * `@supports (animation-timeline:--scroll-fade)`, so a browser without scroll
+ * timelines keeps an unmasked scroll viewport. `--scroll-fade-top` and
+ * `--scroll-fade-bottom` are registered lengths so the
+ * keyframes can interpolate them.
+ */
+@property --scroll-fade-top {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --scroll-fade-bottom {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes ck-edge-fade {
+  0%,
+  1% {
+    --scroll-fade-top: 0;
+    --scroll-fade-bottom: var(--ck-edge-fade-size, 1rem);
+  }
+
+  99%,
+  to {
+    --scroll-fade-top: var(--ck-edge-fade-size, 1rem);
+    --scroll-fade-bottom: 0;
+  }
+}
+
+@supports (animation-timeline: --scroll-fade) {
+  .viewport {
+    mask: linear-gradient(
+      to bottom in oklch,
+      transparent,
+      var(--ck-mask) var(--scroll-fade-top)
+        calc(100% - var(--scroll-fade-bottom)),
+      transparent
+    );
+    animation-name: ck-edge-fade;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll(self y);
+  }
+}

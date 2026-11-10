@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "request-action-chip",
+  "title": "Request Action Chip",
+  "registryDependencies": [
+    "@composerkit/button",
+    "@composerkit/styles",
+    "@composerkit/utils"
+  ],
+  "files": [
+    {
+      "path": "../../packages/react/src/components/ui/request-action-chip.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\nimport type { ComponentProps } from \"react\";\n\ntype RequestActionChipProps = ComponentProps<typeof Button> & {\n  transcript?: boolean;\n};\n\nconst RequestActionChip = ({\n  transcript = false,\n  radius,\n  ...props\n}: RequestActionChipProps) => {\n  const button = <Button {...props} radius={radius} />;\n\n  if (!transcript) {\n    return button;\n  }\n\n  return (\n    <div\n      className={cn(\n        \"flex w-fit max-w-full rounded-full border-0 bg-(--ck-avatar-layer-material-background,color-mix(in_srgb,var(--ck-palette-surface-elevated-primary)_90%,transparent)) shadow-[inset_0_1px_1px_color-mix(in_srgb,var(--color-fixed-white)_60%,transparent),inset_0_-1px_2px_color-mix(in_srgb,var(--color-fixed-white)_20%,transparent)]\",\n        radius === \"messageBubble\" &&\n          \"rounded-[var(--ck-bubble-radius,var(--radius-pill))]\"\n      )}\n      data-ck-overlay-material=\"css\"\n      data-ck-overlay-variant=\"transcript-chip\"\n    >\n      {button}\n    </div>\n  );\n};\n\nexport { RequestActionChip };\n\nexport type { RequestActionChipProps };\n",
+      "type": "registry:file",
+      "target": "~/src/components/ui/request-action-chip.tsx"
+    }
+  ],
+  "type": "registry:item"
+}

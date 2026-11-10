@@ -1,0 +1,26 @@
+---
+title: Conversation View
+description: "A local conversation as a list of user and assistant turns, with edit and copy actions."
+full: true
+---
+
+<ComponentDoc name="conversation-view" />
+
+## ConversationViewProps
+
+| Prop | Type | Notes |
+| --- | --- | --- |
+| `conversationId` | `string` | Set as `data-conversation-id` and passed to each reply. |
+| `turns` | `ConversationTurn[]` | Oldest first. A turn without `assistantMessage` shows only the user bubble. |
+| `assistantActions` | `ConversationAssistantAction[]` | Items for the More actions menu under each finished reply. |
+| `onCopyMessage` | `(text, messageId) => boolean \| Promise<boolean>` | Replaces the clipboard write. Return `false` to skip the check mark. |
+| `onEditUserMessage` | `(turn) => void` | Shows Edit message on the latest user message only. |
+
+A reply with `status: "streaming"` shows no actions until it is `"completed"`.
+
+## Behavior
+
+- The scroll region takes focus, so keyboard scrolling works.
+- A hidden heading starts each message, for navigation by heading.
+- Actions appear on hover and on focus. The latest reply always shows them.
+- The view follows the newest turn while the reader is near the bottom.

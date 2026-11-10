@@ -1,0 +1,4 @@
+{"_comment":"Source: https://docs.anthropic.com/en/api/messages-streaming. Published event shapes arranged with partial tool JSON and no content_block_stop event. No API key was used."}
+{"type":"message_start","message":{"id":"msg_partial","type":"message","role":"assistant","content":[]}}
+{"type":"content_block_start","index":0,"content_block":{"type":"tool_use","id":"toolu_partial","name":"get_weather","input":{}}}
+{"type":"content_block_delta","index":0,"delta":{"type":"input_json_delta","partial_json":"{\"location\":\"San"}}

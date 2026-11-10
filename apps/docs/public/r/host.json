@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "host",
+  "title": "Host",
+  "files": [
+    {
+      "path": "../../packages/react/src/lib/host.ts",
+      "content": "export const HOST_ORIGIN = globalThis.location?.origin ?? \"http://localhost\";\nexport const HOST_AUTH_HEADER = \"X-ComposerKit-Attach-Auth\";\n\nexport const ATTACHMENT_CONTENT_PATHS = [\n  \"/backend-api/estuary/content\",\n  \"/backend-api/estuary/public_content/enc\",\n] as const;\n\nexport const ATTACHMENT_CONTENT_URL = new URL(\n  ATTACHMENT_CONTENT_PATHS[0],\n  HOST_ORIGIN\n).href;\n",
+      "type": "registry:file",
+      "target": "~/src/lib/host.ts"
+    }
+  ],
+  "type": "registry:item"
+}

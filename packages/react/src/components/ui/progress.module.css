@@ -1,0 +1,205 @@
+/*
+ * Keyframes and keyframe-bound rules of the progress family. Tailwind cannot
+ * define @keyframes, so they live here: the fill on mount, the root, base and
+ * overlay, the delayed indicator and blossom, the wave dots, and the shimmer
+ * and bloom.
+ */
+
+.fillOnMount {
+  animation: donutFill var(--motion-duration-slow, 0.3s) ease-out backwards;
+}
+
+@keyframes donutFill {
+  0% {
+    stroke-dashoffset: 100px;
+  }
+}
+
+:global(:root[data-ck-reduced-motion="true"]) .fillOnMount {
+  animation: none;
+}
+
+/*
+ * The component sets the base opacity (.24 light, .68 dark) with
+ * --lightningcss-light/-dark. light-dark only takes colors, so the opacity
+ * is an inherited custom property set on the theme scopes of this app (:root
+ * and .light, .dark); the nearest scope wins at any nesting depth.
+ */
+:global(:root),
+:global(.light) {
+  --blossom-shimmer-base-opacity: 0.24;
+}
+
+:global(.dark) {
+  --blossom-shimmer-base-opacity: 0.68;
+}
+
+.blossomRoot {
+  --blossom-shimmer-highlight: light-dark(
+    var(--ck-palette-surface-surface),
+    var(--ck-palette-ink)
+  );
+  --blossom-shimmer-base: var(--ck-palette-ink);
+  --blossom-shimmer-soft: color-mix(
+    in srgb,
+    var(--blossom-shimmer-highlight) 4%,
+    transparent
+  );
+  --blossom-shimmer-peak: color-mix(
+    in srgb,
+    var(--blossom-shimmer-highlight) 48%,
+    transparent
+  );
+  --blossom-shimmer-tail: color-mix(
+    in srgb,
+    var(--blossom-shimmer-highlight) 8%,
+    transparent
+  );
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  position: relative;
+}
+
+.blossomBase {
+  width: 100%;
+  height: 100%;
+  color: var(--blossom-shimmer-base);
+  opacity: var(--blossom-shimmer-base-opacity);
+}
+
+.blossomOverlay {
+  pointer-events: none;
+  background-image: linear-gradient(
+    112deg,
+    transparent 22%,
+    var(--blossom-shimmer-soft) 38%,
+    var(--blossom-shimmer-peak) 49%,
+    var(--blossom-shimmer-tail) 56%,
+    transparent 74%
+  );
+  animation: 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite blossomShimmer;
+  animation-play-state: var(--ck-decoration-playback, running);
+  background-position: 140% 0;
+  background-repeat: no-repeat;
+  background-size: 220% 100%;
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: var(--blossom-mask);
+  mask-image: var(--blossom-mask);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+@keyframes blossomShimmer {
+  0% {
+    background-position: 140% 0;
+  }
+
+  to {
+    background-position: -105% 0;
+  }
+}
+
+:global(:root[data-ck-reduced-motion="true"]) .blossomOverlay {
+  animation: none;
+}
+
+.delayedIndicator {
+  animation: 0.4s step-end reveal;
+}
+
+@keyframes reveal {
+  0% {
+    visibility: hidden;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+.delayedBlossom {
+  animation: fadeIn var(--motion-duration-fast, 0.15s) ease-out
+    var(--ck-pulse-delay, 1s) both;
+}
+
+:global(:root[data-ck-reduced-motion="true"]) .delayedBlossom {
+  animation: reveal var(--ck-pulse-delay, 1s) step-end;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ck-typing-wave {
+  0%,
+  10%,
+  to {
+    transform: translateY(0);
+  }
+
+  25% {
+    animation-timing-function: steps(6, end);
+    transform: translateY(1.2px);
+  }
+
+  55% {
+    transform: translateY(-2px);
+  }
+
+  70% {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .waveDot {
+    animation-name: ck-typing-wave;
+    animation-duration: 1s;
+    animation-timing-function: steps(3, end);
+    animation-iteration-count: infinite;
+    animation-play-state: var(--ck-decoration-playback, running);
+  }
+
+  .waveDot:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .waveDot:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+}
+
+.meterShimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--color-status-discovery-fill) 12%, transparent) 20%,
+    color-mix(in srgb, var(--color-status-info) 46%, transparent) 38%,
+    color-mix(in srgb, var(--ck-fixed-white) 88%, transparent) 50%,
+    color-mix(in srgb, var(--color-status-info) 46%, transparent) 62%,
+    color-mix(in srgb, var(--color-status-discovery-fill) 12%, transparent) 80%,
+    transparent 100%
+  );
+}
+
+.meterBloom {
+  background-image: radial-gradient(
+    80% 220% at 100%,
+    color-mix(in srgb, var(--color-status-discovery) 34%, transparent) 0%,
+    color-mix(in srgb, var(--color-status-discovery-fill) 18%, transparent) 40%,
+    transparent 82%
+  );
+}

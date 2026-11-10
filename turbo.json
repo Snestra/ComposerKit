@@ -1,0 +1,25 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "stream",
+  "tasks": {
+    "export:design": {
+      "inputs": ["DESIGN.md"],
+      "outputs": ["src/styles/design-tokens.css"]
+    },
+    "build": {
+      "dependsOn": ["^export:design"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "dev": {
+      "dependsOn": ["^export:design"],
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {},
+    "typecheck": {},
+    "registry:build": {
+      "dependsOn": ["^build", "^export:design"],
+      "cache": false
+    }
+  }
+}

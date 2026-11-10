@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utils",
+  "title": "Utils",
+  "dependencies": ["cn@^0.5.1"],
+  "files": [
+    {
+      "path": "../../packages/react/src/lib/utils.ts",
+      "content": "export { cn } from \"cn\";\n",
+      "type": "registry:file",
+      "target": "~/src/lib/utils.ts"
+    }
+  ],
+  "type": "registry:item"
+}

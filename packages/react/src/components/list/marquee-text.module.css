@@ -1,0 +1,151 @@
+/*
+ * Marquee text.
+ * The component writes the rules in the order below; the right-to-left language
+ * list is the one the component repeats for the scroll direction, the mask
+ * direction and the mask position.
+ */
+.viewport {
+  --ck-scrolling-label-speed-em-per-second: 1.9;
+  --ck-scrolling-label-gap: 1.2em;
+  --ck-scrolling-label-left-fade: 0.6em;
+  --ck-scrolling-label-right-fade: 1.2em;
+  --ck-scrolling-label-scroll-direction: -1;
+  --ck-scrolling-label-mask-direction: to right;
+  white-space: nowrap;
+  width: 100%;
+  min-width: 0;
+  display: block;
+}
+
+.viewport:is(
+  :lang(ae),
+  :lang(ar),
+  :lang(arc),
+  :lang(bcc),
+  :lang(bqi),
+  :lang(ckb),
+  :lang(dv),
+  :lang(fa),
+  :lang(glk),
+  :lang(he),
+  :lang(ku),
+  :lang(mzn),
+  :lang(nqo),
+  :lang(pnb),
+  :lang(ps),
+  :lang(sd),
+  :lang(ug),
+  :lang(ur),
+  :lang(yi)
+) {
+  --ck-scrolling-label-scroll-direction: 1;
+  --ck-scrolling-label-mask-direction: to left;
+}
+
+.clipViewport {
+  width: calc(100% + var(--ck-scrolling-label-left-fade));
+  min-width: 0;
+  margin-inline-start: calc(-1 * var(--ck-scrolling-label-left-fade));
+  display: block;
+  overflow: hidden;
+}
+
+.track {
+  gap: var(--ck-scrolling-label-gap);
+  min-width: max-content;
+  padding-inline-start: var(--ck-scrolling-label-left-fade);
+  display: inline-flex;
+}
+
+.content {
+  min-width: max-content;
+  display: inline-block;
+}
+
+.overflowingViewport {
+  -webkit-mask-image: linear-gradient(
+    var(--ck-scrolling-label-mask-direction),
+    transparent,
+    var(--ck-mask) var(--ck-scrolling-label-left-fade),
+    var(--ck-mask) calc(100% - var(--ck-scrolling-label-right-fade)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    var(--ck-scrolling-label-mask-direction),
+    transparent,
+    var(--ck-mask) var(--ck-scrolling-label-left-fade),
+    var(--ck-mask) calc(100% - var(--ck-scrolling-label-right-fade)),
+    transparent
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.overflowingViewport:is(
+  :lang(ae),
+  :lang(ar),
+  :lang(arc),
+  :lang(bcc),
+  :lang(bqi),
+  :lang(ckb),
+  :lang(dv),
+  :lang(fa),
+  :lang(glk),
+  :lang(he),
+  :lang(ku),
+  :lang(mzn),
+  :lang(nqo),
+  :lang(pnb),
+  :lang(ps),
+  :lang(sd),
+  :lang(ug),
+  :lang(ur),
+  :lang(yi)
+) {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+}
+
+.animate .scrolling,
+:global(.group):hover .animateOnGroupHover .scrolling {
+  animation: ckMarqueeScroll var(--ck-scrolling-label-duration)
+    var(--ck-scrolling-label-scroll-timing) infinite;
+  will-change: transform;
+}
+
+.animate.stopAtEnd .scrolling,
+:global(.group):hover .animateOnGroupHover.stopAtEnd .scrolling {
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.animate.stopAtEnd .overflowingViewport,
+:global(.group):hover .animateOnGroupHover.stopAtEnd .overflowingViewport {
+  animation: ckMarqueeFadeRightMask var(--ck-scrolling-label-duration) linear
+    forwards;
+}
+
+@keyframes ckMarqueeScroll {
+  to {
+    transform: translateX(
+      calc(
+        var(--ck-scrolling-label-scroll-direction) *
+          var(--ck-scrolling-label-scroll-distance)
+      )
+    );
+  }
+}
+
+@keyframes ckMarqueeFadeRightMask {
+  75% {
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  to {
+    -webkit-mask-size: calc(100% + var(--ck-scrolling-label-right-fade)) 100%;
+    mask-size: calc(100% + var(--ck-scrolling-label-right-fade)) 100%;
+  }
+}

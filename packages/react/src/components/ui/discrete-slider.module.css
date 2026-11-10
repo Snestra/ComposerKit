@@ -1,0 +1,191 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 32px;
+  margin-inline: 2px;
+  padding-block: 2px;
+  padding-inline: 6px;
+  position: relative;
+}
+.root {
+  --discrete-duration: 0.3s;
+  --discrete-easing: cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 28px;
+  padding: 0;
+  position: relative;
+  touch-action: none;
+}
+.root[data-disabled] {
+  opacity: 0.6;
+}
+.root[data-disabled] .tick {
+  cursor: default;
+  pointer-events: none;
+}
+.root[data-locked="true"] .track {
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--ck-palette-border) 0,
+    var(--ck-palette-border) calc(var(--spacing) / 4),
+    transparent calc(var(--spacing) / 4),
+    transparent var(--spacing)
+  );
+}
+.root[data-locked="true"] .tick[data-locked="true"] {
+  background-color: currentColor;
+}
+.root[data-dragging="true"] {
+  --discrete-duration: 0.15s;
+  cursor: grabbing;
+}
+.root[data-dragging="true"] .thumbInput,
+.root[data-dragging="true"] .tick {
+  cursor: grabbing;
+}
+.track {
+  clip-path: var(--discrete-track-clip);
+  background: color-mix(in srgb, var(--ck-palette-ink) 10%, transparent);
+  height: 24px;
+  box-shadow: inset 0 0 0 0.5px var(--ck-palette-border);
+  border-radius: 12px;
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
+.range {
+  background: var(--ck-palette-accent-blue);
+  border-radius: 12px 0 0 12px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset-inline-start: 0;
+  clip-path: inset(
+    0 calc(100% - var(--discrete-position) - 14px) 0 0 round 9999px
+  );
+  transition: clip-path var(--discrete-duration) var(--discrete-easing);
+}
+.tickRail {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.tick {
+  width: 4px;
+  height: 4px;
+  cursor: default;
+  pointer-events: auto;
+  background: currentColor;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: var(--discrete-position);
+  transform: translate(-50%, -50%);
+  transition:
+    background-color var(--discrete-duration) var(--discrete-easing),
+    transform 0.12s ease;
+}
+.tick::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+.tick[data-selected="true"] {
+  color: color-mix(in srgb, var(--ck-fixed-white) 30%, transparent);
+}
+.tick[data-selected="false"] {
+  color: color-mix(in srgb, var(--ck-palette-ink-tertiary) 50%, transparent);
+}
+.tick[data-locked="true"] {
+  background: transparent;
+}
+.tick[data-locked="true"] svg {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.visualThumbRail {
+  width: 100%;
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+.thumbScale {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 50%;
+  left: var(--discrete-position);
+  transform: translate(-50%, -50%);
+  transition: left var(--discrete-duration) var(--discrete-easing);
+}
+.thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid var(--ck-palette-border-heavy);
+  color: var(--ck-palette-ink);
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--shadow-subtle);
+}
+.root > span:has(> .thumbInput) {
+  left: var(--discrete-position);
+}
+
+.thumbInput {
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  cursor: default;
+  border-radius: 50%;
+  background: transparent;
+  outline: 0;
+  box-shadow: none;
+  display: block;
+  position: relative;
+}
+.thumbInput::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+}
+.explicitOption {
+  cursor: default;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+.explicitOption[data-selected="true"] {
+  visibility: hidden;
+}
+.container[data-ck-keyboard-focused="true"] .visualThumbRail .thumb {
+  outline: 2px solid var(--ck-palette-border-focus);
+  outline-offset: 0;
+}
+@media (hover: hover) {
+  .root:not([data-dragging="true"]) .tick:not([data-locked="true"]):hover {
+    filter: brightness(0.85);
+    transform: translate(-50%, -50%) scale(2);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .root[data-dragging="true"] {
+    --discrete-duration: 0s;
+  }
+  .tick {
+    transition: none;
+  }
+}

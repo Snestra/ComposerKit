@@ -1,0 +1,395 @@
+/*
+ * Rules of the typography family that Tailwind cannot express: the heading,
+ * body and small-caps classes, the marquee, the rolling number, the filename
+ * ellipsis and the title chip.
+ *
+ * The chip surface is a custom property set on each
+ * color-scheme scope, so the nearest scope wins at any nesting depth. The
+ * values read the per-scope --ck-palette-* and --theme-* variables, because
+ * the Tailwind aliases (--color-panel-elevated and the like) are emitted
+ * on :root and would carry the root scheme into a nested scope.
+ */
+
+:global(:root),
+:global(.light) {
+  --ck-viewer-surface-shadow: var(--shadow-outline), var(--shadow-card);
+}
+
+:global(.dark) {
+  --ck-viewer-surface-shadow:
+    0 0 0 var(--ck-hairline-width) var(--ck-palette-border),
+    0 0 0 0.5px var(--ck-palette-border), var(--shadow-xl);
+}
+
+.heading4xl {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: inherit;
+  line-height: 1;
+}
+
+.heading3xl {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: inherit;
+  line-height: 1;
+}
+
+.heading2xl {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: inherit;
+  line-height: 1;
+}
+
+.headingXl {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: inherit;
+  line-height: 1.2;
+}
+
+.headingLg {
+  font-size: var(--text-title-lg);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: inherit;
+  line-height: 1.2;
+}
+
+.headingBase {
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.33;
+}
+
+.headingDialog {
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.36px;
+  line-height: 28px;
+}
+
+:global(.dialog-surface) .headingDialog {
+  letter-spacing: normal;
+}
+
+.headingSm {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: inherit;
+  line-height: 1.4;
+}
+
+.headingXs {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: inherit;
+  line-height: 1.4;
+}
+
+.headingSubsection {
+  font-size: var(--text-title-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.33;
+}
+
+.headingMd {
+  font-size: var(--ck-type-heading-md-size);
+  font-weight: var(--ck-type-heading-md-weight);
+  letter-spacing: var(--ck-type-heading-md-tracking);
+  line-height: var(--ck-type-heading-md-line-height);
+}
+
+.bodyMd {
+  font-size: var(--ck-type-body-md-size);
+  font-weight: var(--ck-type-body-md-weight);
+  letter-spacing: var(--ck-type-body-md-tracking);
+  line-height: var(--ck-type-body-md-line-height);
+}
+
+.bodySm {
+  font-size: var(--ck-type-body-sm-size);
+  font-weight: var(--ck-type-body-sm-weight);
+  letter-spacing: var(--ck-type-body-sm-tracking);
+  line-height: var(--ck-type-body-sm-line-height);
+}
+
+.smallCapsLg {
+  font-size: var(--ck-type-caps-lg-size);
+  font-weight: var(--ck-type-caps-lg-weight);
+  letter-spacing: var(--ck-type-caps-lg-tracking);
+  line-height: var(--ck-type-caps-lg-line-height);
+  text-transform: uppercase;
+}
+
+.smallCapsMd {
+  font-size: var(--ck-type-caps-md-size);
+  font-weight: var(--ck-type-caps-md-weight);
+  letter-spacing: var(--ck-type-caps-md-tracking);
+  line-height: var(--ck-type-caps-md-line-height);
+  text-transform: uppercase;
+}
+
+.viewport {
+  --ck-scrolling-label-speed-em-per-second: 1.9;
+  --ck-scrolling-label-gap: 1.2em;
+  --ck-scrolling-label-left-fade: 0.6em;
+  --ck-scrolling-label-right-fade: 1.2em;
+  --ck-scrolling-label-scroll-direction: -1;
+  --ck-scrolling-label-mask-direction: to right;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.viewport:is(
+  :lang(ae),
+  :lang(ar),
+  :lang(arc),
+  :lang(bcc),
+  :lang(bqi),
+  :lang(ckb),
+  :lang(dv),
+  :lang(fa),
+  :lang(glk),
+  :lang(he),
+  :lang(ku),
+  :lang(mzn),
+  :lang(nqo),
+  :lang(pnb),
+  :lang(ps),
+  :lang(sd),
+  :lang(ug),
+  :lang(ur),
+  :lang(yi)
+) {
+  --ck-scrolling-label-scroll-direction: 1;
+  --ck-scrolling-label-mask-direction: to left;
+}
+
+.clipViewport {
+  display: block;
+  overflow: hidden;
+  width: calc(100% + var(--ck-scrolling-label-left-fade));
+  min-width: 0;
+  margin-inline-start: calc(-1 * var(--ck-scrolling-label-left-fade));
+}
+
+.track {
+  display: inline-flex;
+  gap: var(--ck-scrolling-label-gap);
+  min-width: max-content;
+  padding-inline-start: var(--ck-scrolling-label-left-fade);
+}
+
+.content {
+  display: inline-block;
+  min-width: max-content;
+}
+
+.overflowingViewport {
+  mask-image: linear-gradient(
+    var(--ck-scrolling-label-mask-direction),
+    transparent,
+    var(--ck-mask) var(--ck-scrolling-label-left-fade),
+    var(--ck-mask) calc(100% - var(--ck-scrolling-label-right-fade)),
+    transparent
+  );
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+
+.overflowingViewport:is(
+  :lang(ae),
+  :lang(ar),
+  :lang(arc),
+  :lang(bcc),
+  :lang(bqi),
+  :lang(ckb),
+  :lang(dv),
+  :lang(fa),
+  :lang(glk),
+  :lang(he),
+  :lang(ku),
+  :lang(mzn),
+  :lang(nqo),
+  :lang(pnb),
+  :lang(ps),
+  :lang(sd),
+  :lang(ug),
+  :lang(ur),
+  :lang(yi)
+) {
+  mask-position: 100% 0;
+}
+
+.animate .scrolling,
+:global(.group):hover .animateOnGroupHover .scrolling {
+  animation: ckMarqueeScroll var(--ck-scrolling-label-duration)
+    var(--ck-scrolling-label-scroll-timing) infinite;
+  will-change: transform;
+}
+
+.animate.stopAtEnd .scrolling,
+:global(.group):hover .animateOnGroupHover.stopAtEnd .scrolling {
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.animate.stopAtEnd .overflowingViewport,
+:global(.group):hover .animateOnGroupHover.stopAtEnd .overflowingViewport {
+  animation: ckMarqueeFadeRightMask var(--ck-scrolling-label-duration) linear
+    forwards;
+}
+
+@keyframes ckMarqueeScroll {
+  to {
+    transform: translateX(
+      calc(
+        var(--ck-scrolling-label-scroll-direction) *
+          var(--ck-scrolling-label-scroll-distance)
+      )
+    );
+  }
+}
+
+@keyframes ckMarqueeFadeRightMask {
+  75% {
+    mask-size: 100% 100%;
+  }
+
+  to {
+    mask-size: calc(100% + var(--ck-scrolling-label-right-fade)) 100%;
+  }
+}
+
+.rolling {
+  display: inline-flex;
+  align-items: baseline;
+  height: 1lh;
+  line-height: inherit;
+}
+
+.separator {
+  display: inline-block;
+  align-self: flex-start;
+  height: 1lh;
+  line-height: inherit;
+}
+
+.digitClip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.digitColumn {
+  position: relative;
+  display: inline-block;
+  width: 1ch;
+  height: 1lh;
+  line-height: inherit;
+  contain: layout paint style;
+}
+
+.digitColumn::before {
+  content: "0";
+  visibility: hidden;
+}
+
+.digitColumn[data-variant="inline"] {
+  contain: none;
+}
+
+.digitColumn[data-variant="inline"] .digitStack {
+  display: block;
+  margin-top: var(--ck-counter-offset, 0);
+}
+
+.digitColumn[data-variant="inline"] .digitStack > span {
+  display: block;
+  line-height: inherit;
+}
+
+.digitStack {
+  display: flex;
+  transform: translateY(calc(var(--digit) * -1lh));
+  flex-direction: column;
+  height: 1lh;
+  contain: layout size style;
+  transition: transform var(--motion-duration-slow)
+    cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.digitStack > span {
+  flex: 0 0 1lh;
+  height: 1lh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digitStack {
+    transition: none;
+  }
+}
+
+.fileRoot {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+  white-space: pre;
+}
+
+.fileFullText {
+  visibility: hidden;
+  width: max-content;
+}
+
+.fileFullText::before {
+  content: attr(data-file-name);
+}
+
+.fileDisplay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.fileMeasurement {
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  contain: strict;
+}
+
+.title {
+  height: var(--ck-viewer-control-height, calc(var(--spacing) * 9));
+}
+
+:global([data-ck-viewer-density="compact"]) .title {
+  height: calc(var(--spacing) * 8);
+}
+
+.controlSurface {
+  background: linear-gradient(
+    light-dark(
+      var(--ck-palette-surface-elevated-primary),
+      var(--theme-background-control-opaque)
+    ),
+    light-dark(
+      var(--ck-palette-surface-elevated-primary),
+      var(--theme-background-control-opaque)
+    )
+  );
+  box-shadow: var(--ck-viewer-surface-shadow);
+}
+
+.controlSurface:not(:where(:global([data-ui-window-kind="browser"]) *)) {
+  backdrop-filter: blur(var(--blur-xl, 24px));
+}

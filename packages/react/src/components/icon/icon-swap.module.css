@@ -1,0 +1,29 @@
+.swap {
+  display: inline-grid;
+  width: var(--ck-action-icon-size);
+  height: var(--ck-action-icon-size);
+}
+.item {
+  grid-area: 1 / 1;
+  display: block;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 150ms var(--ck-curve-exit) 0s,
+    transform 150ms var(--ck-curve-exit) 0s;
+  will-change: transform, opacity;
+}
+.item[data-active] {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 300ms var(--ck-curve-enter) 150ms,
+    transform 300ms var(--ck-curve-enter) 150ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .item[data-active] {
+    transition: none;
+  }
+}

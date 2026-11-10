@@ -1,0 +1,11 @@
+{
+  "page": null,
+  "url": "http://127.0.0.1:3003/",
+  "root": null,
+  "kind": "software",
+  "category": "React chat components",
+  "primary": "Read the docs",
+  "rounds": 3,
+  "start": "2026-11-08T18:46:57.271Z",
+  "by": "gate.mjs --start"
+}

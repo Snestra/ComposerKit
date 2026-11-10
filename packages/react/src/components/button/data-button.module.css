@@ -1,0 +1,1637 @@
+/*
+ * Data-attribute Button styles: the button with its inner and loader parts,
+ * the loading indicator and the transition group child.
+ *
+ * The component reads its colors, sizes and gutters from theme tokens. The token
+ * block below resolves every token this module uses for the Electron theme:
+ * the base theme rules, the non-extension app color rules
+ * and the Electron block. Values that
+ * differ between light and dark use light-dark, so they follow the nearest
+ * color-scheme scope. App colors come from the foundations theme variables.
+ * `[data-state=open]` also matches Base UI's `[data-popup-open]`.
+ */
+
+@layer theme, base, components, utilities;
+
+@layer components {
+  .button {
+    --ck-action-corner-scale: 1;
+    --ck-action-gap-sm: 3px;
+    --ck-action-gap-md: 4px;
+    --ck-action-gap-lg: 6px;
+    --ck-action-font-weight: 400;
+    --ck-action-surface-border-color: color-mix(
+      in srgb,
+      var(--ck-shadow-color) 4%,
+      transparent
+    );
+
+    /* Control scale. */
+    --ck-control-font-size-lg: 1rem;
+    --ck-control-font-size-md: 0.875rem;
+    --ck-control-font-size-sm: 0.75rem;
+    --ck-control-gutter-2xs: 0.375rem;
+    --ck-control-gutter-lg: 0.875rem;
+    --ck-control-gutter-md: 0.75rem;
+    --ck-control-gutter-pill-scaling: 1.3;
+    --ck-control-gutter-sm: 0.625rem;
+    --ck-control-gutter-xl: 1rem;
+    --ck-control-gutter-xs: 0.5rem;
+    --ck-control-icon-size-2xl: 1.5rem;
+    --ck-control-icon-size-lg: 1.25rem;
+    --ck-control-icon-size-md: 1.125rem;
+    --ck-control-icon-size-sm: 1rem;
+    --ck-control-icon-size-xl: 1.375rem;
+    --ck-control-icon-size-xs: 0.875rem;
+    --ck-control-radius-lg: calc(0.625rem * var(--ck-action-corner-scale));
+    --ck-control-radius-md: calc(0.5rem * var(--ck-action-corner-scale));
+    --ck-control-radius-sm: calc(0.375rem * var(--ck-action-corner-scale));
+    --ck-control-radius-xl: calc(0.75rem * var(--ck-action-corner-scale));
+    --ck-control-size-2xl: 2.75rem;
+    --ck-control-size-2xs: 1.5rem;
+    --ck-control-size-3xl: 3rem;
+    --ck-control-size-3xs: 1.375rem;
+    --ck-control-size-4xs: 1.25rem;
+    --ck-control-size-lg: 2.25rem;
+    --ck-control-size-md: 2rem;
+    --ck-control-size-sm: 1.75rem;
+    --ck-control-size-xl: 2.5rem;
+    --ck-control-size-xs: 1.625rem;
+    --radius-pill: 9999px;
+    --motion-duration-fast: 0.16s;
+    --ck-motion-ease-basic: ease;
+
+    /* Theme colors resolved for the Electron light and dark themes. */
+    --color-fill-caution-transparent-pressed: color-mix(
+      in oklab,
+      var(--color-status-caution-fill) 15%,
+      transparent
+    );
+    --color-fill-caution-transparent-hover: color-mix(
+      in oklab,
+      var(--color-status-caution-fill) 15%,
+      transparent
+    );
+    --color-fill-caution-outline-active: color-mix(
+      in oklab,
+      var(--color-status-caution-fill) 8%,
+      transparent
+    );
+    --color-fill-caution-outline-hover: color-mix(
+      in oklab,
+      var(--color-status-caution-fill) 8%,
+      transparent
+    );
+    --color-fill-caution-soft-alpha: color-mix(
+      in oklab,
+      var(--color-status-caution-fill) 15%,
+      transparent
+    );
+    --color-fill-caution-soft-alpha-active: color-mix(
+      in oklab,
+      var(--color-status-caution-fill) 27%,
+      transparent
+    );
+    --color-fill-caution-soft-alpha-hover: color-mix(
+      in oklab,
+      var(--color-status-caution-fill) 27%,
+      transparent
+    );
+    --color-fill-caution-solid: var(--color-status-caution-solid);
+    --color-fill-caution-solid-active: var(--color-status-caution-strong);
+    --color-fill-caution-solid-hover: var(--color-status-caution-strong);
+    --color-fill-danger-transparent-pressed: color-mix(
+      in oklab,
+      var(--color-status-danger-fill) 16%,
+      transparent
+    );
+    --color-fill-danger-transparent-hover: color-mix(
+      in oklab,
+      var(--color-status-danger-fill) 16%,
+      transparent
+    );
+    --color-fill-danger-outline-active: color-mix(
+      in oklab,
+      var(--color-status-danger-fill) 8%,
+      transparent
+    );
+    --color-fill-danger-outline-hover: color-mix(
+      in oklab,
+      var(--color-status-danger-fill) 8%,
+      transparent
+    );
+    --color-fill-danger-soft-alpha: color-mix(
+      in oklab,
+      var(--color-status-danger-fill) 16%,
+      transparent
+    );
+    --color-fill-danger-soft-alpha-active: color-mix(
+      in oklab,
+      var(--color-status-danger-fill) 30%,
+      transparent
+    );
+    --color-fill-danger-soft-alpha-hover: color-mix(
+      in oklab,
+      var(--color-status-danger-fill) 30%,
+      transparent
+    );
+    --color-fill-danger-solid: var(--color-status-danger-solid);
+    --color-fill-danger-solid-active: var(--color-status-danger-strong);
+    --color-fill-danger-solid-hover: var(--color-status-danger-strong);
+    --color-fill-disabled: color-mix(
+      in oklab,
+      var(--ck-palette-ink) 5%,
+      transparent
+    );
+    --color-fill-discovery-transparent-pressed: color-mix(
+      in oklab,
+      var(--color-status-discovery-fill) 15%,
+      transparent
+    );
+    --color-fill-discovery-transparent-hover: color-mix(
+      in oklab,
+      var(--color-status-discovery-fill) 15%,
+      transparent
+    );
+    --color-fill-discovery-outline-active: color-mix(
+      in oklab,
+      var(--color-status-discovery-fill) 6%,
+      transparent
+    );
+    --color-fill-discovery-outline-hover: color-mix(
+      in oklab,
+      var(--color-status-discovery-fill) 6%,
+      transparent
+    );
+    --color-fill-discovery-soft-alpha: color-mix(
+      in oklab,
+      var(--color-status-discovery-fill) 15%,
+      transparent
+    );
+    --color-fill-discovery-soft-alpha-active: color-mix(
+      in oklab,
+      var(--color-status-discovery-fill) 28%,
+      transparent
+    );
+    --color-fill-discovery-soft-alpha-hover: color-mix(
+      in oklab,
+      var(--color-status-discovery-fill) 28%,
+      transparent
+    );
+    --color-fill-discovery-solid: var(--color-status-discovery-solid);
+    --color-fill-discovery-solid-active: var(--color-status-discovery-solid);
+    --color-fill-discovery-solid-hover: var(--color-status-discovery-solid);
+    --color-fill-info-transparent-pressed: color-mix(
+      in oklab,
+      var(--color-status-info-fill) 13%,
+      transparent
+    );
+    --color-fill-info-transparent-hover: color-mix(
+      in oklab,
+      var(--color-status-info-fill) 13%,
+      transparent
+    );
+    --color-fill-info-outline-active: color-mix(
+      in oklab,
+      var(--color-status-info-fill) 4%,
+      transparent
+    );
+    --color-fill-info-outline-hover: color-mix(
+      in oklab,
+      var(--color-status-info-fill) 4%,
+      transparent
+    );
+    --color-fill-info-soft-alpha: color-mix(
+      in oklab,
+      var(--color-status-info-fill) 13%,
+      transparent
+    );
+    --color-fill-info-soft-alpha-active: color-mix(
+      in oklab,
+      var(--color-status-info-fill) 25%,
+      transparent
+    );
+    --color-fill-info-soft-alpha-hover: color-mix(
+      in oklab,
+      var(--color-status-info-fill) 25%,
+      transparent
+    );
+    --color-fill-info-solid: var(--color-status-info-solid);
+    --color-fill-info-solid-active: var(--color-status-info-solid);
+    --color-fill-info-solid-hover: var(--color-status-info-solid);
+    --color-fill-primary-transparent-pressed: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 12%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 16%, transparent)
+    );
+    --color-fill-primary-transparent-hover: var(
+      --ck-palette-surface-button-secondary-hover
+    );
+    --color-fill-primary-outline-active: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 4%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 6%, transparent)
+    );
+    --color-fill-primary-outline-hover: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 2%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 4%, transparent)
+    );
+    --color-fill-primary-soft-alpha: color-mix(
+      in oklab,
+      var(--ck-palette-ink) 2.5%,
+      transparent
+    );
+    --color-fill-primary-soft-alpha-active: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 16%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 20%, transparent)
+    );
+    --color-fill-primary-soft-alpha-hover: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 12%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 16%, transparent)
+    );
+    --color-fill-primary-soft-alt: color-mix(
+      in oklab,
+      var(--ck-palette-ink) 5%,
+      transparent
+    );
+    --color-fill-primary-solid: var(--ck-palette-ink);
+    --color-fill-primary-solid-active: color-mix(
+      in srgb,
+      var(--ck-palette-ink) 85%,
+      var(--ck-palette-surface-surface)
+    );
+    --color-fill-primary-solid-hover: color-mix(
+      in srgb,
+      var(--ck-palette-ink) 90%,
+      var(--ck-palette-surface-surface)
+    );
+    --color-fill-secondary-transparent-pressed: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 12%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 16%, transparent)
+    );
+    --color-fill-secondary-transparent-hover: var(
+      --ck-palette-surface-button-secondary-hover
+    );
+    --color-fill-secondary-outline-active: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 4%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 6%, transparent)
+    );
+    --color-fill-secondary-outline-hover: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 2%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 4%, transparent)
+    );
+    --color-fill-secondary-soft-alpha: var(
+      --ck-palette-surface-button-secondary-hover
+    );
+    --color-fill-secondary-soft-alpha-active: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 16%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 20%, transparent)
+    );
+    --color-fill-secondary-soft-alpha-hover: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 12%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 16%, transparent)
+    );
+    --color-fill-secondary-soft-alt: color-mix(
+      in oklab,
+      var(--ck-palette-ink) 5%,
+      transparent
+    );
+    --color-fill-secondary-solid: var(--ck-palette-surface-button-secondary);
+    --color-fill-secondary-solid-active: var(
+      --ck-palette-surface-button-secondary
+    );
+    --color-fill-secondary-solid-hover: var(
+      --ck-palette-surface-button-secondary-hover
+    );
+    --color-fill-success-transparent-pressed: color-mix(
+      in oklab,
+      var(--color-status-success-fill) 15%,
+      transparent
+    );
+    --color-fill-success-transparent-hover: color-mix(
+      in oklab,
+      var(--color-status-success-fill) 15%,
+      transparent
+    );
+    --color-fill-success-outline-active: color-mix(
+      in oklab,
+      var(--color-status-success-fill) 8%,
+      transparent
+    );
+    --color-fill-success-outline-hover: color-mix(
+      in oklab,
+      var(--color-status-success-fill) 8%,
+      transparent
+    );
+    --color-fill-success-soft-alpha: color-mix(
+      in oklab,
+      var(--color-status-success-fill) 15%,
+      transparent
+    );
+    --color-fill-success-soft-alpha-active: color-mix(
+      in oklab,
+      var(--color-status-success-fill) 29%,
+      transparent
+    );
+    --color-fill-success-soft-alpha-hover: color-mix(
+      in oklab,
+      var(--color-status-success-fill) 29%,
+      transparent
+    );
+    --color-fill-success-solid: var(--color-status-success-solid);
+    --color-fill-success-solid-active: light-dark(
+      var(--color-status-success-strong),
+      var(--color-status-success-solid)
+    );
+    --color-fill-success-solid-hover: light-dark(
+      var(--color-status-success-strong),
+      var(--color-status-success-solid)
+    );
+    --color-fill-warning-transparent-pressed: color-mix(
+      in oklab,
+      var(--color-status-warning-fill) 16%,
+      transparent
+    );
+    --color-fill-warning-transparent-hover: color-mix(
+      in oklab,
+      var(--color-status-warning-fill) 16%,
+      transparent
+    );
+    --color-fill-warning-outline-active: color-mix(
+      in oklab,
+      var(--color-status-warning-fill) 7%,
+      transparent
+    );
+    --color-fill-warning-outline-hover: color-mix(
+      in oklab,
+      var(--color-status-warning-fill) 7%,
+      transparent
+    );
+    --color-fill-warning-soft-alpha: color-mix(
+      in oklab,
+      var(--color-status-warning-fill) 16%,
+      transparent
+    );
+    --color-fill-warning-soft-alpha-active: color-mix(
+      in oklab,
+      var(--color-status-warning-fill) 33%,
+      transparent
+    );
+    --color-fill-warning-soft-alpha-hover: color-mix(
+      in oklab,
+      var(--color-status-warning-fill) 33%,
+      transparent
+    );
+    --color-fill-warning-solid: var(--color-status-warning-solid);
+    --color-fill-warning-solid-active: var(--color-status-warning-strong);
+    --color-fill-warning-solid-hover: var(--color-status-warning-strong);
+    --color-stroke-caution-outline: var(--color-status-caution-strong);
+    --color-stroke-caution-outline-hover: var(--color-status-caution-strong);
+    --color-stroke-danger-outline: light-dark(
+      color-mix(in oklab, var(--color-status-danger) 15%, transparent),
+      color-mix(in oklab, var(--color-status-danger-fill) 40%, transparent)
+    );
+    --color-stroke-danger-outline-hover: var(--color-status-danger);
+    --color-stroke-disabled: color-mix(
+      in oklab,
+      var(--ck-palette-ink) 6%,
+      transparent
+    );
+    --color-stroke-discovery-outline: var(--color-status-discovery);
+    --color-stroke-discovery-outline-hover: var(--color-status-discovery);
+    --color-stroke-info-outline: var(--color-status-info);
+    --color-stroke-info-outline-hover: var(--color-status-info);
+    --color-stroke-primary-outline: var(--ck-palette-border-heavy);
+    --color-stroke-primary-outline-hover: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 20%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 30%, transparent)
+    );
+    --color-stroke-primary-soft-alt: color-mix(
+      in oklab,
+      var(--ck-palette-ink) 6%,
+      transparent
+    );
+    --color-stroke-secondary-outline: var(--ck-palette-border-heavy);
+    --color-stroke-secondary-outline-hover: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 20%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 30%, transparent)
+    );
+    --color-stroke-secondary-soft-alt: color-mix(
+      in oklab,
+      var(--ck-palette-ink) 6%,
+      transparent
+    );
+    --color-stroke-success-outline: light-dark(
+      var(--color-status-success-strong),
+      var(--color-status-success-solid)
+    );
+    --color-stroke-success-outline-hover: light-dark(
+      var(--color-status-success-strong),
+      var(--color-status-success-solid)
+    );
+    --color-stroke-warning-outline: light-dark(
+      color-mix(in oklab, var(--color-status-warning) 15%, transparent),
+      color-mix(in oklab, var(--color-status-warning) 40%, transparent)
+    );
+    --color-stroke-warning-outline-hover: var(--color-status-warning);
+    --color-ring: var(--ck-palette-border-focus);
+    --color-ring-caution-ghost: var(--ck-palette-border-focus);
+    --color-ring-caution-outline: var(--ck-palette-border-focus);
+    --color-ring-caution-soft: var(--ck-palette-border-focus);
+    --color-ring-caution-solid: var(--ck-palette-border-focus);
+    --color-ring-danger-ghost: var(--color-status-danger-fill);
+    --color-ring-danger-outline: var(--color-status-danger-fill);
+    --color-ring-danger-soft: var(--color-status-danger-fill);
+    --color-ring-danger-solid: var(--color-status-danger-fill);
+    --color-ring-discovery-ghost: var(--ck-palette-border-focus);
+    --color-ring-discovery-outline: var(--ck-palette-border-focus);
+    --color-ring-discovery-soft: var(--ck-palette-border-focus);
+    --color-ring-discovery-solid: var(--ck-palette-border-focus);
+    --color-ring-info-ghost: var(--ck-palette-border-focus);
+    --color-ring-info-outline: var(--ck-palette-border-focus);
+    --color-ring-info-soft: var(--ck-palette-border-focus);
+    --color-ring-info-solid: var(--ck-palette-border-focus);
+    --color-ring-primary-ghost: var(--ck-palette-border-focus);
+    --color-ring-primary-outline: var(--ck-palette-border-focus);
+    --color-ring-primary-soft: var(--ck-palette-border-focus);
+    --color-ring-primary-solid: var(--ck-palette-border-focus);
+    --color-ring-secondary-ghost: var(--ck-palette-border-focus);
+    --color-ring-secondary-outline: var(--ck-palette-border-focus);
+    --color-ring-secondary-soft: var(--ck-palette-border-focus);
+    --color-ring-secondary-solid: var(--ck-palette-border-focus);
+    --color-ring-success-ghost: var(--ck-palette-border-focus);
+    --color-ring-success-outline: var(--ck-palette-border-focus);
+    --color-ring-success-soft: var(--ck-palette-border-focus);
+    --color-ring-success-solid: var(--ck-palette-border-focus);
+    --color-ring-warning-ghost: var(--ck-palette-border-focus);
+    --color-ring-warning-outline: var(--ck-palette-border-focus);
+    --color-ring-warning-soft: var(--ck-palette-border-focus);
+    --color-ring-warning-solid: var(--ck-palette-border-focus);
+    --color-text-caution-ghost: var(--color-status-caution);
+    --color-text-caution-transparent-hover: var(--color-status-caution);
+    --color-text-caution-outline: var(--color-status-caution);
+    --color-text-caution-outline-hover: var(--color-status-caution);
+    --color-text-caution-soft: var(--color-status-caution);
+    --color-text-caution-solid: var(--color-text-on-status);
+    --color-text-error-ghost: var(--color-status-danger);
+    --color-text-error-transparent-hover: var(--color-status-danger);
+    --color-text-error-outline: var(--color-status-danger);
+    --color-text-error-outline-hover: var(--color-status-danger);
+    --color-text-error-soft: var(--color-status-danger);
+    --color-text-error-solid: var(--color-text-on-status);
+    --color-text-unavailable: var(--ck-palette-ink-tertiary);
+    --color-text-accent-ghost: var(--color-status-discovery);
+    --color-text-accent-transparent-hover: var(--color-status-discovery);
+    --color-text-accent-outline: var(--color-status-discovery);
+    --color-text-accent-outline-hover: var(--color-status-discovery);
+    --color-text-accent-soft: var(--color-status-discovery);
+    --color-text-accent-solid: var(--color-text-on-status);
+    --color-text-notice-ghost: var(--color-status-info);
+    --color-text-notice-transparent-hover: var(--color-status-info);
+    --color-text-notice-outline: var(--color-status-info);
+    --color-text-notice-outline-hover: var(--color-status-info);
+    --color-text-notice-soft: var(--color-status-info);
+    --color-text-notice-solid: var(--color-text-on-status);
+    --color-text-strong-ghost: var(--ck-palette-ink);
+    --color-text-strong-transparent-hover: var(--ck-palette-ink);
+    --color-text-strong-outline: var(--ck-palette-ink);
+    --color-text-strong-outline-hover: var(--ck-palette-ink);
+    --color-text-strong-soft: var(--ck-palette-ink);
+    --color-text-strong-soft-alt: var(--ck-palette-ink);
+    --color-text-strong-solid: var(--theme-background-control-opaque);
+    --color-text-muted-ghost: var(--ck-palette-ink-tertiary);
+    --color-text-muted-transparent-hover: var(--ck-palette-ink);
+    --color-text-muted-outline: color-mix(
+      in srgb,
+      var(--ck-palette-ink) 65%,
+      transparent
+    );
+    --color-text-muted-outline-hover: var(--ck-palette-ink);
+    --color-text-muted-soft: var(--ck-palette-ink);
+    --color-text-muted-soft-alt: var(--ck-palette-ink);
+    --color-text-muted-solid: var(--ck-palette-ink-secondary);
+    --color-text-positive-ghost: var(--color-status-success);
+    --color-text-positive-transparent-hover: var(--color-status-success);
+    --color-text-positive-outline: var(--color-status-success);
+    --color-text-positive-outline-hover: var(--color-status-success);
+    --color-text-positive-soft: var(--color-status-success);
+    --color-text-positive-solid: var(--color-text-on-status);
+    --color-text-alert-ghost: var(--color-status-warning);
+    --color-text-alert-transparent-hover: var(--color-status-warning);
+    --color-text-alert-outline: var(--color-status-warning);
+    --color-text-alert-outline-hover: var(--color-status-warning);
+    --color-text-alert-soft: var(--color-status-warning);
+    --color-text-alert-solid: var(--color-text-on-status);
+  }
+
+  @supports (corner-shape: superellipse(1.6)) {
+    .button {
+      --ck-action-corner-scale: 1.2;
+    }
+  }
+
+  .button {
+    gap: var(--ck-action-gap);
+    height: var(--ck-action-size);
+    padding: 0 var(--ck-action-gutter);
+    border-radius: var(--ck-action-radius);
+    -webkit-app-region: no-drag;
+    cursor: var(--ck-action-cursor, pointer);
+    font-size: var(--ck-action-font-size);
+    font-weight: var(--ck-action-font-weight);
+    transition-duration: var(--motion-duration-fast);
+    transition-property: opacity, color;
+    transition-timing-function: var(--ck-motion-ease-basic);
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1;
+    display: inline-block;
+    position: relative;
+  }
+
+  .button:before {
+    border-radius: inherit;
+    content: "";
+    corner-shape: inherit;
+    transition-duration: var(--motion-duration-fast);
+    transition-property:
+      opacity, background-color, transform, box-shadow, border-color;
+    transition-timing-function: var(--ck-motion-ease-basic);
+    will-change: transform;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .button:after {
+    border-radius: inherit;
+    content: "";
+    corner-shape: inherit;
+    pointer-events: none;
+    transition-duration: var(--motion-duration-fast);
+    transition-property: transform;
+    transition-timing-function: var(--ck-motion-ease-basic);
+    will-change: transform;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .button:focus {
+    outline: none;
+  }
+
+  .button:focus-visible:after {
+    outline: 2px solid var(--ck-action-ring-color, var(--color-ring));
+    outline-offset: var(--ck-action-ring-offset, 2px);
+  }
+
+  .button svg:where(:not([data-ck-no-autosize])) {
+    width: var(--ck-action-icon-size);
+    height: var(--ck-action-icon-size);
+  }
+
+  :where(
+    .button svg:where(:not([data-ck-no-autosize])):first-child:not(:only-child)
+  ) {
+    margin-left: var(--ck-action-icon-offset, -1px);
+  }
+
+  :where(
+    .button svg:where(:not([data-ck-no-autosize])):last-child:not(:only-child)
+  ) {
+    margin-right: var(--ck-action-icon-offset, -1px);
+  }
+
+  .button:where([data-ck-optically-align="start"]) {
+    margin-inline-start: calc(var(--ck-action-gutter) * -1);
+  }
+
+  .button:where([data-ck-optically-align="start"][data-pill]) {
+    margin-inline-start: calc(
+      var(--ck-action-gutter) * var(--ck-control-gutter-pill-scaling) * -1
+    );
+  }
+
+  .button:where([data-ck-optically-align="end"]) {
+    margin-inline-end: calc(var(--ck-action-gutter) * -1);
+  }
+
+  .button:where([data-ck-optically-align="end"][data-pill]) {
+    margin-inline-end: calc(
+      var(--ck-action-gutter) * var(--ck-control-gutter-pill-scaling) * -1
+    );
+  }
+
+  .button:where([data-ck-optically-align="start"][data-uniform]) {
+    margin-inline-start: calc(
+      ((var(--ck-action-size) - var(--ck-action-icon-size)) / 2) * -1
+    );
+  }
+
+  .button:where([data-ck-optically-align="end"][data-uniform]) {
+    margin-inline-end: calc(
+      ((var(--ck-action-size) - var(--ck-action-icon-size)) / 2) * -1
+    );
+  }
+
+  .button:where([data-size="3xs"]) {
+    --ck-action-size: var(--ck-control-size-4xs);
+    --ck-action-gutter: var(--ck-control-gutter-2xs);
+    --ck-action-font-size: var(--ck-control-font-size-sm);
+    --ck-action-icon-size: var(--ck-control-icon-size-xs);
+    --ck-action-gap: var(--ck-action-gap-sm);
+    --ck-action-radius: var(--ck-control-radius-sm);
+    --ck-action-icon-offset: -1px;
+    --progress-ring-size: 11px;
+    --ck-progress-diameter: 11px;
+  }
+
+  .button:where([data-size="2xs"]) {
+    --ck-action-size: var(--ck-control-size-3xs);
+    --ck-action-gutter: var(--ck-control-gutter-2xs);
+    --ck-action-font-size: var(--ck-control-font-size-sm);
+    --ck-action-icon-size: var(--ck-control-icon-size-xs);
+    --ck-action-gap: var(--ck-action-gap-sm);
+    --ck-action-radius: var(--ck-control-radius-sm);
+    --ck-action-icon-offset: -1px;
+    --progress-ring-size: 11px;
+    --ck-progress-diameter: 11px;
+  }
+
+  .button:where([data-size="xs"]) {
+    --ck-action-size: var(--ck-control-size-2xs);
+    --ck-action-gutter: var(--ck-control-gutter-xs);
+    --ck-action-font-size: var(--ck-control-font-size-md);
+    --ck-action-icon-size: var(--ck-control-icon-size-sm);
+    --ck-action-gap: var(--ck-action-gap-md);
+    --ck-action-radius: var(--ck-control-radius-sm);
+    --ck-action-icon-offset: -1px;
+    --progress-ring-size: 12px;
+    --ck-progress-diameter: 12px;
+  }
+
+  .button:where([data-size="sm"]) {
+    --ck-action-size: var(--ck-control-size-xs);
+    --ck-action-gutter: var(--ck-control-gutter-xs);
+    --ck-action-font-size: var(--ck-control-font-size-md);
+    --ck-action-icon-size: var(--ck-control-icon-size-sm);
+    --ck-action-gap: var(--ck-action-gap-md);
+    --ck-action-radius: var(--ck-control-radius-sm);
+    --ck-action-icon-offset: -1px;
+    --progress-ring-size: 13px;
+    --ck-progress-diameter: 14px;
+  }
+
+  .button:where([data-size="md"]) {
+    --ck-action-size: var(--ck-control-size-sm);
+    --ck-action-gutter: var(--ck-control-gutter-sm);
+    --ck-action-font-size: var(--ck-control-font-size-md);
+    --ck-action-icon-size: var(--ck-control-icon-size-md);
+    --ck-action-gap: var(--ck-action-gap-md);
+    --ck-action-radius: var(--ck-control-radius-sm);
+    --ck-action-icon-offset: -1px;
+    --progress-ring-size: 15px;
+    --ck-progress-diameter: 15px;
+  }
+
+  .button:where([data-size="lg"]) {
+    --ck-action-size: var(--ck-control-size-md);
+    --ck-action-gutter: var(--ck-control-gutter-md);
+    --ck-action-font-size: var(--ck-control-font-size-lg);
+    --ck-action-icon-size: var(--ck-control-icon-size-md);
+    --ck-action-gap: var(--ck-action-gap-lg);
+    --ck-action-radius: var(--ck-control-radius-md);
+    --ck-action-icon-offset: -1px;
+    --progress-ring-size: 16px;
+    --ck-progress-diameter: 16px;
+  }
+
+  .button:where([data-size="xl"]) {
+    --ck-action-size: var(--ck-control-size-lg);
+    --ck-action-gutter: var(--ck-control-gutter-md);
+    --ck-action-font-size: var(--ck-control-font-size-md);
+    --ck-action-icon-size: var(--ck-control-icon-size-md);
+    --ck-action-gap: var(--ck-action-gap-lg);
+    --ck-action-radius: var(--ck-control-radius-md);
+    --ck-action-icon-offset: -1px;
+    --progress-ring-size: 16px;
+    --ck-progress-diameter: 16px;
+  }
+
+  .button:where([data-size="2xl"]) {
+    --ck-action-size: var(--ck-control-size-xl);
+    --ck-action-gutter: var(--ck-control-gutter-lg);
+    --ck-action-font-size: var(--ck-control-font-size-md);
+    --ck-action-icon-size: var(--ck-control-icon-size-md);
+    --ck-action-gap: var(--ck-action-gap-lg);
+    --ck-action-radius: var(--ck-control-radius-lg);
+    --ck-action-icon-offset: -1px;
+    --progress-ring-size: 18px;
+    --ck-progress-diameter: 18px;
+  }
+
+  .button:where([data-size="3xl"]) {
+    --ck-action-size: var(--ck-control-size-2xl);
+    --ck-action-gutter: var(--ck-control-gutter-lg);
+    --ck-action-font-size: var(--ck-control-font-size-md);
+    --ck-action-icon-size: var(--ck-control-icon-size-lg);
+    --ck-action-gap: var(--ck-action-gap-lg);
+    --ck-action-radius: var(--ck-control-radius-xl);
+    --ck-action-icon-offset: -2px;
+    --progress-ring-size: 18px;
+    --ck-progress-diameter: 18px;
+  }
+
+  .button:where([data-size="4xl"]) {
+    --ck-action-size: var(--ck-control-size-3xl);
+    --ck-action-gutter: var(--ck-control-gutter-xl);
+    --ck-action-font-size: var(--ck-control-font-size-lg);
+    --ck-action-icon-size: var(--ck-control-icon-size-lg);
+    --ck-action-gap: var(--ck-action-gap-lg);
+    --ck-action-radius: var(--ck-control-radius-xl);
+    --ck-action-icon-offset: -2px;
+    --progress-ring-size: 20px;
+    --ck-progress-diameter: 20px;
+  }
+
+  .button:where([data-gutter-size="2xs"]) {
+    --ck-action-gutter: var(--ck-control-gutter-2xs);
+  }
+
+  .button:where([data-gutter-size="xs"]) {
+    --ck-action-gutter: var(--ck-control-gutter-xs);
+  }
+
+  .button:where([data-gutter-size="sm"]) {
+    --ck-action-gutter: var(--ck-control-gutter-sm);
+  }
+
+  .button:where([data-gutter-size="md"]) {
+    --ck-action-gutter: var(--ck-control-gutter-md);
+  }
+
+  .button:where([data-gutter-size="lg"]) {
+    --ck-action-gutter: var(--ck-control-gutter-lg);
+  }
+
+  .button:where([data-gutter-size="xl"]) {
+    --ck-action-gutter: var(--ck-control-gutter-xl);
+  }
+
+  .button:where([data-icon-size="xs"]) {
+    --ck-action-icon-size: var(--ck-control-icon-size-xs);
+  }
+
+  .button:where([data-icon-size="sm"]) {
+    --ck-action-icon-size: var(--ck-control-icon-size-sm);
+  }
+
+  .button:where([data-icon-size="md"]) {
+    --ck-action-icon-size: var(--ck-control-icon-size-md);
+  }
+
+  .button:where([data-icon-size="lg"]) {
+    --ck-action-icon-size: var(--ck-control-icon-size-lg);
+  }
+
+  .button:where([data-icon-size="xl"]) {
+    --ck-action-icon-size: var(--ck-control-icon-size-xl);
+  }
+
+  .button:where([data-icon-size="2xl"]) {
+    --ck-action-icon-size: var(--ck-control-icon-size-2xl);
+  }
+
+  .button:where([data-pill]) {
+    --ck-action-radius: var(--radius-pill);
+    padding: 0
+      calc(var(--ck-action-gutter) * var(--ck-control-gutter-pill-scaling));
+  }
+
+  .button:where([data-ck-squircle]) {
+    border-radius: calc(var(--ck-action-radius) * 1.2);
+    corner-shape: superellipse(1.6);
+  }
+
+  .button:where([data-block]) {
+    width: 100%;
+  }
+
+  .button[data-uniform] {
+    --ck-action-gutter: 0;
+    --ck-action-icon-offset: 0px;
+    width: var(--ck-action-size);
+  }
+
+  .button[data-variant="ghost"],
+  .button[data-variant="transparent"] {
+    --ck-action-ring-offset: -1px;
+    color: var(--ck-action-text-color);
+  }
+
+  :is(
+    .button[data-variant="ghost"],
+    .button[data-variant="transparent"]
+  ):before {
+    background-color: var(--ck-action-background-color);
+    opacity: 0;
+    transform: scale(var(--scale));
+  }
+
+  :is(
+      .button[data-variant="ghost"],
+      .button[data-variant="transparent"]
+    )[aria-expanded="true"]:where(:not([data-ck-suppress-active-style])),
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):is(
+    [data-state="open"],
+    [data-popup-open]
+  ) {
+    color: var(--ck-action-text-color-hover);
+  }
+
+  :is(
+    :is(
+        .button[data-variant="ghost"],
+        .button[data-variant="transparent"]
+      )[aria-expanded="true"]:where(:not([data-ck-suppress-active-style])),
+    :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):is(
+      [data-state="open"],
+      [data-popup-open]
+    )
+  ):before {
+    opacity: 0.58;
+    transform: scale(1);
+  }
+
+  :is(
+    .button[data-variant="ghost"],
+    .button[data-variant="transparent"]
+  )[data-selected] {
+    color: var(--ck-action-text-color-hover);
+  }
+
+  :is(
+      .button[data-variant="ghost"],
+      .button[data-variant="transparent"]
+    )[data-selected]:before {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media (hover: hover) {
+    :is(
+        .button[data-variant="ghost"],
+        .button[data-variant="transparent"]
+      ):where(:not([data-disabled])):hover {
+      color: var(--ck-action-text-color-hover);
+    }
+    :is(
+        .button[data-variant="ghost"],
+        .button[data-variant="transparent"]
+      ):where(:not([data-disabled])):hover:before {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+      :not([data-disabled])
+    ):active:before {
+    background-color: var(--ck-action-background-color-active);
+    opacity: 1;
+    transform: scale(var(--scale));
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+      :not([data-disabled])
+    ):active:after {
+    transform: scale(var(--scale));
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+    [data-color="primary"]
+  ) {
+    --ck-action-background-color: var(--color-fill-primary-transparent-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-primary-transparent-pressed
+    );
+    --ck-action-text-color: var(--color-text-strong-ghost);
+    --ck-action-text-color-hover: var(--color-text-strong-transparent-hover);
+    --ck-action-ring-color: var(--color-ring-primary-ghost);
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+    [data-color="secondary"]
+  ) {
+    --ck-action-background-color: var(--color-fill-secondary-transparent-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-secondary-transparent-pressed
+    );
+    --ck-action-text-color: var(--color-text-muted-ghost);
+    --ck-action-text-color-hover: var(--color-text-muted-transparent-hover);
+    --ck-action-ring-color: var(--color-ring-secondary-ghost);
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+    [data-color="danger"]
+  ) {
+    --ck-action-background-color: var(--color-fill-danger-transparent-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-danger-transparent-pressed
+    );
+    --ck-action-text-color: var(--color-text-error-ghost);
+    --ck-action-text-color-hover: var(--color-text-error-transparent-hover);
+    --ck-action-ring-color: var(--color-ring-danger-ghost);
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+    [data-color="success"]
+  ) {
+    --ck-action-background-color: var(--color-fill-success-transparent-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-success-transparent-pressed
+    );
+    --ck-action-text-color: var(--color-text-positive-ghost);
+    --ck-action-text-color-hover: var(--color-text-positive-transparent-hover);
+    --ck-action-ring-color: var(--color-ring-success-ghost);
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+    [data-color="warning"]
+  ) {
+    --ck-action-background-color: var(--color-fill-warning-transparent-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-warning-transparent-pressed
+    );
+    --ck-action-text-color: var(--color-text-alert-ghost);
+    --ck-action-text-color-hover: var(--color-text-alert-transparent-hover);
+    --ck-action-ring-color: var(--color-ring-warning-ghost);
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+    [data-color="caution"]
+  ) {
+    --ck-action-background-color: var(--color-fill-caution-transparent-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-caution-transparent-pressed
+    );
+    --ck-action-text-color: var(--color-text-caution-ghost);
+    --ck-action-text-color-hover: var(--color-text-caution-transparent-hover);
+    --ck-action-ring-color: var(--color-ring-caution-ghost);
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+    [data-color="info"]
+  ) {
+    --ck-action-background-color: var(--color-fill-info-transparent-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-info-transparent-pressed
+    );
+    --ck-action-text-color: var(--color-text-notice-ghost);
+    --ck-action-text-color-hover: var(--color-text-notice-transparent-hover);
+    --ck-action-ring-color: var(--color-ring-info-ghost);
+  }
+
+  :is(.button[data-variant="ghost"], .button[data-variant="transparent"]):where(
+    [data-color="discovery"]
+  ) {
+    --ck-action-background-color: var(--color-fill-discovery-transparent-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-discovery-transparent-pressed
+    );
+    --ck-action-text-color: var(--color-text-accent-ghost);
+    --ck-action-text-color-hover: var(--color-text-accent-transparent-hover);
+    --ck-action-ring-color: var(--color-ring-discovery-ghost);
+  }
+
+  .button[data-variant="transparent"]:before {
+    content: none;
+  }
+
+  .button[data-variant="solid"] {
+    color: var(--ck-action-text-color);
+  }
+
+  .button[data-variant="solid"]:before {
+    background-color: var(--ck-action-background-color);
+  }
+
+  :is(
+    .button[data-variant="solid"][aria-expanded="true"]:where(
+        :not([data-ck-suppress-active-style])
+      ),
+    .button[data-variant="solid"]:is([data-state="open"], [data-popup-open]),
+    .button[data-variant="solid"][data-selected]
+  ):before {
+    background-color: var(--ck-action-background-color-hover);
+  }
+
+  @media (hover: hover) {
+    .button[data-variant="solid"]:where(:not([data-disabled])):hover:before {
+      background-color: var(--ck-action-background-color-hover);
+    }
+  }
+
+  .button[data-variant="solid"]:where(:not([data-disabled])):active:before {
+    background-color: var(--ck-action-background-color-active);
+  }
+
+  .button[data-variant="solid"]:where(:not([data-disabled])):active:before,
+  .button[data-variant="solid"]:where(:not([data-disabled])):active:after {
+    transform: scale(var(--scale));
+  }
+
+  .button[data-variant="solid"]:where([data-color="primary"]) {
+    --ck-action-background-color: var(--color-fill-primary-solid);
+    --ck-action-background-color-hover: var(--color-fill-primary-solid-hover);
+    --ck-action-background-color-active: var(--color-fill-primary-solid-active);
+    --ck-action-text-color: var(--color-text-strong-solid);
+    --ck-action-ring-color: var(--color-ring-primary-solid);
+  }
+
+  .button[data-variant="solid"]:where([data-color="secondary"]) {
+    --ck-action-background-color: var(--color-fill-secondary-solid);
+    --ck-action-background-color-hover: var(--color-fill-secondary-solid-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-secondary-solid-active
+    );
+    --ck-action-text-color: var(--color-text-muted-solid);
+    --ck-action-ring-color: var(--color-ring-secondary-solid);
+  }
+
+  .button[data-variant="solid"]:where([data-color="success"]) {
+    --ck-action-background-color: var(--color-fill-success-solid);
+    --ck-action-background-color-hover: var(--color-fill-success-solid-hover);
+    --ck-action-background-color-active: var(--color-fill-success-solid-active);
+    --ck-action-text-color: var(--color-text-positive-solid);
+    --ck-action-ring-color: var(--color-ring-success-solid);
+  }
+
+  .button[data-variant="solid"]:where([data-color="danger"]) {
+    --ck-action-background-color: var(--color-fill-danger-solid);
+    --ck-action-background-color-hover: var(--color-fill-danger-solid-hover);
+    --ck-action-background-color-active: var(--color-fill-danger-solid-active);
+    --ck-action-text-color: var(--color-text-error-solid);
+    --ck-action-ring-color: var(--color-ring-danger-solid);
+  }
+
+  .button[data-variant="solid"]:where([data-color="warning"]) {
+    --ck-action-background-color: var(--color-fill-warning-solid);
+    --ck-action-background-color-hover: var(--color-fill-warning-solid-hover);
+    --ck-action-background-color-active: var(--color-fill-warning-solid-active);
+    --ck-action-text-color: var(--color-text-alert-solid);
+    --ck-action-ring-color: var(--color-ring-warning-solid);
+  }
+
+  .button[data-variant="solid"]:where([data-color="caution"]) {
+    --ck-action-background-color: var(--color-fill-caution-solid);
+    --ck-action-background-color-hover: var(--color-fill-caution-solid-hover);
+    --ck-action-background-color-active: var(--color-fill-caution-solid-active);
+    --ck-action-text-color: var(--color-text-caution-solid);
+    --ck-action-ring-color: var(--color-ring-caution-solid);
+  }
+
+  .button[data-variant="solid"]:where([data-color="info"]) {
+    --ck-action-background-color: var(--color-fill-info-solid);
+    --ck-action-background-color-hover: var(--color-fill-info-solid-hover);
+    --ck-action-background-color-active: var(--color-fill-info-solid-active);
+    --ck-action-text-color: var(--color-text-notice-solid);
+    --ck-action-ring-color: var(--color-ring-info-solid);
+  }
+
+  .button[data-variant="solid"]:where([data-color="discovery"]) {
+    --ck-action-background-color: var(--color-fill-discovery-solid);
+    --ck-action-background-color-hover: var(--color-fill-discovery-solid-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-discovery-solid-active
+    );
+    --ck-action-text-color: var(--color-text-accent-solid);
+    --ck-action-ring-color: var(--color-ring-discovery-solid);
+  }
+
+  .button[data-variant="soft"],
+  .button[data-variant="surface"] {
+    color: var(--ck-action-text-color);
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):before {
+    background-color: var(--ck-action-background-color);
+  }
+
+  :is(
+    :is(
+        .button[data-variant="soft"],
+        .button[data-variant="surface"]
+      )[aria-expanded="true"]:where(:not([data-ck-suppress-active-style])),
+    :is(.button[data-variant="soft"], .button[data-variant="surface"]):is(
+      [data-state="open"],
+      [data-popup-open]
+    ),
+    :is(
+      .button[data-variant="soft"],
+      .button[data-variant="surface"]
+    )[data-selected]
+  ):before {
+    background-color: var(--ck-action-background-color-hover);
+  }
+
+  @media (hover: hover) {
+    :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+        :not([data-disabled])
+      ):hover:before {
+      background-color: var(--ck-action-background-color-hover);
+    }
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+      :not([data-disabled])
+    ):active:before {
+    background-color: var(--ck-action-background-color-active);
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+      :not([data-disabled])
+    ):active:before,
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+      :not([data-disabled])
+    ):active:after {
+    transform: scale(var(--scale));
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+    [data-color="primary"]
+  ) {
+    --ck-action-background-color: var(--color-fill-primary-soft-alpha);
+    --ck-action-background-color-hover: var(
+      --color-fill-primary-soft-alpha-hover
+    );
+    --ck-action-background-color-active: var(
+      --color-fill-primary-soft-alpha-active
+    );
+    --ck-action-text-color: var(--color-text-strong-soft);
+    --ck-action-ring-color: var(--color-ring-primary-soft);
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+    [data-color="secondary"]
+  ) {
+    --ck-action-background-color: var(--color-fill-secondary-soft-alpha);
+    --ck-action-background-color-hover: var(
+      --color-fill-secondary-soft-alpha-hover
+    );
+    --ck-action-background-color-active: var(
+      --color-fill-secondary-soft-alpha-active
+    );
+    --ck-action-text-color: var(--color-text-muted-soft);
+    --ck-action-ring-color: var(--color-ring-secondary-soft);
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+    [data-color="success"]
+  ) {
+    --ck-action-background-color: var(--color-fill-success-soft-alpha);
+    --ck-action-background-color-hover: var(
+      --color-fill-success-soft-alpha-hover
+    );
+    --ck-action-background-color-active: var(
+      --color-fill-success-soft-alpha-active
+    );
+    --ck-action-text-color: var(--color-text-positive-soft);
+    --ck-action-border-color: var(--color-stroke-success-outline);
+    --ck-action-ring-color: var(--color-ring-success-soft);
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+    [data-color="danger"]
+  ) {
+    --ck-action-background-color: var(--color-fill-danger-soft-alpha);
+    --ck-action-background-color-hover: var(
+      --color-fill-danger-soft-alpha-hover
+    );
+    --ck-action-background-color-active: var(
+      --color-fill-danger-soft-alpha-active
+    );
+    --ck-action-text-color: var(--color-text-error-soft);
+    --ck-action-border-color: var(--color-stroke-danger-outline);
+    --ck-action-ring-color: var(--color-ring-danger-soft);
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+    [data-color="warning"]
+  ) {
+    --ck-action-background-color: var(--color-fill-warning-soft-alpha);
+    --ck-action-background-color-hover: var(
+      --color-fill-warning-soft-alpha-hover
+    );
+    --ck-action-background-color-active: var(
+      --color-fill-warning-soft-alpha-active
+    );
+    --ck-action-text-color: var(--color-text-alert-soft);
+    --ck-action-border-color: var(--color-stroke-warning-outline);
+    --ck-action-ring-color: var(--color-ring-warning-soft);
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+    [data-color="caution"]
+  ) {
+    --ck-action-background-color: var(--color-fill-caution-soft-alpha);
+    --ck-action-background-color-hover: var(
+      --color-fill-caution-soft-alpha-hover
+    );
+    --ck-action-background-color-active: var(
+      --color-fill-caution-soft-alpha-active
+    );
+    --ck-action-text-color: var(--color-text-caution-soft);
+    --ck-action-border-color: var(--color-stroke-caution-outline);
+    --ck-action-ring-color: var(--color-ring-caution-soft);
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+    [data-color="info"]
+  ) {
+    --ck-action-background-color: var(--color-fill-info-soft-alpha);
+    --ck-action-background-color-hover: var(--color-fill-info-soft-alpha-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-info-soft-alpha-active
+    );
+    --ck-action-text-color: var(--color-text-notice-soft);
+    --ck-action-border-color: var(--color-stroke-info-outline);
+    --ck-action-ring-color: var(--color-ring-info-soft);
+  }
+
+  :is(.button[data-variant="soft"], .button[data-variant="surface"]):where(
+    [data-color="discovery"]
+  ) {
+    --ck-action-background-color: var(--color-fill-discovery-soft-alpha);
+    --ck-action-background-color-hover: var(
+      --color-fill-discovery-soft-alpha-hover
+    );
+    --ck-action-background-color-active: var(
+      --color-fill-discovery-soft-alpha-active
+    );
+    --ck-action-text-color: var(--color-text-accent-soft);
+    --ck-action-border-color: var(--color-stroke-discovery-outline);
+    --ck-action-ring-color: var(--color-ring-discovery-soft);
+  }
+
+  .button[data-variant="surface"]:before {
+    box-shadow: 0 0 0 1px var(--ck-action-border-color) inset;
+  }
+
+  /*
+   * The component switches the surface look with `[data-theme=dark]` and a
+   * `--ck-color-mode` style container. Here light-dark follows the nearest
+   * color-scheme scope instead: light draws a hairline ring and a soft shadow
+   * on a transparent fill, dark fills the surface and draws an inset ring.
+   */
+  .button[data-variant="surface"]:where(:not([data-disabled])):before {
+    background-color: light-dark(
+      transparent,
+      var(--ck-action-background-color)
+    );
+    box-shadow:
+      0 0 0 1px light-dark(var(--ck-action-surface-border-color), transparent),
+      0 3px 9px 0
+        light-dark(
+          color-mix(in srgb, var(--ck-shadow-color) 4%, transparent),
+          transparent
+        ),
+      0 5px 72px 7px
+        light-dark(
+          color-mix(in srgb, var(--ck-shadow-color) 2%, transparent),
+          transparent
+        ),
+      inset 0 0 0 1px light-dark(transparent, var(--ck-action-border-color));
+  }
+
+  @media (hover: hover) {
+    .button[data-variant="surface"]:where(:not([data-disabled])):hover:before {
+      background-color: light-dark(
+        transparent,
+        var(--ck-action-background-color-hover)
+      );
+      box-shadow:
+        0 0 0 1px
+          light-dark(
+            color-mix(
+              in srgb,
+              var(--ck-action-border-color-hover, var(--ck-action-text-color))
+                50%,
+              transparent
+            ),
+            transparent
+          ),
+        0 3px 9px 0
+          light-dark(
+            color-mix(in srgb, var(--ck-shadow-color) 4%, transparent),
+            transparent
+          ),
+        0 5px 72px 7px
+          light-dark(
+            color-mix(in srgb, var(--ck-shadow-color) 2%, transparent),
+            transparent
+          ),
+        inset 0 0 0 1px light-dark(transparent, var(--ck-action-border-color));
+    }
+
+    .button[data-variant="surface"]:where(
+        :not([data-disabled])
+      ):hover:active:before {
+      background-color: light-dark(
+        transparent,
+        var(--ck-action-background-color-active)
+      );
+    }
+  }
+
+  .button[data-variant="surface"]:where([data-color="primary"]) {
+    --ck-action-background-color: var(--color-fill-primary-soft-alt);
+    --ck-action-border-color: var(--color-stroke-primary-soft-alt);
+    --ck-action-border-color-hover: var(--color-stroke-primary-outline-hover);
+    --ck-action-text-color: var(--color-text-strong-soft-alt);
+  }
+
+  .button[data-variant="surface"]:where([data-color="secondary"]) {
+    --ck-action-background-color: var(--color-fill-secondary-soft-alt);
+    --ck-action-border-color: var(--color-stroke-secondary-soft-alt);
+    --ck-action-border-color-hover: var(--color-stroke-secondary-outline-hover);
+    --ck-action-text-color: var(--color-text-muted-soft-alt);
+  }
+
+  .button[data-variant="outline"] {
+    --ck-action-ring-offset: -1px;
+    color: var(--ck-action-text-color);
+  }
+
+  .button[data-variant="outline"]:before {
+    box-shadow:
+      0 0 0 1px var(--ck-action-border-color) inset,
+      var(--ck-action-shadow-custom, 0 0 transparent);
+    background-color: transparent;
+  }
+
+  .button[data-variant="outline"][aria-expanded="true"]:where(
+      :not([data-ck-suppress-active-style])
+    ),
+  .button[data-variant="outline"]:is([data-state="open"], [data-popup-open]),
+  .button[data-variant="outline"][data-selected] {
+    color: var(--ck-action-text-color-hover);
+  }
+
+  :is(
+    .button[data-variant="outline"][aria-expanded="true"]:where(
+        :not([data-ck-suppress-active-style])
+      ),
+    .button[data-variant="outline"]:is([data-state="open"], [data-popup-open]),
+    .button[data-variant="outline"][data-selected]
+  ):before {
+    background-color: var(--ck-action-background-color-hover);
+    box-shadow:
+      0 0 0 1px var(--ck-action-border-color-hover) inset,
+      var(--ck-action-shadow-custom, 0 0 transparent);
+  }
+
+  @media (hover: hover) {
+    .button[data-variant="outline"]:where(:not([data-disabled])):hover {
+      color: var(--ck-action-text-color-hover);
+    }
+    .button[data-variant="outline"]:where(:not([data-disabled])):hover:before {
+      background-color: var(--ck-action-background-color-hover);
+      box-shadow:
+        0 0 0 1px var(--ck-action-border-color-hover) inset,
+        var(--ck-action-shadow-custom, 0 0 transparent);
+    }
+  }
+
+  .button[data-variant="outline"]:where(:not([data-disabled])):active:before {
+    background-color: var(--ck-action-background-color-active);
+    transform: scale(var(--scale));
+  }
+
+  .button[data-variant="outline"]:where(:not([data-disabled])):active:after {
+    transform: scale(var(--scale));
+  }
+
+  .button[data-variant="outline"]:where([data-color="primary"]) {
+    --ck-action-background-color-hover: var(--color-fill-primary-outline-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-primary-outline-active
+    );
+    --ck-action-border-color: var(--color-stroke-primary-outline);
+    --ck-action-border-color-hover: var(--color-stroke-primary-outline-hover);
+    --ck-action-text-color: var(--color-text-strong-outline);
+    --ck-action-text-color-hover: var(--color-text-strong-outline-hover);
+    --ck-action-ring-color: var(--color-ring-primary-outline);
+  }
+
+  .button[data-variant="outline"]:where([data-color="secondary"]) {
+    --ck-action-background-color-hover: var(
+      --color-fill-secondary-outline-hover
+    );
+    --ck-action-background-color-active: var(
+      --color-fill-secondary-outline-active
+    );
+    --ck-action-border-color: var(--color-stroke-secondary-outline);
+    --ck-action-border-color-hover: var(--color-stroke-secondary-outline-hover);
+    --ck-action-text-color: var(--color-text-muted-outline);
+    --ck-action-text-color-hover: var(--color-text-muted-outline-hover);
+    --ck-action-ring-color: var(--color-ring-secondary-outline);
+  }
+
+  .button[data-variant="outline"]:where([data-color="danger"]) {
+    --ck-action-background-color-hover: var(--color-fill-danger-outline-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-danger-outline-active
+    );
+    --ck-action-border-color: var(--color-stroke-danger-outline);
+    --ck-action-border-color-hover: var(--color-stroke-danger-outline-hover);
+    --ck-action-text-color: var(--color-text-error-outline);
+    --ck-action-text-color-hover: var(--color-text-error-outline-hover);
+    --ck-action-ring-color: var(--color-ring-danger-outline);
+  }
+
+  .button[data-variant="outline"]:where([data-color="success"]) {
+    --ck-action-background-color-hover: var(--color-fill-success-outline-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-success-outline-active
+    );
+    --ck-action-border-color: var(--color-stroke-success-outline);
+    --ck-action-border-color-hover: var(--color-stroke-success-outline-hover);
+    --ck-action-text-color: var(--color-text-positive-outline);
+    --ck-action-text-color-hover: var(--color-text-positive-outline-hover);
+    --ck-action-ring-color: var(--color-ring-success-outline);
+  }
+
+  .button[data-variant="outline"]:where([data-color="warning"]) {
+    --ck-action-background-color-hover: var(--color-fill-warning-outline-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-warning-outline-active
+    );
+    --ck-action-border-color: var(--color-stroke-warning-outline);
+    --ck-action-border-color-hover: var(--color-stroke-warning-outline-hover);
+    --ck-action-text-color: var(--color-text-alert-outline);
+    --ck-action-text-color-hover: var(--color-text-alert-outline-hover);
+    --ck-action-ring-color: var(--color-ring-warning-outline);
+  }
+
+  .button[data-variant="outline"]:where([data-color="caution"]) {
+    --ck-action-background-color-hover: var(--color-fill-caution-outline-hover);
+    --ck-action-background-color-active: var(
+      --color-fill-caution-outline-active
+    );
+    --ck-action-border-color: var(--color-stroke-caution-outline);
+    --ck-action-border-color-hover: var(--color-stroke-caution-outline-hover);
+    --ck-action-text-color: var(--color-text-caution-outline);
+    --ck-action-text-color-hover: var(--color-text-caution-outline-hover);
+    --ck-action-ring-color: var(--color-ring-caution-outline);
+  }
+
+  .button[data-variant="outline"]:where([data-color="info"]) {
+    --ck-action-background-color-hover: var(--color-fill-info-outline-hover);
+    --ck-action-background-color-active: var(--color-fill-info-outline-active);
+    --ck-action-border-color: var(--color-stroke-info-outline);
+    --ck-action-border-color-hover: var(--color-stroke-info-outline-hover);
+    --ck-action-text-color: var(--color-text-notice-outline);
+    --ck-action-text-color-hover: var(--color-text-notice-outline-hover);
+    --ck-action-ring-color: var(--color-ring-info-outline);
+  }
+
+  .button[data-variant="outline"]:where([data-color="discovery"]) {
+    --ck-action-background-color-hover: var(
+      --color-fill-discovery-outline-hover
+    );
+    --ck-action-background-color-active: var(
+      --color-fill-discovery-outline-active
+    );
+    --ck-action-border-color: var(--color-stroke-discovery-outline);
+    --ck-action-border-color-hover: var(--color-stroke-discovery-outline-hover);
+    --ck-action-text-color: var(--color-text-accent-outline);
+    --ck-action-text-color-hover: var(--color-text-accent-outline-hover);
+    --ck-action-ring-color: var(--color-ring-discovery-outline);
+  }
+
+  .button[disabled] {
+    pointer-events: none;
+  }
+
+  .button[data-disabled][data-variant]:not([data-disabled-tone="dimmed"]) {
+    --ck-action-background-color: var(--color-fill-disabled);
+    --ck-action-border-color: var(--color-stroke-disabled);
+    --ck-action-text-color: var(--color-text-unavailable);
+  }
+
+  .button[data-disabled][data-variant] {
+    cursor: not-allowed;
+    pointer-events: auto;
+  }
+
+  .button[data-disabled][data-variant]:is(
+      [data-disabled-tone="dimmed"],
+      [data-variant="ghost"],
+      [data-variant="transparent"]
+    ) {
+    opacity: 0.42;
+  }
+
+  .button[data-disabled][data-variant]:active:before {
+    transform: scale(1);
+  }
+
+  .button[data-disabled][data-variant][data-disabled-tone="relaxed"] {
+    cursor: default;
+  }
+
+  .inner {
+    flex-direction: inherit;
+    justify-content: center;
+    align-items: center;
+    gap: inherit;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.16s 0.08s;
+    display: flex;
+    position: relative;
+  }
+
+  [data-loading] .inner {
+    opacity: 0;
+    transition: opacity 0.28s;
+  }
+
+  .button > .loader {
+    z-index: 3;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    inset: 0;
+  }
+
+  .button > .loader[data-entering] {
+    opacity: 0;
+  }
+
+  .button > .loader[data-exiting] {
+    opacity: 1;
+  }
+
+  .button > .loader[data-entering-active],
+  .button > .loader[data-entering][data-interrupted] {
+    opacity: 1;
+    transition: opacity 0.16s 0.08s;
+  }
+
+  .button > .loader[data-exiting-active],
+  .button > .loader[data-exiting][data-interrupted] {
+    opacity: 0;
+    transition: opacity 0.16s;
+  }
+
+  .indicator {
+    width: var(--progress-ring-size, 1em);
+    height: var(--progress-ring-size, 1em);
+    animation: rotate var(--ck-indicator-rotate-duration, 0.84s) linear infinite;
+    transition: opacity 0.16s;
+    position: relative;
+  }
+
+  .indicator:before {
+    border: var(--progress-ring-width, 2px) solid
+      var(--progress-ring-color, currentcolor);
+    content: "";
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    inset: 0;
+    mask-image: conic-gradient(transparent, var(--ck-mask));
+  }
+
+  .indicator:after {
+    width: var(--progress-ring-width, 2px);
+    height: var(--progress-ring-width, 2px);
+    margin-left: calc(var(--progress-ring-width, 2px) * -1 / 2);
+    background-color: var(--progress-ring-color, currentcolor);
+    content: "";
+    border-radius: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  .transitionChild {
+    display: block;
+  }
+}

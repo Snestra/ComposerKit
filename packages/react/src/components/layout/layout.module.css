@@ -1,0 +1,644 @@
+/*
+ * Searchable header shell, from the shell through the directory shell.
+ * Electron window values apply unconditionally, so there are no browser or
+ * extension window-type variants. [data-ck-new-slate-layout] rules apply when the scroll
+ * host carries that attribute.
+ */
+.shell {
+  border-bottom-style: solid;
+  padding-top: calc(var(--spacing, 0.25rem) * 4);
+  --ck-compose-button-spacing: calc(var(--spacing) * 8);
+  border-bottom-width: 1px;
+  container-type: inline-size;
+}
+.shell[data-sticky] {
+  top: calc(var(--spacing, 0.25rem) * -4);
+  z-index: 30;
+  position: sticky;
+}
+.shell[data-sticky]::before {
+  content: "";
+  pointer-events: none;
+  z-index: -1;
+  inset-inline: 0;
+  inset-block: var(--ck-header-background-top-inset, 0px) 0;
+  background-color: var(--color-panel, var(--ck-palette-surface-surface));
+  border-start-start-radius: var(--ck-shell-main-surface-top-start-radius, 0px);
+  border-start-end-radius: var(--ck-shell-main-surface-top-end-radius, 0px);
+  position: absolute;
+}
+.content {
+  column-gap: calc(var(--spacing, 0.25rem) * 4);
+  flex-wrap: wrap;
+  display: flex;
+}
+.headerRow {
+  display: contents;
+}
+.title {
+  min-height: calc(var(--spacing, 0.25rem) * 15);
+  justify-content: center;
+  gap: var(--spacing, 0.25rem);
+  min-width: 0;
+  max-width: 100%;
+  padding-block: calc(var(--spacing, 0.25rem) * 3);
+  flex-direction: column;
+  flex-basis: max-content;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  padding-inline-start: max(
+    0px,
+    var(--ck-shell-titlebar-left-inset, 0px) -
+      var(--ck-header-content-start, 0px)
+  );
+  display: flex;
+}
+.titleContent {
+  gap: var(--spacing, 0.25rem);
+  flex-direction: column;
+  min-width: 0;
+  display: flex;
+}
+.shell[data-ck-scroll-collapse] .titleContent {
+  width: max-content;
+  max-width: 100%;
+}
+.shell[data-ck-scroll-collapse] .title {
+  flex-basis: min-content;
+  overflow: visible clip;
+}
+.shell[data-ck-scroll-collapse] .actions {
+  align-self: flex-start;
+}
+.shell[data-ck-scroll-collapse] {
+  top: calc(-1 * var(--ck-header-collapse-offset));
+}
+.shell[data-ck-scroll-collapse]:not([data-collapsible]) .title {
+  flex-basis: 100%;
+}
+.shell[data-collapsible] .content {
+  grid-template-columns: minmax(0, max-content) minmax(min-content, 1fr);
+  display: grid;
+}
+:is(
+  [data-ck-new-slate-layout] .shell[data-collapsible] .content,
+  .shell[data-ck-scroll-collapse][data-collapsible]:has(
+      .search[data-ck-fixed-width]
+    )
+    .content
+) {
+  display: flex;
+}
+[data-ck-new-slate-layout] .shell[data-collapsible] .headerRow {
+  gap: calc(var(--spacing, 0.25rem) * 4);
+  width: 100%;
+  min-width: 0;
+  display: flex;
+}
+[data-ck-new-slate-layout] .shell[data-collapsible] .title {
+  flex: 0 1 max-content;
+}
+[data-ck-new-slate-layout]
+  .shell[data-collapsible]:not(:has(.search[data-ck-fixed-width]))
+  .title {
+  flex-shrink: 0;
+}
+.shell[data-collapsible] .actions {
+  position: sticky;
+  top: 0;
+}
+.shell[data-collapsible][data-scrolled] .navigation {
+  grid-column: span 1 / span 1;
+}
+.actions {
+  min-height: calc(var(--spacing, 0.25rem) * 15);
+  min-width: 0;
+  max-width: 100%;
+  padding-block: calc(var(--spacing, 0.25rem) * 3);
+  flex: 1 1 max-content;
+  grid-row-start: 1;
+  grid-column-start: 2;
+  align-items: center;
+  display: flex;
+}
+.navigation {
+  min-height: calc(var(--spacing, 0.25rem) * 15);
+  flex-basis: 100%;
+  grid-column: 1 / -1;
+  grid-row-start: 2;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  display: flex;
+}
+.navigation:empty,
+.actions:empty {
+  display: none;
+}
+.shell[data-ck-scroll-collapse][data-collapsible]:has(.navigation:empty) {
+  top: calc(var(--spacing, 0.25rem) * -4);
+}
+.shell[data-ck-scroll-collapse][data-collapsible]:has(.navigation:empty)
+  .titleContent {
+  transform: translateY(
+    calc(
+      -1 *
+        clamp(
+          0px,
+          var(--ck-header-scroll-overlap, 0px),
+          var(--ck-header-collapse-offset)
+        )
+    )
+  );
+}
+.toolbar {
+  justify-content: flex-end;
+  align-items: center;
+  gap: calc(var(--spacing, 0.25rem) * 3);
+  user-select: none;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+}
+.filterTags {
+  margin: calc(var(--spacing, 0.25rem) * -1);
+  min-width: 0;
+  padding: var(--spacing, 0.25rem);
+  display: flex;
+  overflow-x: auto;
+}
+.filterTagsContent {
+  align-items: center;
+  gap: var(--spacing, 0.25rem);
+  flex-shrink: 0;
+  width: max-content;
+  display: flex;
+}
+.viewControls,
+.pageActions {
+  align-items: center;
+  gap: calc(var(--spacing, 0.25rem) * 2);
+  flex-shrink: 0;
+  width: max-content;
+  display: flex;
+}
+.viewControls:empty,
+.pageActions:empty {
+  display: none;
+}
+.filterTags:has(> :empty) {
+  display: none;
+}
+.search {
+  width: calc(var(--spacing, 0.25rem) * 60);
+  flex-shrink: 0;
+  flex-basis: calc(var(--spacing, 0.25rem) * 60);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  min-width: 0;
+  display: grid;
+}
+:is(
+  [data-ck-new-slate-layout]
+    .shell[data-sticky]:not([data-ck-scroll-collapse])
+    .title,
+  [data-ck-new-slate-layout]
+    .shell[data-sticky]:not([data-ck-scroll-collapse]):has(.title)
+    .actions
+) {
+  min-height: calc(var(--spacing, 0.25rem) * 9);
+  padding-block: 0;
+}
+[data-ck-new-slate-layout] .shell:has(.navigation:empty) {
+  margin-bottom: calc(var(--spacing, 0.25rem) * 2);
+}
+[data-ck-new-slate-layout]
+  .shell[data-ck-scroll-collapse][data-collapsible]:has(.navigation:empty) {
+  top: calc(var(--spacing, 0.25rem) * -4);
+  margin-bottom: 0;
+}
+[data-ck-new-slate-layout]
+  .shell[data-ck-scroll-collapse][data-collapsible]:has(.navigation:empty)
+  .titleContent {
+  transform: none;
+}
+[data-ck-new-slate-layout]
+  .shell[data-ck-scroll-collapse]:not([data-collapsible]) {
+  top: calc(var(--spacing, 0.25rem) * -4);
+}
+[data-ck-new-slate-layout] .title {
+  padding-inline-start: 0;
+}
+.shell[data-ck-scroll-collapse] .search {
+  flex-shrink: 1;
+}
+.shell[data-ck-expand-search] .title {
+  flex-grow: 999;
+}
+.shell[data-ck-expand-search] .search {
+  flex-grow: 1;
+}
+.shell[data-ck-scroll-collapse] .actions:has(.search[data-ck-fixed-width]) {
+  flex: none;
+  margin-left: auto;
+}
+.search[data-ck-fixed-width] {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.shell[data-ck-scroll-collapse] .headerRow:has(.search[data-ck-fixed-width]) {
+  gap: calc(var(--spacing, 0.25rem) * 4);
+  width: 100%;
+  min-width: 0;
+  display: flex;
+}
+.shell[data-ck-scroll-collapse]
+  .headerRow:has(.search[data-ck-fixed-width])
+  .title {
+  flex: 0 1 max-content;
+}
+[data-ck-new-slate-layout] .shell[data-ck-wrap-actions] .headerRow {
+  gap: calc(var(--spacing, 0.25rem) * 4);
+  width: 100%;
+  min-width: 0;
+  display: flex;
+}
+[data-ck-new-slate-layout] .shell[data-ck-wrap-actions] .headerRow .title {
+  flex: 0 1 max-content;
+}
+@container (width >= 48rem) {
+  [data-ck-new-slate-layout] .shell[data-ck-wrap-actions] .search {
+    max-width: calc(var(--spacing, 0.25rem) * 60);
+    min-width: calc(var(--spacing, 0.25rem) * 40);
+  }
+}
+@container not (width >= 48rem) {
+  .shell[data-ck-scroll-collapse] .headerRow:has(.search[data-ck-fixed-width]) {
+    padding-bottom: var(--spacing, 0.25rem);
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+  .shell[data-ck-scroll-collapse]
+    .headerRow:has(.search[data-ck-fixed-width])
+    .title {
+    flex: 0 0 100%;
+  }
+  .shell[data-ck-scroll-collapse]
+    .headerRow:has(.search[data-ck-fixed-width])
+    .actions {
+    flex: 100%;
+  }
+  .shell[data-ck-scroll-collapse]
+    .headerRow:has(.search[data-ck-fixed-width])
+    .toolbar {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .shell[data-ck-scroll-collapse]
+    .headerRow:has(.search[data-ck-fixed-width])
+    .search[data-ck-fixed-width] {
+    min-width: calc(var(--spacing, 0.25rem) * 40);
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: calc(var(--spacing, 0.25rem) * 40);
+  }
+  [data-ck-new-slate-layout] .shell[data-ck-wrap-actions] .headerRow {
+    padding-bottom: var(--spacing, 0.25rem);
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+  [data-ck-new-slate-layout] .shell[data-ck-wrap-actions] .headerRow .title {
+    flex: 0 0 100%;
+  }
+  [data-ck-new-slate-layout] .shell[data-ck-wrap-actions] .headerRow .actions {
+    flex: 100%;
+  }
+  [data-ck-new-slate-layout] .shell[data-ck-wrap-actions] .headerRow .toolbar {
+    width: 100%;
+  }
+}
+@container searchable-header not (width >= 48rem) {
+  [data-ck-new-slate-layout] .pageSubtitle {
+    display: none;
+  }
+}
+.shell[data-ck-expand-search][data-collapsible] .toolbar {
+  width: max-content;
+  max-width: 100%;
+  margin-left: auto;
+}
+@container not (width >= 48rem) {
+  [data-ck-shell-inline-page-header]:not([data-ck-new-slate-layout])
+    .shell[data-ck-expand-search][data-ck-scroll-collapse] {
+    padding-top: 0;
+  }
+  :is(
+    [data-ck-shell-inline-page-header]:not([data-ck-new-slate-layout])
+      .shell[data-ck-expand-search][data-ck-scroll-collapse]
+      .content,
+    [data-ck-shell-inline-page-header]:not([data-ck-new-slate-layout])
+      .shell[data-ck-expand-search][data-ck-scroll-collapse]
+      .headerRow
+  ) {
+    flex-direction: column;
+    display: flex;
+  }
+  [data-ck-shell-inline-page-header]:not([data-ck-new-slate-layout])
+    .shell[data-ck-expand-search][data-ck-scroll-collapse]
+    .headerRow {
+    width: 100%;
+    min-width: 0;
+  }
+  [data-ck-shell-inline-page-header]:not([data-ck-new-slate-layout])
+    .shell[data-ck-expand-search][data-ck-scroll-collapse]
+    .title {
+    flex-basis: auto;
+  }
+  [data-ck-shell-inline-page-header]:not([data-ck-new-slate-layout])
+    .shell[data-ck-expand-search][data-ck-scroll-collapse]
+    .actions {
+    flex-basis: auto;
+    align-self: stretch;
+    width: 100%;
+  }
+  [data-ck-shell-inline-page-header]:not([data-ck-new-slate-layout])
+    .shell[data-ck-expand-search][data-ck-scroll-collapse]
+    .toolbar {
+    width: 100%;
+    margin-left: 0;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell) .content {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    display: grid;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell) .title {
+    grid-column: span 2 / span 2;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell) .actions,
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell) .toolbar {
+    display: contents;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell)
+    .content:not(:has(.title))
+    .actions {
+    grid-column: 1 / -1;
+    display: flex;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell) .filterTags {
+    display: none;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell) .pageActions {
+    grid-row-start: 1;
+    grid-column-start: 3;
+    place-self: center flex-end;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell) .viewControls {
+    min-height: calc(var(--spacing, 0.25rem) * 15);
+    grid-row-start: 2;
+    grid-column-start: 1;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell) .search {
+    min-height: calc(var(--spacing, 0.25rem) * 15);
+    grid-column: 2 / 4;
+    grid-row-start: 2;
+    width: 100%;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell)
+    .toolbar:has(> .viewControls:empty)
+    .search {
+    grid-column-start: 1;
+  }
+  .shell:not([data-ck-scroll-collapse]):not(.directoryShell) .navigation {
+    grid-row-start: 3;
+  }
+}
+.directoryShell {
+  border-style: solid;
+  padding-top: calc(var(--spacing, 0.25rem) * 29);
+  padding-bottom: calc(var(--spacing, 0.25rem) * 2);
+  border-width: 0;
+}
+.directoryShell .headerRow {
+  align-items: flex-start;
+  gap: calc(var(--spacing, 0.25rem) * 4);
+  width: 100%;
+  display: flex;
+}
+.directoryShell .title {
+  flex: 1;
+  min-height: 0;
+  padding-block: 0;
+  padding-inline-start: 0;
+}
+.directoryShell .actions {
+  min-height: 0;
+  padding-block: 0;
+}
+@container not (width >= 48rem) {
+  .directoryShell {
+    padding-top: calc(var(--spacing, 0.25rem) * 18);
+    padding-bottom: var(--spacing, 0.25rem);
+  }
+  .directoryShell .headerRow {
+    gap: calc(var(--spacing, 0.25rem) * 4);
+    flex-direction: column;
+  }
+  .directoryShell .actions,
+  .directoryShell .toolbar {
+    width: 100%;
+  }
+  .directoryShell .search {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+  }
+}
+
+/*
+ * Scroll host edge mask. .headerFadeMask
+ * defines the gradient in --ck-sidebar-scroll-mask-image: it fades the top over the
+ * header mask distance (default 2 spacing units) and the bottom over 10 units.
+ * .scrollMask applies that gradient as the mask image.
+ */
+.headerFadeMask {
+  --ck-edge-fade-size: calc(var(--spacing) * 10);
+  --ck-sidebar-scroll-footer-edge: 100%;
+  --ck-sidebar-scroll-footer-fade-distance: calc(var(--spacing) * 10);
+  --ck-sidebar-scroll-footer-fade-start: calc(
+    var(--ck-sidebar-scroll-footer-edge) -
+      var(--ck-sidebar-scroll-footer-fade-distance)
+  );
+  --ck-sidebar-scroll-header-mask-distance: var(
+    --ck-sidebar-scroll-header-fade-distance,
+    var(--ck-sidebar-scroll-header-spacing, calc(var(--spacing) * 2))
+  );
+  --ck-sidebar-scroll-header-mask-start: var(
+    --ck-sidebar-scroll-header-fade-start,
+    0px
+  );
+  --ck-sidebar-scroll-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent var(--ck-sidebar-scroll-header-mask-start),
+    black
+      calc(
+        var(--ck-sidebar-scroll-header-mask-start) +
+          var(--ck-sidebar-scroll-header-mask-distance)
+      ),
+    black var(--ck-sidebar-scroll-footer-fade-start),
+    color-mix(in srgb, var(--ck-mask) 85%, transparent)
+      calc(var(--ck-sidebar-scroll-footer-edge) - var(--spacing) * 6),
+    color-mix(in srgb, var(--ck-mask) 50%, transparent)
+      calc(var(--ck-sidebar-scroll-footer-edge) - var(--spacing) * 3),
+    color-mix(in srgb, var(--ck-mask) 20%, transparent)
+      calc(var(--ck-sidebar-scroll-footer-edge) - var(--spacing)),
+    transparent var(--ck-sidebar-scroll-footer-edge),
+    transparent 100%
+  );
+  mask-image: none;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+.withoutFooterFade {
+  --ck-sidebar-scroll-mask-image: linear-gradient(
+    to bottom,
+    transparent var(--ck-sidebar-scroll-header-mask-start),
+    black
+      calc(
+        var(--ck-sidebar-scroll-header-mask-start) +
+          var(--ck-sidebar-scroll-header-mask-distance)
+      )
+  );
+}
+.stickyHeaders {
+  --ck-sidebar-scroll-header-mask-distance: calc(var(--spacing) / 2);
+}
+.scrollMask {
+  mask-image: var(--ck-sidebar-scroll-mask-image);
+}
+
+/*
+ * Sticky section. The rules
+ * sit inside @supports (animation-timeline: view(block)).
+ */
+@supports (animation-timeline: view(block)) {
+  .sectionContent {
+    view-timeline-name: --ck-sidebar-section-top;
+    view-timeline-axis: block;
+    view-timeline-inset: calc(
+        var(--ck-sidebar-scroll-header-mask-start) +
+          var(--ck-row-height-row, 31px)
+      )
+      0px;
+    overflow: hidden;
+  }
+  .clipWindow,
+  .clipContent,
+  .sectionHeading {
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+  }
+  .clipWindow,
+  .clipContent {
+    animation-timeline: --ck-sidebar-section-top;
+    animation-range: exit-crossing;
+  }
+  .clipWindow {
+    margin-top: calc(var(--spacing) * -1);
+    padding-top: var(--spacing);
+    animation-name: ckStickyClipWindow, ckStickyClearance;
+    animation-range:
+      exit-crossing,
+      exit-crossing 0px exit-crossing var(--spacing);
+    mask-image: linear-gradient(to bottom, transparent, black var(--spacing));
+    mask-position: 0 calc(var(--spacing) * -1);
+    mask-repeat: no-repeat;
+    mask-size: 100% calc(100% + var(--spacing));
+    overflow: hidden;
+  }
+  .clipContent {
+    animation-name: ckStickyClipContent;
+  }
+  .sectionHeading {
+    animation-name: ckStickyHeadingFade;
+    animation-timeline: view(
+      block
+        calc(
+          var(--ck-sidebar-scroll-header-mask-start) +
+            var(--ck-sidebar-scroll-header-mask-distance)
+        )
+        0px
+    );
+    animation-range: exit 0% exit calc(var(--spacing) * 2);
+  }
+}
+@keyframes ckStickyClipWindow {
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes ckStickyClipContent {
+  to {
+    transform: translateY(calc(-100% - var(--spacing)));
+  }
+}
+@keyframes ckStickyClearance {
+  0% {
+    mask-position: 0 calc(var(--spacing) * -1);
+  }
+  to {
+    mask-position: 0 0;
+  }
+}
+@keyframes ckStickyHeadingFade {
+  to {
+    opacity: 0;
+  }
+}
+
+/*
+ * .vertical-scroll-fade-mask-top: the scroll host fades its
+ * top edge while the heading has scrolled up into the toolbar, and its bottom
+ * edge until the end of the content is reached.
+ */
+@property --scroll-fade-top {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+@property --scroll-fade-bottom {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+@keyframes edgeFadeTop {
+  0%,
+  1% {
+    --scroll-fade-top: var(--ck-edge-fade-size, 1rem);
+    --scroll-fade-bottom: var(--ck-edge-fade-size, 1rem);
+  }
+  99%,
+  100% {
+    --scroll-fade-top: var(--ck-edge-fade-size, 1rem);
+    --scroll-fade-bottom: 0;
+  }
+}
+.scrollFadeMaskTop {
+  -webkit-mask: linear-gradient(
+    to bottom in oklch,
+    transparent,
+    var(--ck-mask) var(--scroll-fade-top) calc(100% - var(--scroll-fade-bottom)),
+    transparent
+  );
+  mask: linear-gradient(
+    to bottom in oklch,
+    transparent,
+    var(--ck-mask) var(--scroll-fade-top) calc(100% - var(--scroll-fade-bottom)),
+    transparent
+  );
+  animation-name: edgeFadeTop;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-timeline: scroll(self y);
+}

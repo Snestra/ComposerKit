@@ -1,0 +1,483 @@
+/*
+ * Select styles: the select control, the menu list with its option, heading,
+ * action and search parts, the container and the clearable trigger. The
+ * trigger sizes and variants are the date picker's SelectControl rules
+ * (components/date-picker/date-picker.module.css), so this file only holds
+ * what the select changes. Token values
+ * use the :root defaults and Electron spacing.
+ * Values that differ between light and dark use
+ * light-dark, which follows the nearest color-scheme scope.
+ */
+
+@layer theme, base, components, utilities;
+
+@layer components {
+  .trigger[data-size] {
+    --ck-field-placeholder-text-color: light-dark(
+      var(--color-light-app-text-foreground-tertiary),
+      var(--color-dark-app-text-foreground-tertiary)
+    );
+    --color-text-unavailable: light-dark(
+      var(--color-light-app-text-foreground-secondary),
+      var(--color-dark-app-text-foreground-secondary)
+    );
+    --color-ring: var(--color-status-info);
+    --color-fill-primary-transparent-hover: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 8%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 12%, transparent)
+    );
+    --color-fill-primary-soft-alpha: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 8%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 12%, transparent)
+    );
+    font-weight: inherit;
+    cursor: var(--ck-action-cursor, pointer);
+  }
+
+  /* The wrapper carries the transition phases and select tokens. */
+  .menu,
+  .searchControl {
+    --alpha-08: color-mix(in oklab, var(--ck-palette-ink) 8%, transparent);
+    --alpha-10: color-mix(in oklab, var(--ck-palette-ink) 10%, transparent);
+    --alpha-12: color-mix(in oklab, var(--ck-palette-ink) 12%, transparent);
+    --color-border: light-dark(var(--alpha-10), var(--alpha-12));
+    --color-text-muted: light-dark(
+      var(--color-light-app-text-foreground-secondary),
+      var(--color-dark-app-text-foreground-secondary)
+    );
+    --color-ring: var(--color-status-info);
+    --color-panel-elevated: light-dark(
+      var(--color-light-app-background-elevated-primary-opaque),
+      var(--color-dark-app-background-elevated-primary-opaque)
+    );
+    --color-fill-primary-transparent-hover: light-dark(
+      var(--alpha-08),
+      var(--alpha-12)
+    );
+    --ck-link-ink: var(--color-status-info);
+    --ck-curve-enter: cubic-bezier(0.19, 1, 0.22, 1);
+    --ck-curve-exit: cubic-bezier(0.8, 0, 0.4, 1);
+    --motion-duration-fast: 0.16s;
+    --ck-choice-menu-radius: var(--radius-2xl);
+    --ck-choice-menu-gutter: var(--spacing);
+    --ck-choice-menu-item-padding: calc(var(--spacing) * 1.25)
+      var(--ck-row-padding-x, calc(var(--spacing) * 2));
+    --ck-choice-menu-item-radius: calc(
+      var(--ck-choice-menu-radius) - var(--ck-choice-menu-gutter)
+    );
+    --ck-choice-menu-item-gap: calc(var(--spacing) * 1.5);
+    --ck-choice-menu-item-background-color: light-dark(
+      var(--alpha-08),
+      var(--alpha-10)
+    );
+    --ck-choice-menu-font-size: 0.875rem;
+    --ck-choice-menu-line-height: 1.25rem;
+    --ck-choice-menu-separator-background-color: var(--color-border);
+    --shadow: var(--shadow-xl);
+    --shadow-thin-outline: 0 0 0 0.5px var(--color-border);
+    --ck-type-caps-md-size: 0.6875rem;
+    --ck-type-caps-md-weight: 600;
+    --ck-type-caps-md-tracking: 0.65px;
+    --ck-select-item-active-font-weight: 600;
+  }
+
+  .menuList {
+    width: var(--ck-select-list-width, var(--radix-popover-trigger-width));
+    min-width: var(--ck-select-list-min-width, 300px);
+    max-width: var(--ck-select-list-max-width, none);
+    border-radius: var(--ck-choice-menu-radius);
+    background: var(--ck-palette-surface-elevated-primary);
+    box-shadow: var(--shadow), var(--shadow-thin-outline);
+    corner-shape: var(--ck-choice-menu-corner-shape, round);
+    color: var(--ck-palette-ink);
+    font-size: var(--ck-choice-menu-font-size);
+    line-height: var(--ck-choice-menu-line-height);
+    transform-origin: var(--radix-popover-content-transform-origin);
+    user-select: none;
+    will-change: opacity, transform;
+  }
+
+  .menuList:focus {
+    outline: none;
+  }
+
+  .menu[data-entering] .menuList {
+    opacity: 0;
+    transform: scale(var(--ck-select-list-scale, 0.95));
+  }
+
+  .menu[data-entering-active] .menuList,
+  .menu[data-entering][data-interrupted] .menuList {
+    opacity: 1;
+    transition-property: opacity, transform;
+    transition-duration: 0.3s;
+    transition-timing-function: var(--ck-curve-enter);
+    transform: scale(1);
+  }
+
+  .menu[data-exiting] .menuList {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .menu[data-exiting-active] .menuList,
+  .menu[data-exiting][data-interrupted] .menuList {
+    opacity: 0;
+    transform: scale(var(--ck-select-list-scale, 0.95));
+    transition-property: opacity, transform;
+    transition-duration: 0.2s;
+    transition-timing-function: var(--ck-curve-exit);
+  }
+
+  .menuInner {
+    max-height: min(
+      var(--ck-select-list-max-height, 400px),
+      var(--radix-popover-content-available-height)
+    );
+    flex-direction: column;
+    display: flex;
+  }
+
+  .menuInner:focus {
+    outline: 0;
+  }
+
+  .optionsList {
+    padding: var(--ck-choice-menu-gutter);
+    flex: 1;
+    overflow: auto;
+  }
+
+  .optionsList:focus {
+    outline: none;
+  }
+
+  .paginationSentinel {
+    height: 1px;
+  }
+
+  .option {
+    padding: var(--ck-choice-menu-item-padding);
+    cursor: var(--ck-action-cursor, pointer);
+    overflow-wrap: anywhere;
+    scroll-margin: 15px 0;
+    position: relative;
+  }
+
+  .option::before {
+    border-radius: var(--ck-choice-menu-item-radius);
+    background: var(--ck-choice-menu-item-background-color);
+    content: "";
+    corner-shape: var(--ck-choice-menu-corner-shape, round);
+    opacity: 0;
+    transform: scale(var(--scale, 0.98));
+    transition-duration: var(--motion-duration-fast);
+    transition-property: opacity, background-color, transform;
+    transition-timing-function: var(--ck-curve-enter);
+    will-change: opacity, transform;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .option[data-selected] {
+    font-weight: var(--ck-select-item-active-font-weight);
+  }
+
+  .option[data-highlight]::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .option[data-highlight]:active::before {
+    transform: scale(var(--scale, 0.98));
+  }
+
+  .option[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .option[data-disabled]::before {
+    display: none;
+  }
+
+  .pressableInner {
+    position: relative;
+  }
+
+  .optionInner {
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--spacing);
+    display: flex;
+  }
+
+  .optionCheck {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  .optionIndicatorSlot {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  .optionIndicatorSlot[data-ck-option-indicator-position="end"] {
+    margin-inline-start: auto;
+  }
+
+  .optionGroupHeading {
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--spacing);
+    padding: var(--ck-choice-menu-item-padding);
+    margin-top: calc(var(--spacing) * 1.5);
+    color: var(--ck-palette-ink-secondary);
+    font-size: var(--ck-type-caps-md-size);
+    font-weight: var(--ck-type-caps-md-weight);
+    letter-spacing: var(--ck-type-caps-md-tracking);
+    text-transform: uppercase;
+    display: flex;
+  }
+
+  .optionGroupHeading:first-child {
+    margin-top: 0;
+  }
+
+  .optionHardLimitHeading {
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--spacing);
+    padding: var(--ck-choice-menu-item-padding);
+    color: var(--ck-palette-ink-secondary);
+    display: flex;
+  }
+
+  .optionsLimit {
+    color: var(--ck-link-ink);
+    font-weight: 500;
+  }
+
+  .action {
+    padding: var(--ck-choice-menu-item-padding);
+    border-radius: calc(
+      var(--ck-choice-menu-radius) - var(--ck-choice-menu-gutter)
+    );
+    cursor: var(--ck-action-cursor, pointer);
+    transition: background-color 0.15s;
+    position: relative;
+  }
+
+  .action::before {
+    border-radius: calc(
+      var(--ck-choice-menu-radius) - var(--ck-choice-menu-gutter)
+    );
+    background: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 6%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 4%, transparent)
+    );
+    content: "";
+    opacity: 0;
+    transform: scale(var(--scale, 0.98));
+    transition-property: opacity, background-color, transform;
+    transition-duration: 0.15s;
+    transition-timing-function: var(--ck-curve-enter);
+    will-change: opacity, transform;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .action::after {
+    border-radius: calc(
+      var(--ck-choice-menu-radius) - var(--ck-choice-menu-gutter)
+    );
+    content: "";
+    pointer-events: none;
+    transition-property: box-shadow, transform;
+    transition-duration: 0.15s;
+    transition-timing-function: var(--ck-curve-enter);
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  @media (hover: hover) {
+    .action:hover::before {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .action:focus {
+    outline: none;
+  }
+
+  .action:focus-visible::after {
+    box-shadow: 0 0 0 2px var(--color-ring);
+  }
+
+  .action:active::before,
+  .action:active::after {
+    transform: scale(var(--scale, 0.98));
+  }
+
+  .action svg:where(:not([data-ck-no-autosize])) {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  .actionInner {
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--ck-choice-menu-item-gap);
+    display: flex;
+    position: relative;
+  }
+
+  .actionsContainer {
+    padding: var(--ck-choice-menu-gutter);
+    border-top: 1px solid var(--ck-choice-menu-separator-background-color);
+    position: relative;
+  }
+
+  .actionsContainer::before {
+    background: var(--ck-palette-surface-elevated-primary);
+    content: "";
+    pointer-events: none;
+    width: 100%;
+    height: 9px;
+    margin-bottom: 1px;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    mask-image: linear-gradient(transparent, var(--ck-mask));
+  }
+
+  .searchControl {
+    max-width: 100%;
+    display: inline-block;
+  }
+
+  .searchControl[data-block] {
+    width: 100%;
+    display: block;
+  }
+
+  .searchGhost {
+    --ck-field-outline-border-color: transparent;
+    --ck-field-outline-border-color-hover: transparent;
+  }
+
+  @media (hover: hover) {
+    .searchGhost:not([data-disabled]):hover {
+      background-color: var(--color-fill-primary-transparent-hover);
+    }
+  }
+
+  .searchInput {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .searchSelection {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .searchEmpty {
+    padding: calc(var(--spacing) * 3);
+    margin: calc(var(--spacing) * 4) 0;
+    text-align: center;
+  }
+
+  .searchEmpty[data-ck-text-only] {
+    color: var(--ck-palette-ink-secondary);
+  }
+
+  .nativeSelect {
+    z-index: 2;
+    cursor: var(--ck-action-cursor, pointer);
+    opacity: 0;
+    font-size: 16px;
+    position: absolute;
+    inset: 0;
+  }
+
+  /* ClearableSelectorTrigger. */
+  .clearable {
+    --color-text: var(--ck-palette-ink);
+    --color-text-subtle: light-dark(
+      var(--color-light-app-text-foreground-tertiary),
+      var(--color-dark-app-text-foreground-tertiary)
+    );
+    --color-ring: var(--color-status-info);
+    --color-fill-primary-transparent-hover: light-dark(
+      color-mix(in oklab, var(--ck-palette-ink) 8%, transparent),
+      color-mix(in oklab, var(--ck-palette-ink) 12%, transparent)
+    );
+    border-radius: var(--radius-pill);
+    min-width: 0;
+    display: inline-flex;
+    position: relative;
+  }
+
+  .clearable[data-ck-clear-selector-available]:hover {
+    background-color: var(--color-fill-primary-transparent-hover);
+  }
+
+  .clearable[data-ck-clear-selector-available][data-ck-subtle-hover]:hover {
+    background-color: transparent;
+  }
+
+  .clearable[data-ck-clear-selector-available]:hover
+    [data-ck-clear-selector-icon],
+  .clearable[data-ck-clear-selector-available]:has(
+      [data-ck-clear-selector-button]:focus-visible
+    )
+    [data-ck-clear-selector-icon] {
+    opacity: 0;
+  }
+
+  .clearButton {
+    z-index: 10;
+    aspect-ratio: 1;
+    border-radius: var(--radius-pill);
+    color: var(--ck-palette-ink-tertiary);
+    cursor: var(--ck-action-cursor, pointer);
+    opacity: 0;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+  }
+
+  .clearButton:hover {
+    color: var(--ck-palette-ink);
+  }
+
+  .clearButton:focus {
+    outline: none;
+  }
+
+  .clearButton:focus-visible {
+    box-shadow: 0 0 0 1px var(--color-ring);
+  }
+
+  [data-ck-clear-selector-available]:hover .clearButton,
+  .clearButton:focus-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

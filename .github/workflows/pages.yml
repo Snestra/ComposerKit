@@ -1,0 +1,54 @@
+# Publishes the shadcn registry under /r on every merge to main. This workflow
+# does not build or deploy the docs and gallery apps. While the repository is
+# private it only builds and checks the registry, because a Pages site is
+# public even for a private repository.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm registry:build
+      - name: Registry matches registry.json
+        run: git diff --exit-code -- apps/docs/public/r
+      - name: Stage the registry alone
+        if: ${{ !github.event.repository.private }}
+        run: mkdir -p _site && cp -R apps/docs/public/r _site/r
+      - if: ${{ !github.event.repository.private }}
+        uses: actions/configure-pages@v6
+      - if: ${{ !github.event.repository.private }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

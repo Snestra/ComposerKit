@@ -1,0 +1,117 @@
+/*
+ * Selectable list row dividers. The hairline is
+ * an ::after at the row bottom; it fades out around the hovered or selected row,
+ * and consecutive selected rows square their touching corners.
+ */
+.row {
+  position: relative;
+}
+
+.profile.divider::after {
+  inset-inline: 0;
+  bottom: -1px;
+}
+
+.divider::after {
+  pointer-events: none;
+  inset-inline: calc(var(--spacing, 0.25rem) * 3);
+  border-bottom-style: var(--tw-border-style, solid);
+  border-bottom-width: 1px;
+  border-color: var(--color-stroke-subtle);
+  content: "";
+  position: absolute;
+  bottom: 0;
+}
+
+.groupItem:not(:last-child):not(:has(.row))::after {
+  pointer-events: none;
+  inset-inline: calc(var(--spacing, 0.25rem) * 3);
+  border-bottom-style: var(--tw-border-style, solid);
+  border-bottom-width: 1px;
+  border-color: var(--color-stroke-subtle);
+  content: "";
+  position: absolute;
+  bottom: 0;
+}
+
+.groupItem {
+  position: relative;
+}
+
+.divider:has(+ .row)::after {
+  bottom: -1px;
+}
+
+:is(li, [role="listitem"], .groupItem):has(.row):has(
+    + :is(li, [role="listitem"], .groupItem) .row
+  )
+  .divider::after {
+  bottom: -1px;
+}
+
+.row.selected::after {
+  opacity: 0;
+}
+
+.divider:has(+ .row.selected)::after {
+  opacity: 0;
+}
+
+:is(li, [role="listitem"], .groupItem):has(.row):has(
+    + :is(li, [role="listitem"], .groupItem) .row.selected
+  )
+  .divider::after {
+  opacity: 0;
+}
+
+.group
+  > :has(+ .groupItem .row.selected)
+  [data-ck-selectable-list-row-group-header]::after {
+  opacity: 0;
+}
+
+@media (hover: hover) {
+  .row:not(.disabled):hover::after {
+    opacity: 0;
+  }
+
+  .divider:has(+ .row:not(.disabled):hover)::after {
+    opacity: 0;
+  }
+
+  :is(li, [role="listitem"], .groupItem):has(.row):has(
+      + :is(li, [role="listitem"], .groupItem) .row:not(.disabled):hover
+    )
+    .divider::after {
+    opacity: 0;
+  }
+
+  .group
+    > :has(+ .groupItem .row:not(.disabled):hover)
+    [data-ck-selectable-list-row-group-header]::after {
+    opacity: 0;
+  }
+}
+
+.row.selected:has(+ .row.selected) {
+  border-end-end-radius: 0 !important;
+  border-end-start-radius: 0 !important;
+}
+
+:is(li, [role="listitem"], .groupItem):has(.row.selected):has(
+    + :is(li, [role="listitem"], .groupItem) .row.selected
+  )
+  .row.selected {
+  border-end-end-radius: 0 !important;
+  border-end-start-radius: 0 !important;
+}
+
+:is(
+  .row.selected + .row.selected,
+  :is(li, [role="listitem"], .groupItem):has(.row.selected)
+    + :is(li, [role="listitem"], .groupItem):has(.row.selected)
+    .row.selected
+) {
+  border-start-start-radius: 0 !important;
+  border-start-end-radius: 0 !important;
+}

@@ -1,0 +1,31 @@
+/*
+ * Streaming fade rules of the chat prose that Tailwind cannot express (it
+ * cannot define @keyframes or style ::marker animation from a utility): the
+ * list marker fade, adaptive streaming and the prefers-reduced-motion block. The fade-in keyframes of the
+ * text, list items, rules, rows and quotes are Tailwind classes in prose.tsx.
+ */
+
+@keyframes ck-marker-fade {
+  0% {
+    color: transparent;
+  }
+}
+
+:global([data-ck-markdown-animated]) .fadeListDecoration::marker {
+  animation: ck-marker-fade var(--duration, var(--motion-duration-fast))
+    var(--ck-fade-curve, cubic-bezier(0.37, 0.55, 0.86, 0.88)) forwards;
+  animation-delay: var(--fade-delay, 0s);
+}
+
+/* The streaming duration is --ck-stream-duration. */
+.adaptiveStreaming .fadeIn,
+.adaptiveStreaming .fadeListDecoration::marker {
+  --duration: var(--ck-stream-duration, 0.7s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global([data-ck-markdown-animated]) .fadeListDecoration::marker {
+    animation-duration: 0s;
+    animation-delay: 0s !important;
+  }
+}

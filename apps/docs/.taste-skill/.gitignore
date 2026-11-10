@@ -1,0 +1,3 @@
+# Browser captures and profiles are local verification artifacts.
+/gate/
+/chrome*/

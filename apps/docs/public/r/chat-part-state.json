@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat-part-state",
+  "title": "Chat Part State",
+  "files": [
+    {
+      "path": "../../packages/react/src/lib/chat-part-state.ts",
+      "content": "type JsonValue =\n  | boolean\n  | number\n  | string\n  | null\n  | readonly JsonValue[]\n  | JsonObject;\n\ninterface JsonObject {\n  readonly [key: string]: JsonValue;\n}\n\ninterface PendingOrStreaming {\n  status: \"pending\" | \"streaming\";\n}\n\ninterface Failed {\n  error: string;\n  status: \"error\";\n}\n\ninterface PartIdentity {\n  id: string;\n  key: string;\n}\n\ninterface ToolCallFields extends PartIdentity {\n  argumentsText: string;\n  kind: \"tool\";\n  name: string;\n  outputText: string;\n}\n\ntype ToolCallPartState = ToolCallFields &\n  (\n    | PendingOrStreaming\n    | Failed\n    | {\n        input: JsonValue;\n        status: \"done\";\n      }\n  );\n\ninterface ReasoningFields extends PartIdentity {\n  kind: \"reasoning\";\n  text: string;\n}\n\ntype ReasoningPartState = ReasoningFields &\n  (PendingOrStreaming | Failed | { status: \"done\" });\n\ninterface AttachmentFields extends PartIdentity {\n  kind: \"attachment\";\n  mediaType: string;\n  name: string;\n  size?: number;\n}\n\ntype AttachmentPartState = AttachmentFields &\n  (\n    | (PendingOrStreaming & { url?: string })\n    | (Failed & { url?: string })\n    | { status: \"done\"; url: string }\n  );\n\ntype ChatPartState =\n  | ToolCallPartState\n  | ReasoningPartState\n  | AttachmentPartState;\n\ninterface ChatStreamState {\n  attempt: number;\n  parts: readonly ChatPartState[];\n}\n\ntype ChatPartStatus = ChatPartState[\"status\"];\n\nconst chatPartStatusLabels: Record<ChatPartStatus, string> = {\n  done: \"Done\",\n  error: \"Failed\",\n  pending: \"Waiting\",\n  streaming: \"Streaming\",\n};\n\nconst chatPartStatusClassNames: Record<ChatPartStatus, string> = {\n  done: \"text-text-positive\",\n  error: \"text-text-error\",\n  pending: \"text-text-muted\",\n  streaming: \"text-text-notice\",\n};\n\nexport { chatPartStatusClassNames, chatPartStatusLabels };\n\nexport type {\n  ChatPartStatus,\n  AttachmentPartState,\n  ChatPartState,\n  ChatStreamState,\n  JsonObject,\n  JsonValue,\n  ReasoningPartState,\n  ToolCallPartState,\n};\n",
+      "type": "registry:file",
+      "target": "~/src/lib/chat-part-state.ts"
+    }
+  ],
+  "type": "registry:item"
+}

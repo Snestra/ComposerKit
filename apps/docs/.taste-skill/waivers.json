@@ -1,0 +1,52 @@
+[
+  {
+    "check": "copy-headings",
+    "target": "h2#components-h",
+    "reason": "The heading names components and conversations, the product objects in this documentation site."
+  },
+  {
+    "check": "copy-headings",
+    "target": "h2#source-h",
+    "reason": "Component source is a literal product feature, not an abstract brand claim."
+  },
+  {
+    "check": "focus-visible",
+    "target": "iframe.composer-frame",
+    "reason": "The checker focuses the iframe boundary; keyboard focus is rendered by controls inside the separate library document."
+  },
+  {
+    "check": "one-section",
+    "target": "footer#start",
+    "reason": "The reported band is the kit close-type full-width action button, not an extra section."
+  },
+  {
+    "check": "sparse",
+    "target": "#source",
+    "reason": "The dealt letters-assemble statement intentionally uses open space; its text and action remain visible at tablet width."
+  },
+  {
+    "check": "scroll-linked",
+    "target": "h2#source-h",
+    "reason": "The supplied letters-assemble moment animates its own letters inside its marked section, as the dealt kit recipe requires."
+  },
+  {
+    "check": "scroll-reveal",
+    "target": "h2#source-h",
+    "reason": "The reveal is the supplied letters-assemble moment, not a custom scroll animation."
+  },
+  {
+    "check": "row-lines",
+    "target": "footer#start",
+    "reason": "The supplied footer grid contains a wordmark and link columns with different content heights."
+  },
+  {
+    "check": "text-contrast",
+    "target": "article#nd-page",
+    "reason": "Fumadocs syntax highlighting is a library diagnostic deferred under the owner stop instruction; it is not claimed fixed."
+  },
+  {
+    "check": "focus-visible",
+    "target": "Copy Anchor Link",
+    "reason": "Fumadocs hidden heading-anchor controls are deferred under the owner stop instruction; full keyboard conformance is not claimed."
+  }
+]

@@ -1,0 +1,266 @@
+/*
+ * Rules of the inline mention.
+ *
+ * The dark choice is light-dark, which follows the nearest scope that sets
+ * color-scheme. Rules sit in `@layer components`, so utilities a caller
+ * puts on the same element override them.
+ */
+
+@layer components {
+  .Mention {
+    --ck-mention-base-color: color-mix(
+      in srgb,
+      var(--ck-palette-label-accent) 80%,
+      var(--ck-palette-ink) 20%
+    );
+    --ck-mention-resolved-base-color: light-dark(
+      var(--ck-mention-base-color),
+      var(--ck-mention-dark-base-color, var(--ck-mention-base-color))
+    );
+    --ck-mention-color: var(--ck-mention-resolved-base-color);
+    padding-inline: calc(var(--spacing) * 0.5);
+    color: var(--ck-mention-color);
+    font-family: var(--ui-body-font, var(--font-sans));
+    font-weight: var(--font-weight-medium);
+  }
+
+  .Mention[data-ck-font-weight="inherit"],
+  .Mention[data-appearance="underlined-text"] {
+    font-weight: inherit;
+  }
+
+  .Mention[data-appearance="underlined-text"] .Label {
+    text-underline-offset: 2px;
+    text-decoration-line: underline;
+  }
+
+  .Mention[data-tone="subtle-accent"] {
+    --ck-mention-base-color: light-dark(
+      color-mix(
+        in srgb,
+        var(--ck-palette-label-accent) 60%,
+        var(--ck-palette-ink) 40%
+      ),
+      color-mix(
+        in srgb,
+        var(--ck-palette-label-accent) 40%,
+        var(--ck-palette-ink) 60%
+      )
+    );
+  }
+
+  .Mention[data-tone="neutral"] {
+    --ck-mention-base-color: var(--ck-palette-ink);
+  }
+
+  .Mention[data-layout="inline-flow"] {
+    white-space: nowrap;
+    padding-inline: 0;
+    display: inline;
+  }
+
+  .Mention[data-layout="inline-flow"] .IconContainer {
+    box-sizing: content-box;
+    vertical-align: middle;
+    align-items: center;
+    height: 1em;
+    padding-inline-end: 3px;
+    display: inline-flex;
+    transform: translateY(calc(0.5ex - 0.5cap));
+  }
+
+  .Mention[data-layout="inline-flow"] .IconContainer .Icon {
+    top: auto;
+    transform: none;
+  }
+
+  .Mention[data-layout="inline-flow"] .Label {
+    white-space: normal;
+  }
+
+  .Mention[data-layout="wrapped-label"] {
+    vertical-align: bottom;
+    gap: 3px;
+    max-width: 100%;
+    display: inline-flex;
+  }
+
+  .Mention[data-layout="wrapped-label"] .IconContainer {
+    flex-shrink: 0;
+  }
+
+  .Mention[data-tone="composer-reference"],
+  .Mention[data-layout="selection-pill"] {
+    --ck-mention-base-color: var(
+      --color-text-composer-reference,
+      var(--ck-palette-label-accent)
+    );
+  }
+
+  .Mention[data-layout="selection-pill"] {
+    align-items: center;
+    gap: calc(var(--spacing) * 1);
+    padding-inline: calc(var(--spacing) * 1);
+    vertical-align: baseline;
+    white-space: nowrap;
+    font-weight: inherit;
+    display: inline-flex;
+  }
+
+  .Mention[data-layout="selection-pill"] .IconContainer {
+    --icon-compact-display: none;
+    --icon-start-display: contents;
+    width: calc(var(--spacing) * 5);
+    flex-shrink: 0;
+  }
+
+  .Mention[data-layout="selection-pill"] .Icon {
+    width: calc(var(--spacing) * 5);
+    height: calc(var(--spacing) * 5);
+  }
+
+  .Mention[data-layout="selection-pill"] .Label {
+    max-width: calc(var(--spacing) * 64);
+    overflow-wrap: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    align-self: baseline;
+    overflow: hidden;
+  }
+
+  .Mention[data-appearance="pill"] {
+    --ck-mention-alpha-08: color-mix(
+      in oklab,
+      var(--ck-palette-ink) 8%,
+      transparent
+    );
+    max-width: 100%;
+    padding-block: calc(var(--spacing) * 0.5);
+    padding-inline: calc(var(--spacing) * 1.5);
+    border-radius: var(--radius-pill);
+    background-color: var(--alpha-08, var(--ck-mention-alpha-08));
+    box-decoration-break: clone;
+    grid-template-columns: minmax(0, 1fr);
+    display: inline-grid;
+  }
+
+  :where(td, th) .Mention[data-appearance="pill"] {
+    margin-block: calc(var(--spacing) * 0.5);
+    padding-block: 0;
+  }
+
+  .Mention[data-appearance="pill"] .Label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .Mention[data-appearance="pill"] + span {
+    white-space: pre-wrap;
+  }
+
+  .Mention[data-tone="file-reference"] {
+    --ck-mention-base-color: var(
+      --color-text-composer-file-reference,
+      var(--color-text-composer-reference, var(--ck-palette-label-accent))
+    );
+  }
+
+  .Mention[data-ck-breakable-url] {
+    direction: ltr;
+    unicode-bidi: isolate;
+    display: inline;
+  }
+
+  .Mention[data-ck-breakable-url] .Label {
+    word-break: break-all;
+  }
+
+  .Mention[data-ck-breakable-url],
+  .Mention[text-link-href],
+  .Mention[data-ck-inline-url-icon] {
+    padding-inline: 0;
+  }
+
+  .Mention[data-ck-brand-color] {
+    --ck-mention-dark-base-color: color-mix(
+      in oklch,
+      var(--ck-mention-base-color) 50%,
+      var(--ck-palette-ink) 50%
+    );
+  }
+
+  .Mention[data-interactive] {
+    cursor: var(--ck-action-cursor);
+  }
+
+  @media (hover: hover) {
+    .Mention[data-ck-inline-mention-interactive][data-underline-on-hover]:hover,
+    [data-ck-inline-mention-interactive]:hover
+      .Mention[data-underline-on-hover] {
+      text-decoration-line: var(--ck-mention-hover-decoration, underline);
+      text-underline-offset: 2px;
+      text-decoration-style: dashed;
+      text-decoration-color: currentColor;
+      text-decoration-thickness: 0.5px;
+    }
+  }
+
+  .UnderlinedText .Mention {
+    --ck-mention-hover-decoration: none;
+    color: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    vertical-align: baseline;
+    white-space: normal;
+    padding-inline: 0;
+    display: inline;
+  }
+
+  .UnderlinedText .Mention .IconContainer {
+    display: none;
+  }
+
+  .UnderlinedText .Mention .Label {
+    color: inherit;
+    white-space: normal;
+    text-underline-offset: 2px;
+    text-decoration-line: underline;
+  }
+
+  .UnderlinedText .Text {
+    text-underline-offset: 2px;
+    text-decoration-line: underline;
+  }
+
+  .IconContainer {
+    --icon-compact-display: contents;
+    --icon-start-display: none;
+    height: 1lh;
+    position: relative;
+  }
+
+  .Icon {
+    top: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+    inset-inline-start: 0;
+    transform: translateY(-50%);
+  }
+
+  .SlotSizedIconContainer {
+    width: calc(var(--spacing) * 4);
+  }
+
+  .SlotSizedIcon {
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+  }
+
+  .Label {
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+}

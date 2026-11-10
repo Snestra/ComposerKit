@@ -1,0 +1,122 @@
+/*
+ * Floating surface and overlay rules, including the overlay that extends into
+ * the titlebar.
+ * The fallbacks are the token values.
+ */
+
+.floatingSurface {
+  --ck-floating-panel-inset: calc(var(--spacing) * 1.5);
+  --ck-floating-panel-radius: calc(
+    var(--radius-token-composer-single-line, calc(var(--spacing) * 5.5)) +
+      var(--ck-floating-panel-inset)
+  );
+
+  border-radius: var(--ck-floating-panel-radius);
+}
+
+.singleLineSurface {
+  --ck-floating-panel-radius: var(
+    --radius-token-composer-single-line,
+    calc(var(--spacing) * 5.5)
+  );
+
+  border-radius: var(--ck-floating-panel-radius);
+}
+
+.canvasSurface {
+  --ck-floating-panel-radius: var(--radius-base-2xl, 1rem);
+}
+
+.composerRadius {
+  --ck-floating-panel-radius: var(
+    --ck-compose-radius,
+    calc(var(--spacing) * 5.5)
+  );
+
+  border-radius: var(--ck-floating-panel-radius);
+  corner-shape: var(--ck-compose-corner-shape, round);
+}
+
+.floatingComposerInset {
+  padding-inline: var(--ck-floating-panel-inset);
+  padding-bottom: var(--ck-floating-panel-inset);
+}
+
+.islandElevation {
+  box-shadow: var(--elevation-prominent);
+}
+
+.viewerElevation {
+  box-shadow: var(--shadow-sidebar-panel);
+}
+
+.noDrag {
+  -webkit-app-region: no-drag;
+}
+
+.extendsIntoTitlebar {
+  top: calc(
+    -1 *
+      var(
+        --ck-shell-header-height,
+        var(--ck-shell-titlebar-height, var(--height-bar))
+      )
+  );
+}
+
+.overlay {
+  top: anchor(top);
+  right: anchor(right);
+  bottom: anchor(bottom);
+  left: anchor(left);
+}
+
+.overlay::backdrop {
+  -webkit-app-region: initial;
+}
+
+:global([aria-hidden="true"]) .overlay {
+  visibility: hidden;
+}
+
+/*
+ * Side panel: slides on the inline axis by its own width. The component
+ * animates x with a spring (stiffness 400, damping 40), duration 0
+ * under reduced motion; the display switches off when the exit completes.
+ */
+.sidePanel {
+  --side-panel-offset: 100%;
+
+  transform: translateX(var(--side-panel-offset));
+  transition: transform var(--side-panel-duration) var(--side-panel-easing);
+}
+
+.sidePanel[data-side="start"] {
+  --side-panel-offset: -100%;
+}
+
+:global([dir="rtl"]) .sidePanel {
+  --side-panel-offset: -100%;
+}
+
+:global([dir="rtl"]) .sidePanel[data-side="start"] {
+  --side-panel-offset: 100%;
+}
+
+.sidePanel[data-state="open"] {
+  transform: translateX(0);
+}
+
+.sidePanel[data-state="closed"][data-hidden="true"] {
+  display: none;
+}
+
+.sidePanel[data-ck-reduced-motion="true"] {
+  transition-duration: 0s;
+}
+
+@starting-style {
+  .sidePanel[data-state="open"]:not([data-skip-enter]) {
+    transform: translateX(var(--side-panel-offset));
+  }
+}

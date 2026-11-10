@@ -1,0 +1,45 @@
+{
+  "name": "docs",
+  "version": "0.0.53",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3003",
+    "build": "next build",
+    "start": "next start --port 3003",
+    "lint": "oxlint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "postinstall": "next typegen",
+    "registry:build": "node scripts/prepare-registry.ts && shadcn build && node scripts/finish-registry.ts"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.9.0",
+    "@workspace/react": "workspace:composerkit@*",
+    "cn": "^0.5.1",
+    "colorjs.io": "^0.7.1",
+    "fumadocs-core": "16.17.10",
+    "fumadocs-mdx": "15.4.10",
+    "fumadocs-typescript": "^5.6.0",
+    "fumadocs-ui": "npm:@fumadocs/base-ui@16.17.10",
+    "lucide-react": "^1.66.0",
+    "next": "catalog:",
+    "next-themes": "^0.4.6",
+    "prosemirror-model": "^1.25.12",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/mdx": "^2.0.14",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "axe-core": "^4.14.0",
+    "oxlint": "^1.89.0",
+    "postcss": "^8.5.31",
+    "shadcn": "^4.23.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5"
+  },
+  "type": "module",
+  "license": "MIT"
+}

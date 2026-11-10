@@ -1,0 +1,131 @@
+{
+  "start": "2026-11-08T18:46:57.271Z",
+  "round": 0,
+  "idle": 0,
+  "errors": 0,
+  "status": "pass",
+  "history": [
+    {
+      "at": "2026-11-08T19:14:04.136Z",
+      "mode": "manual",
+      "status": "pass",
+      "fails": 0,
+      "round": 0,
+      "reused": false,
+      "stopHookActive": false
+    }
+  ],
+  "max": 3,
+  "marker": {
+    "page": null,
+    "url": "http://127.0.0.1:3003/",
+    "root": null,
+    "kind": "software",
+    "category": "React chat components",
+    "primary": "Read the docs",
+    "rounds": 3,
+    "start": "2026-11-08T18:46:57.271Z",
+    "by": "gate.mjs --start"
+  },
+  "manual": true,
+  "fp": "268991b900e21f89",
+  "page": "http://127.0.0.1:3003/",
+  "found": {
+    "fails": [
+      {
+        "check": "focus-visible",
+        "where": "div.wrap > div.hero-text.hero__grid > div.hero__media.span-6:nth-of-type(2) > iframe.composer-frame \"Try the ComposerKit message composer\"",
+        "msg": "Tab stop 10, iframe \"Try the ComposerKit message composer\": it shows no change when focused",
+        "fix": "keep the kit's ring (system.css :focus-visible, 2px in --action, there at once); a control that hides itself shows on focus",
+        "widths": [1440],
+        "from": "consistency",
+        "ids": ["focus-visible"],
+        "wheres": [
+          "div.wrap > div.hero-text.hero__grid > div.hero__media.span-6:nth-of-type(2) > iframe.composer-frame \"Try the ComposerKit message composer\""
+        ]
+      },
+      {
+        "check": "one-section",
+        "where": "footer#start > div.wrap > div.closing__cta.close--type > a.btn.btn--primary \"Read the docs\"",
+        "msg": "a band: a box 89% of the section wide on a ground of its own that holds only text: the section's own ground is the band (SR-4)",
+        "fix": "put every block of <main> in a <section>, and give a band its own section instead of a ground inside one",
+        "widths": [1440],
+        "from": "consistency",
+        "ids": ["one-section"],
+        "wheres": [
+          "footer#start > div.wrap > div.closing__cta.close--type > a.btn.btn--primary \"Read the docs\""
+        ]
+      }
+    ],
+    "warns": [
+      {
+        "check": "link-styles",
+        "where": "div.wrap > div.component-tour > div.component-index > a.component-row:nth-of-type(2) \"Read a conversation Messages, code block\"",
+        "msg": "text links in 3 looks: border 1px, regular (1, like \"Read a conversation \"); underline, regular (2, like \"See the gallery\"); no line, regular (6, like \"Documentation\")",
+        "fix": "give text links one look wherever they sit: one underline, one weight",
+        "widths": [1440, 390],
+        "from": "consistency"
+      },
+      {
+        "check": "action-repeat",
+        "where": "header.nav.nav--centre > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"read the docs\"",
+        "msg": "\"read the docs\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
+        "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
+        "widths": [1440],
+        "from": "consistency"
+      },
+      {
+        "check": "split-pair",
+        "where": "section#source > div.wrap > div.source-details \"Use the shadcn registry to install the A\"",
+        "msg": "the split's columns are off the page's one pair of lines: its left column ends at 639px, not 24px before the right one (708px) or a column before it (599px) (it is in a scroll scene: told as a WARN) (SR-8)",
+        "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
+        "widths": [1440],
+        "from": "consistency"
+      },
+      {
+        "check": "nav",
+        "where": "header.nav.nav--centre > div.wrap.nav__bar > button.nav__toggle",
+        "msg": "the nav is lopsided: its last item ends 12px inside the content's edge (366px), while its first starts on the other edge",
+        "fix": "start the nav's first item and end its last on the content's two edges",
+        "widths": [390],
+        "from": "consistency"
+      }
+    ],
+    "crashed": [],
+    "seconds": {
+      "consistency": 74,
+      "layout": 3
+    }
+  },
+  "open": [],
+  "waived": [
+    {
+      "check": "focus-visible",
+      "where": "div.wrap > div.hero-text.hero__grid > div.hero__media.span-6:nth-of-type(2) > iframe.composer-frame \"Try the ComposerKit message composer\"",
+      "msg": "Tab stop 10, iframe \"Try the ComposerKit message composer\": it shows no change when focused",
+      "fix": "keep the kit's ring (system.css :focus-visible, 2px in --action, there at once); a control that hides itself shows on focus",
+      "widths": [1440],
+      "from": "consistency",
+      "ids": ["focus-visible"],
+      "wheres": [
+        "div.wrap > div.hero-text.hero__grid > div.hero__media.span-6:nth-of-type(2) > iframe.composer-frame \"Try the ComposerKit message composer\""
+      ],
+      "reason": "The checker focuses the iframe boundary; keyboard focus is rendered by controls inside the separate library document."
+    },
+    {
+      "check": "one-section",
+      "where": "footer#start > div.wrap > div.closing__cta.close--type > a.btn.btn--primary \"Read the docs\"",
+      "msg": "a band: a box 89% of the section wide on a ground of its own that holds only text: the section's own ground is the band (SR-4)",
+      "fix": "put every block of <main> in a <section>, and give a band its own section instead of a ground inside one",
+      "widths": [1440],
+      "from": "consistency",
+      "ids": ["one-section"],
+      "wheres": [
+        "footer#start > div.wrap > div.closing__cta.close--type > a.btn.btn--primary \"Read the docs\""
+      ],
+      "reason": "The reported band is the kit close-type full-width action button, not an extra section."
+    }
+  ],
+  "warnCount": 4,
+  "at": "2026-11-08T19:14:04.136Z"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "composerkit-workspace",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "ultracite check && turbo run lint",
+    "registry:build": "turbo run registry:build",
+    "fix": "ultracite fix",
+    "prepare": "lefthook uninstall && lefthook install"
+  },
+  "devDependencies": {
+    "@shadcn/lint": "^0.2.3",
+    "lefthook": "^2.2.2",
+    "oxfmt": "^0.76.0",
+    "oxlint": "^1.91.0",
+    "oxlint-tsgolint": "^7.0.2005",
+    "turbo": "^2.11.10",
+    "typescript": "^5",
+    "ultracite": "^8.1.1"
+  },
+  "packageManager": "pnpm@12.16.1"
+}

@@ -1,0 +1,12 @@
+.overlay[data-ck-controls-hidden]:not(:has(:focus-visible)) .controls {
+  opacity: 0;
+  pointer-events: none;
+}
+.player:fullscreen {
+  border-radius: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+}

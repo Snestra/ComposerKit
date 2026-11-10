@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "present",
+  "title": "Present",
+  "files": [
+    {
+      "path": "../../packages/react/src/lib/present.ts",
+      "content": "/**\n * The component tests optional slots with `== null` and `!= null`, which treat\n * null and undefined alike. These two keep that meaning.\n */\nexport const isNil = (value: unknown): value is null | undefined =>\n  value === null || value === undefined;\n\nexport const isPresent = <T>(value: T): value is NonNullable<T> =>\n  value !== null && value !== undefined;\n",
+      "type": "registry:file",
+      "target": "~/src/lib/present.ts"
+    }
+  ],
+  "type": "registry:item"
+}

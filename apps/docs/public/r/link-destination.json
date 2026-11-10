@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "link-destination",
+  "title": "Link Destination",
+  "files": [
+    {
+      "path": "../../packages/react/src/lib/link-destination.ts",
+      "content": "/**\n * Whether the href resolves to an http or https origin other than the page\n * origin. A raw scheme regex misses protocol-relative links, leading or\n * trailing whitespace, and backslash separators, which browsers still resolve\n * to an external http or https destination. Server render returns false, and\n * callers use the result only in event handlers, so hydration output is\n * unchanged.\n */\nexport const resolvesToExternalWeb = (href: string): boolean => {\n  if (typeof window === \"undefined\") {\n    return false;\n  }\n\n  try {\n    const url = new URL(href.trim(), window.location.href);\n\n    return (\n      (url.protocol === \"http:\" || url.protocol === \"https:\") &&\n      url.origin !== window.location.origin\n    );\n  } catch {\n    return false;\n  }\n};\n",
+      "type": "registry:file",
+      "target": "~/src/lib/link-destination.ts"
+    }
+  ],
+  "type": "registry:item"
+}

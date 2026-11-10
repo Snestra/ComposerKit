@@ -1,0 +1,253 @@
+/*
+ * Rules of the composer family that Tailwind cannot express: the input, the
+ * surface and content, the shimmer and the overlay material. The
+ * variables resolve through the Electron theme tokens.
+ */
+@layer components {
+  /*
+   * The overlay material is a translucent elevated surface. Hosts detect it
+   * through the data-ck-overlay-* attributes and can swap in their own layer.
+   * A browser paints the border, background, shadow and will-change below.
+   */
+  .material {
+    --ck-avatar-layer-css-material-elevation: 0 0 transparent;
+
+    border: 1px solid var(--color-border);
+    background: var(
+      --ck-avatar-layer-material-background,
+      color-mix(
+        in srgb,
+        var(--ck-palette-surface-elevated-primary) 90%,
+        transparent
+      )
+    );
+    box-shadow:
+      inset 0 1px 1px color-mix(in srgb, var(--ck-fixed-white) 40%, transparent),
+      inset 0 -1px 2px
+        color-mix(in srgb, var(--ck-fixed-white) 15%, transparent),
+      var(--ck-avatar-layer-css-material-elevation);
+    will-change: transform;
+  }
+
+  .material[data-ck-overlay-native-surface-id] {
+    border-color: color-mix(in srgb, var(--ck-fixed-white) 15%, transparent);
+    --ck-avatar-layer-css-material-elevation: 0 4px 18px
+      color-mix(in srgb, var(--ck-shadow-color) 25%, transparent);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .material {
+      border: 1px solid color-mix(in srgb, var(--color-border) 62%, transparent);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .material {
+      background: canvas;
+    }
+  }
+
+  .material[data-ck-overlay-variant="transcript"] {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    overscroll-behavior: contain;
+    border: 0;
+    border-radius: var(--radius-4xl, 1.5rem);
+    max-height: calc(
+      var(--ck-transcript-height-limit, 100dvh) - var(--ck-edge-mask-top, 0px)
+    );
+    min-width: 0;
+  }
+
+  /* The submit icon morph animates rotation, vertical position and scale. */
+  .morphIcon {
+    transform: translateY(var(--morph-y, 0px)) scale(var(--morph-scale, 1))
+      rotate(var(--morph-rotate, 0deg));
+    transform-origin: center;
+  }
+
+  .quickChatMaterial {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: calc(var(--ck-compact-chat-composer-height, 40) * 1px);
+    border-radius: calc(var(--ck-compact-chat-composer-radius, 20) * 1px);
+    color: var(--ck-palette-ink);
+    -webkit-app-region: no-drag;
+    padding-block: 6px;
+    padding-inline: 14px 6px;
+  }
+
+  .quickChatMaterial[data-ck-overlay-quick-replacement="true"] {
+    padding: 0;
+  }
+
+  .quickChatMaterial[data-ck-overlay-quick-actions="true"] {
+    padding: calc(var(--spacing) * 1.75);
+  }
+
+  .quickChatMaterial[data-ck-overlay-variant="quick-stash"] {
+    padding: 0;
+  }
+
+  .quickChatMaterial[data-ck-overlay-quick-collapsed="true"] {
+    padding-inline: calc(
+      (var(--ck-compact-chat-compact-edge-padding) * 1px) - 1px
+    );
+  }
+
+  .quickChatMaterial[data-ck-overlay-quick-icon-only="true"] {
+    justify-content: center;
+    gap: 0;
+    padding-inline: 0;
+  }
+
+  .input {
+    min-inline-size: 0;
+    font-family: var(--body-family);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    color: var(--ck-palette-ink);
+    caret-color: var(--ck-palette-ink);
+    flex: 1;
+  }
+
+  .input :is(input, textarea, [role="textbox"]),
+  .input [role="textbox"] > p {
+    min-block-size: 1lh;
+    inline-size: 100%;
+    min-inline-size: 0;
+    font: inherit;
+    color: inherit;
+    user-select: text;
+    background: transparent;
+    border: 0;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: relative;
+  }
+
+  .input :is(input, textarea)::placeholder {
+    color: var(--ck-palette-ink-tertiary);
+  }
+
+  .input :is(input:read-only, textarea:read-only, [aria-readonly="true"]) {
+    color: var(--ck-palette-ink-tertiary);
+  }
+
+  .input [role="textbox"] {
+    white-space: pre-wrap;
+  }
+
+  .surface {
+    position: relative;
+  }
+
+  .content {
+    display: inherit;
+    flex-direction: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+    gap: inherit;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    position: relative;
+  }
+
+  .shimmer {
+    --ck-sweep-text-secondary: color-mix(
+      in srgb,
+      var(--ck-loading-sweep-foreground, var(--ck-palette-ink-tertiary)) 57%,
+      transparent
+    );
+    --ck-sweep-contrast: color-mix(
+      in srgb,
+      var(--ck-fixed-white) 75%,
+      transparent
+    );
+    text-fill-color: currentcolor;
+    -webkit-text-fill-color: currentcolor;
+  }
+
+  .shimmer,
+  .shimmer * {
+    color: var(--ck-sweep-text-secondary) !important;
+  }
+
+  .shimmer .shimmerHighlight,
+  .shimmer .shimmerHighlight * {
+    color: var(--ck-sweep-contrast) !important;
+  }
+
+  .shimmerSweep {
+    width: 100%;
+    text-overflow: inherit;
+    pointer-events: none;
+    position: absolute;
+    inset: 0 auto 0 0;
+    overflow: hidden;
+    transform: translate(-50%);
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--ck-mask) 24% 34%,
+      transparent 54% 100%
+    );
+  }
+
+  .shimmerHighlight {
+    width: 100%;
+    text-overflow: inherit;
+    text-fill-color: currentcolor;
+    -webkit-text-fill-color: currentcolor;
+    display: block;
+    overflow: hidden;
+    transform: translate(50%);
+  }
+
+  .shimmerActive .shimmerSweep,
+  .shimmerActive .shimmerHighlight {
+    animation-duration: 0.88s;
+    animation-timing-function: steps(42, end);
+    animation-iteration-count: 1;
+  }
+
+  .shimmerActive .shimmerSweep {
+    animation-name: ckShimmerSweep;
+  }
+
+  .shimmerActive .shimmerHighlight {
+    animation-name: ckShimmerHighlight;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shimmerActive .shimmerSweep,
+    .shimmerActive .shimmerHighlight {
+      animation: none;
+    }
+  }
+}
+
+@keyframes ckShimmerSweep {
+  0% {
+    transform: translate(-50%);
+  }
+
+  to {
+    transform: translate(125%);
+  }
+}
+
+@keyframes ckShimmerHighlight {
+  0% {
+    transform: translate(50%);
+  }
+
+  to {
+    transform: translate(-125%);
+  }
+}

@@ -1,0 +1,51 @@
+/*
+ * animation="slide-in-left".
+ * The open and closed animations run only when reduced motion is not
+ * requested: either the root says data-ck-reduced-motion=false, or it sets no
+ * preference and the media query allows motion.
+ */
+.slideInLeft[data-state="closed"] {
+  pointer-events: none;
+}
+
+:root[data-ck-reduced-motion="false"] .slideInLeft[data-state="open"] {
+  animation: ck-slide-in-left 0.25s var(--ck-curve-enter);
+}
+
+:root[data-ck-reduced-motion="false"] .slideInLeft[data-state="closed"] {
+  animation: ck-slide-out-left 0.2s var(--ck-curve-exit);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-ck-reduced-motion]) .slideInLeft[data-state="open"] {
+    animation: ck-slide-in-left 0.25s var(--ck-curve-enter);
+  }
+
+  :root:not([data-ck-reduced-motion]) .slideInLeft[data-state="closed"] {
+    animation: ck-slide-out-left 0.2s var(--ck-curve-exit);
+  }
+}
+
+@keyframes ck-slide-out-left {
+  0% {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(calc(var(--spacing) * -0.5));
+  }
+}
+
+@keyframes ck-slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(var(--spacing) * -1));
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
+}

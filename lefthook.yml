@@ -1,0 +1,21 @@
+pre-commit:
+  jobs:
+    - run: pnpm exec ultracite fix {staged_files}
+      glob:
+        - "*.js"
+        - "*.jsx"
+        - "*.mjs"
+        - "*.cjs"
+        - "*.ts"
+        - "*.tsx"
+        - "*.mts"
+        - "*.cts"
+        - "*.json"
+        - "*.jsonc"
+        - "*.css"
+        - "*.md"
+        - "*.yaml"
+        - "*.yml"
+      stage_fixed: true
+    - run: pnpm --filter composerkit lint:design
+      glob: "packages/react/DESIGN.md"

@@ -1,0 +1,32 @@
+/*
+ * The loaded image fade of the avatar. Tailwind cannot define @keyframes, so
+ * this holds the loaded-state rules and
+ * _image-loaded_1l93m_2: the fade plays over
+ * --motion-duration-fast with ease-out, is off when :root has
+ * data-ck-reduced-motion="true", and, with no data-ck-reduced-motion attribute,
+ * is off under prefers-reduced-motion: reduce.
+ */
+
+@keyframes ck-image-fade {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.loaded {
+  animation: ck-image-fade var(--motion-duration-fast) ease-out;
+}
+
+:global(:root[data-ck-reduced-motion="true"]) .loaded {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(:root:not([data-ck-reduced-motion])) .loaded {
+    animation: none;
+  }
+}

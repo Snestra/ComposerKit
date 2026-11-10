@@ -1,0 +1,27 @@
+---
+title: Theme editor
+description: "Pick brand colors and export a DESIGN.md and design tokens that keep every component readable."
+---
+
+import { ThemeEditor } from '@/components/theme-editor/theme-editor';
+
+Pick a seed color for each role.
+
+```text
+on(seed change)
+  give every token in packages/react/DESIGN.md its role's hue and chroma
+  set lightness so luminance matches the default theme
+  check 76 text and surface pairs, light and dark, against WCAG 4.5:1 and an APCA limit
+  while a pair fails
+    move the text's lightness, or raise its opacity, and list the correction
+  if a pair still fails
+    block the export
+```
+
+<ThemeEditor />
+
+## Use the export
+
+- `DESIGN.md` replaces `packages/react/DESIGN.md`. Run `pnpm --filter composerkit export:design` to lint it and write `src/styles/design-tokens.css`.
+- The DTCG file follows the W3C Design Tokens format, version 2025.10.
+- The theme CSS sets the `--color-light-*` and `--color-dark-*` variables. Load it after `composerkit/styles.css`.

@@ -1,0 +1,4 @@
+{"_comment":"Source: https://developers.openai.com/api/reference/resources/responses/streaming-events. Published event shapes arranged with partial tool JSON and no completion event. No API key was used."}
+{"type":"response.created","response":{"id":"resp_partial","status":"in_progress"}}
+{"type":"response.output_item.added","output_index":0,"item":{"type":"function_call","id":"fc_partial","call_id":"call_partial","name":"get_weather","arguments":"","status":"in_progress"}}
+{"type":"response.function_call_arguments.delta","item_id":"fc_partial","output_index":0,"delta":"{\"location\":\"San","sequence_number":2}

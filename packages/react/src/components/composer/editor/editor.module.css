@@ -1,0 +1,25 @@
+.Editor {
+  width: 100%;
+  min-block-size: 1lh;
+  color: inherit;
+  font: inherit;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  outline: none;
+}
+
+.Editor p {
+  margin: 0;
+}
+
+.Editor :global(.prosemirror-placeholder)::before {
+  float: inline-start;
+  height: 0;
+  color: var(--ck-palette-ink-tertiary);
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+
+.Mention {
+  display: inline;
+}

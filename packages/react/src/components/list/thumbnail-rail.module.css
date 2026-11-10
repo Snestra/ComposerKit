@@ -1,0 +1,23 @@
+/*
+ * The dock button uses the viewer header control styles. `--ck-viewer-control-height` defaults to
+ * 9 spacing units and the control sits one unit below it; a compact viewer
+ * (`data-ck-viewer-density=compact`) makes it 7 units.
+ */
+.control {
+  gap: var(--spacing, 0.25rem);
+  padding-inline: var(--spacing, 0.25rem);
+  font-size: var(--text-sm, 12px);
+  line-height: calc(var(--spacing, 0.25rem) * 5);
+  padding-block: 0;
+  height: calc(
+    var(--ck-viewer-control-height, calc(var(--spacing) * 9)) - var(--spacing)
+  );
+}
+
+.control:disabled {
+  cursor: var(--ck-action-cursor, pointer);
+}
+
+[data-ck-viewer-density="compact"] .control {
+  height: calc(var(--spacing, 0.25rem) * 7);
+}

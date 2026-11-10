@@ -1,0 +1,88 @@
+/* The gallery under app/(gallery) has its own stylesheet. Scan only the docs
+   files, so gallery classes never generate utilities here. */
+@import 'tailwindcss' source(none);
+@source '.';
+@source '../../components/component-preview.tsx';
+@source '../../components/mdx.tsx';
+@source '../../components/theme-editor';
+@source '../../content';
+@source '../../lib';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+/* The library's own light and dark tokens, for the preview panel ground. */
+@import '../../../../packages/react/src/styles/design-tokens.css';
+
+:root {
+  --color-fd-background: #f5f7f2;
+  --color-fd-foreground: #18251a;
+  --color-fd-muted: #e9eee4;
+  --color-fd-muted-foreground: #52604f;
+  --color-fd-primary: #315c24;
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-border: #d3dccd;
+  --color-fd-card: #ffffff;
+  --color-fd-accent: #e5eddd;
+  --color-fd-accent-foreground: #18251a;
+  --site-spring: linear(0, .044, .145, .264, .384, .496, .594, .677, .745, .8, .844, .879, .906, .927, .944, .957, .968, .976, .982, .987, 1);
+}
+
+.dark {
+  --color-fd-background: #0f1f10;
+  --color-fd-foreground: #f5f7f2;
+  --color-fd-muted: #1d321e;
+  --color-fd-muted-foreground: #b3c2ad;
+  --color-fd-primary: #c6f19d;
+  --color-fd-primary-foreground: #0f1f10;
+  --color-fd-border: #344b35;
+  --color-fd-card: #162a17;
+  --color-fd-accent: #263e24;
+  --color-fd-accent-foreground: #f5f7f2;
+}
+
+.dark #nd-sidebar {
+  --color-fd-muted: #1d321e;
+  --color-fd-secondary: #263e24;
+  --color-fd-muted-foreground: #b3c2ad;
+}
+
+html { scrollbar-gutter: stable; scroll-padding-top: 5rem; }
+.preview-panel {
+  padding: 12px;
+  background: var(--color-light-canvas);
+  border: 1px solid var(--color-light-border);
+  border-radius: 1rem;
+}
+.dark .preview-panel {
+  background: var(--color-dark-canvas);
+  border-color: var(--color-dark-border);
+}
+.site-wordmark { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.035em; }
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-fd-primary) !important;
+  outline-offset: 3px;
+}
+.docs-skip { position: fixed; top: 8px; left: 16px; z-index: 100; padding: 12px 16px; background: var(--color-fd-background); color: var(--color-fd-foreground); transform: translateY(-200%); }
+.docs-skip:focus { transform: none; }
+#nd-page h1 { letter-spacing: -0.035em; text-wrap: balance; }
+#nd-page h2 { scroll-margin-top: 5rem; }
+.site-docs-footer { display: flex; flex-wrap: wrap; gap: 16px 24px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--color-fd-border); font-size: .875rem; }
+.site-docs-footer a { min-height: 44px; display: inline-flex; align-items: center; text-decoration: underline; text-underline-offset: 4px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  #nd-sidebar button, #nd-nav button, #nd-subnav button { transition: scale 350ms var(--site-spring); }
+  #nd-sidebar button:active:not(:disabled), #nd-nav button:active:not(:disabled), #nd-subnav button:active:not(:disabled) { scale: .97; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #nd-sidebar *, #nd-nav *, #nd-subnav * { animation: none !important; transition: none !important; }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  #nd-nav nav, #nd-subnav, #nd-sidebar { background: var(--color-fd-background); backdrop-filter: none; }
+}
+@media (max-width: 639px) {
+  #nd-subnav button, #nd-nav button { min-height: 44px; min-width: 44px; }
+}
+
+html > body[data-ck-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}

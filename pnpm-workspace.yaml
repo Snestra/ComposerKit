@@ -1,0 +1,17 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Every app and the ui package must load the same React and Next.js, or hooks
+# and context break across the package boundary.
+catalog:
+  "@types/node": ^20
+  "@types/react": ^19
+  "@types/react-dom": ^19
+  next: 16.4.3
+  react: 19.3.1
+  react-dom: 19.3.1
+
+allowBuilds:
+  esbuild: false
+  lefthook: false

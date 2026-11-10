@@ -1,0 +1,419 @@
+/*
+ * Rules of the banner family that Tailwind cannot express: keyframes, a
+ * container query by name and a descendant selector.
+ * CSS modules
+ * and.
+ *
+ * Theme values are light-dark, which follows the nearest color-scheme scope.
+ * Generic tokens map to this app's Electron theme variables (ui/app/globals.css):
+ * --color-border = --ck-palette-border, --color-stroke-subtle =
+ * --ck-palette-border-light, --color-stroke-strong = --ck-palette-border-heavy,
+ * --color-text = --ck-palette-ink, --color-text-muted =
+ * --ck-palette-ink-secondary, --color-text-subtle =
+ * --ck-palette-ink-tertiary, --color-panel =
+ * --ck-palette-surface-surface, --color-panel-secondary =
+ * --ck-palette-surface-surface-under, --color-panel-elevated =
+ * --ck-palette-surface-elevated-primary, --color-fill-primary-solid =
+ * --ck-palette-ink and --color-text-strong-solid =
+ * --theme-background-control-opaque.
+ */
+
+/* Recovery card: the card enters with a 0.25s ease-in-out tween. */
+.recovery {
+  display: flex;
+  width: 100%;
+  padding: 24px;
+  border: 0.5px solid
+    light-dark(
+      color-mix(in srgb, var(--ck-shadow-color) 10%, transparent),
+      transparent
+    );
+  border-radius: 28px;
+  background: var(--ck-palette-surface-surface);
+  box-shadow: var(--shadow-card);
+  color: light-dark(var(--color-light-ink), var(--color-dark-ink));
+  font-size: 14px;
+  font-variation-settings: "opsz" 14;
+  font-weight: 400;
+  letter-spacing: -0.15px;
+  line-height: 18px;
+  text-wrap: pretty;
+  -webkit-font-smoothing: auto;
+  animation: recovery-enter 0.25s cubic-bezier(0.42, 0, 0.58, 1) backwards;
+}
+
+.recoveryDescription {
+  color: light-dark(
+    var(--color-light-app-text-foreground-secondary),
+    var(--color-dark-app-text-foreground-secondary)
+  );
+}
+
+@keyframes recovery-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Alert: _alert/_successSolid_1dz2c. */
+.alert {
+  min-width: 0;
+  max-width: 100%;
+  box-shadow: var(--shadow-toast);
+  pointer-events: all;
+}
+
+.successSolid a {
+  color: inherit !important;
+  text-decoration: underline !important;
+}
+
+.successCta a {
+  color: var(--color-status-success) !important;
+}
+
+.catalog {
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  outline: 1px solid var(--ck-palette-border);
+  outline-offset: -1px;
+}
+
+/* Beacon and auth upsell surfaces. */
+.container {
+  width: 100%;
+  container: beacon / inline-size;
+}
+
+.surface {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 24px;
+  background: light-dark(white, var(--ck-palette-surface-elevated-primary));
+  box-shadow: var(--shadow-card);
+  color: var(--ck-palette-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  font-variation-settings: "wdth" 100;
+  font-weight: 400;
+  letter-spacing: -0.15px;
+  line-height: 20px;
+  outline: 0.5px solid var(--ck-palette-border-light);
+  outline-offset: -0.5px;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  margin-inline-end: 12px;
+}
+
+.authUpsellSurface {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-color: var(--ck-palette-border-heavy);
+  border-radius: var(--radius-3xl, 1.25rem);
+  border-style: solid;
+  border-width: 0.5px;
+  background-color: var(--ck-palette-surface-surface);
+  color: var(--ck-palette-ink);
+  user-select: none;
+}
+
+.authUpsellContent {
+  min-width: 0;
+  padding-block: 1.25rem;
+  padding-inline: 1.5rem;
+  color: var(--ck-palette-ink-secondary);
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.625;
+}
+
+.authUpsellCtas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding-bottom: 0.75rem;
+  padding-inline: 1.25rem;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.visual {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-height: 32px;
+}
+
+.copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.title {
+  font-weight: 510;
+}
+
+.description {
+  color: var(--ck-palette-ink-secondary);
+  text-wrap: wrap;
+}
+
+.ctas,
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.ctas {
+  max-width: 50%;
+}
+
+.dismiss {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.action {
+  justify-content: center;
+  height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 510;
+  letter-spacing: -0.18px;
+  line-height: 20px;
+}
+
+.primary {
+  min-width: 70px;
+  border-width: 0;
+  background: var(--ck-palette-ink);
+  color: light-dark(white, var(--theme-background-control-opaque));
+}
+
+.secondary {
+  border: 1px solid var(--ck-palette-border);
+  background: 0 0;
+  color: var(--ck-palette-ink);
+}
+
+.dismissButton {
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border-width: 0;
+  background: 0 0;
+  color: var(--ck-palette-ink-tertiary);
+}
+
+.primary:not(:disabled, [aria-disabled="true"]):hover,
+.secondary:not(:disabled, [aria-disabled="true"]):hover,
+.dismissButton:not(:disabled, [aria-disabled="true"]):hover {
+  opacity: 0.8;
+}
+
+.mobileDismiss {
+  display: none;
+}
+
+.composer {
+  margin-bottom: 8px;
+}
+
+.composer .description {
+  font-size: 14px;
+  letter-spacing: -0.15px;
+  line-height: 20px;
+}
+
+.composer .ctas,
+.ctas.inlineActions {
+  gap: 8px;
+}
+
+.inlineActions {
+  justify-content: center;
+  max-width: none;
+}
+
+@container beacon (width < 434px) {
+  .surface {
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    background: light-dark(
+      color-mix(in srgb, var(--ck-fixed-white) 90%, transparent),
+      var(--ck-palette-surface-elevated-primary)
+    );
+    outline: none;
+  }
+
+  .content {
+    margin-inline-end: 0;
+  }
+
+  .body {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .visual {
+    align-self: flex-start;
+    width: auto;
+  }
+
+  .responsiveImage {
+    width: 36px;
+    height: 36px;
+  }
+
+  .noVisual .copy {
+    padding-inline-end: 28px;
+  }
+
+  .title {
+    font-size: 15px;
+    letter-spacing: -0.23px;
+  }
+
+  .description {
+    font-size: 13px;
+    letter-spacing: -0.08px;
+    line-height: 18px;
+  }
+
+  .ctas,
+  .actions {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    gap: 12px;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .action {
+    height: 40px;
+    min-width: 0;
+    font-size: 15px;
+    letter-spacing: -0.24px;
+  }
+
+  .dismiss {
+    position: absolute;
+    inset-inline-end: 16px;
+    top: 16px;
+  }
+
+  .dismissButton {
+    width: 16px;
+    height: 16px;
+    color: var(--ck-palette-ink-tertiary);
+  }
+
+  .desktopDismiss {
+    display: none;
+  }
+
+  .mobileDismiss {
+    display: block;
+  }
+}
+
+/* Eyebrow notice. */
+.eyebrowContainer {
+  width: 100%;
+  container: upload-limit / inline-size;
+}
+
+.eyebrow {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: -36px;
+  padding: 16px 20px 42px;
+  border-radius: 28px 28px 0 0;
+  background: light-dark(
+    var(--ck-palette-surface-surface),
+    var(--ck-palette-surface-elevated-primary)
+  );
+  box-shadow: var(--shadow-card);
+  color: var(--ck-palette-ink);
+  font-feature-settings:
+    "liga" off,
+    "clig" off;
+  font-size: 13px;
+  letter-spacing: -0.08px;
+  line-height: 18px;
+  outline: 0.5px solid var(--ck-palette-border);
+  outline-offset: -0.5px;
+  overflow: hidden;
+}
+
+.eyebrowCopy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.eyebrowTitle {
+  font-weight: 510;
+}
+
+.eyebrowDescription {
+  color: var(--ck-palette-ink-secondary);
+}
+
+.eyebrowActions {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: 100%;
+}
+
+@container upload-limit (width < 400px) {
+  .eyebrow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .eyebrowActions {
+    justify-content: flex-end;
+  }
+}

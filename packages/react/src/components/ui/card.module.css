@@ -1,0 +1,27 @@
+/*
+ * The editor controls of the writing-block surface: task-list checkboxes in an editable ProseMirror inside the
+ * surface revert to native checkboxes of 4 spacing steps with the interaction
+ * cursor. The component orders `all: revert` before the size and cursor
+ * declarations, so the revert does not cancel them. Tailwind sorts `all` after
+ * `width`, `height` and `cursor` utilities, so the rule stays in this module.
+ * The component sits in the `components` layer.
+ */
+@layer components {
+  .editorControls
+    :global(.ProseMirror[contenteditable])
+    :global(.task-list-item-checkbox)
+    input[type="checkbox"] {
+    all: revert;
+    width: calc(var(--spacing, 0.25rem) * 4);
+    height: calc(var(--spacing, 0.25rem) * 4);
+    cursor: var(--ck-action-cursor);
+    cursor: var(--ck-action-cursor, pointer);
+  }
+
+  .editorControls
+    :global(.ProseMirror[contenteditable])
+    :global(.task-list-item-checkbox)
+    input[type="checkbox"]::before {
+    content: none;
+  }
+}

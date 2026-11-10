@@ -1,0 +1,6 @@
+{"_comment":"Source: https://ai-sdk.dev/docs/ai-sdk-ui/stream-protocol. Published event shapes arranged to end with the documented abort event. No API key was used."}
+{"type":"start","messageId":"msg_cancelled"}
+{"type":"reasoning-start","id":"reasoning_cancelled"}
+{"type":"reasoning-delta","id":"reasoning_cancelled","delta":"Checking the request."}
+{"type":"abort","reason":"The user cancelled the request."}
+"[DONE]"

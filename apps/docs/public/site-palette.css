@@ -1,0 +1,27 @@
+:root {
+  --p-bg: #0f1f10;
+  --p-surface: #162a17;
+  --p-ink: #ffffff;
+  --p-muted: #9aa39a;
+  --p-accent: #c6f19d;
+  --p-accent-ink: #0f1f10;
+  --p-action: #c6f19d;
+  --p-action-ink: #0f1f10;
+  --p-inv-bg: #ffffff;
+  --p-inv-surface: #ecedec;
+  --p-inv-ink: #0f1f10;
+  --p-inv-muted: #606c60;
+  --p-inv-accent: #0f1f10;
+  --p-inv-accent-ink: #ffffff;
+  --p-inv-action: #0f1f10;
+  --p-inv-action-ink: #ffffff;
+  --font-display: "Instrument Sans", system-ui, sans-serif;
+  --font-text: "Instrument Sans", system-ui, sans-serif;
+  --font-mono:
+    "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500;
+  --display-tracking: -0.028em;
+  --display-tracking-xl: -0.036em;
+  --display-stretch: 96%;
+  --ly-scale: 1.04;
+}

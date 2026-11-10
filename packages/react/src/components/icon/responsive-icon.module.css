@@ -1,0 +1,6 @@
+.compactSource {
+  display: var(--icon-compact-display, contents);
+}
+.leadingSource {
+  display: var(--icon-start-display, none);
+}

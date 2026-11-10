@@ -1,0 +1,12 @@
+{"_comment":"Source: https://developers.openai.com/api/reference/resources/responses/streaming-events. Published Responses API example payloads, replayed without an API key."}
+{"type":"response.created","response":{"id":"resp_123","status":"in_progress"}}
+{"type":"response.output_item.added","output_index":0,"item":{"type":"reasoning","id":"rs_123","summary":[]}}
+{"type":"response.reasoning_summary_text.delta","item_id":"rs_123","output_index":0,"summary_index":0,"delta":"I should check the weather ","sequence_number":2}
+{"type":"response.reasoning_summary_text.delta","item_id":"rs_123","output_index":0,"summary_index":0,"delta":"before suggesting a coat.","sequence_number":3}
+{"type":"response.reasoning_summary_text.done","item_id":"rs_123","output_index":0,"summary_index":0,"text":"I should check the weather before suggesting a coat.","sequence_number":4}
+{"type":"response.output_item.added","output_index":1,"item":{"type":"function_call","id":"fc_123","call_id":"call_123","name":"get_weather","arguments":"","status":"in_progress"}}
+{"type":"response.function_call_arguments.delta","item_id":"fc_123","output_index":1,"delta":"{\"location\":","sequence_number":6}
+{"type":"response.function_call_arguments.delta","item_id":"fc_123","output_index":1,"delta":"\"Boston\"}","sequence_number":7}
+{"type":"response.function_call_arguments.done","item_id":"fc_123","output_index":1,"arguments":"{\"location\":\"Boston\"}","sequence_number":8}
+{"type":"response.output_item.done","output_index":1,"item":{"type":"function_call","id":"fc_123","call_id":"call_123","name":"get_weather","arguments":"{\"location\":\"Boston\"}","status":"completed"},"sequence_number":9}
+{"type":"response.completed","response":{"id":"resp_123","status":"completed","output":[]},"sequence_number":10}

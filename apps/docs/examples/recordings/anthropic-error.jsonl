@@ -1,0 +1,5 @@
+{"_comment":"Source: https://docs.anthropic.com/en/api/messages-streaming. Published event shapes arranged to end with the documented overloaded_error event. No API key was used."}
+{"type":"message_start","message":{"id":"msg_error","type":"message","role":"assistant","content":[]}}
+{"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}}
+{"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"Checking the request."}}
+{"type":"error","error":{"type":"overloaded_error","message":"Overloaded"}}

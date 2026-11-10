@@ -1,0 +1,98 @@
+---
+title: Render your first Composer
+description: "Add one ComposerKit message box to a new Next.js app."
+---
+
+A page with one Composer, a message box you can type into. Sending shows the text below the box. No AI service or API key is needed.
+
+Use Node.js 26 and npm, in an empty folder named `composerkit-demo`.
+
+## 1. Create the app
+
+```bash
+npx --yes create-next-app@latest . --yes --use-npm --disable-git
+```
+
+## 2. Install ComposerKit
+
+```bash
+npm install composerkit@0.1.2
+```
+
+## 3. Add the styles
+
+Keep the ComposerKit import after Tailwind.
+
+```css title="app/globals.css"
+@import "tailwindcss";
+@import "composerkit/styles.css";
+```
+
+## 4. Render the Composer
+
+Replace `app/page.tsx` with the file below. Keep `"use client"` at the top, because the controller hook runs in the browser.
+
+```tsx title="app/page.tsx"
+"use client";
+
+import { Composer } from "composerkit/components/composer/composer";
+import { initialComposer } from "composerkit/components/composer/machine";
+import type { ComposerOptions } from "composerkit/components/composer/options";
+import { useComposerController } from "composerkit/components/composer/use-composer-controller";
+import { TipProvider } from "composerkit/components/ui/tip";
+import { useState } from "react";
+
+const options: ComposerOptions = {
+	efforts: [{ id: "normal", label: "Normal" }],
+	models: [{ id: "fast", label: "Fast" }],
+	permissions: [{ id: "ask", label: "Ask first" }],
+};
+
+export default function Home() {
+	const [sentText, setSentText] = useState("");
+	const composer = useComposerController(
+		(sent) => setSentText(sent.draft),
+		initialComposer(options)
+	);
+
+	return (
+		<main className="bg-background text-foreground min-h-dvh p-8">
+			<div className="mx-auto max-w-2xl">
+				<TipProvider>
+					<Composer
+						dispatch={composer.dispatch}
+						handlers={composer.handlers}
+						mode="chat"
+						options={options}
+						projects={[]}
+						state={composer.state}
+					/>
+				</TipProvider>
+				<p aria-live="polite" className="mt-4">
+					{sentText}
+				</p>
+			</div>
+		</main>
+	);
+}
+```
+
+## 5. See the message box
+
+```bash server="http://localhost:3060"
+npm run dev -- --port 3060
+```
+
+Open `http://localhost:3060`. Type a message and press Enter. Your text appears below the box.
+
+## 6. Build the app
+
+Stop the server with Ctrl+C, then build for production.
+
+```bash
+npx next build
+```
+
+Next.js lists `/` as a static route and exits without an error.
+
+Continue with the [Composer component](/docs/components/composer).

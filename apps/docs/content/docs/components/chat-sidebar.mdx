@@ -1,0 +1,24 @@
+---
+title: Chat Sidebar
+description: "The chat list: pinned chats, projects and recent chats, with drag to reorder."
+full: true
+---
+
+<ComponentDoc name="chat-sidebar" />
+
+Pass `selectedThreadId` and handle `onSelectThread` to select a chat. The host owns persistence.
+
+## Options and drag
+
+```tsx
+<ChatSidebar
+  chatSort={chatSort} onChatSortChange={setChatSort}
+  pinnedSort={pinnedSort} onPinnedSortChange={setPinnedSort}
+  organize={organize} onOrganizeChange={setOrganize}
+  showProjects={showProjects} onShowProjectsChange={setShowProjects}
+  onReorderProjects={(projectIds) => updateProjects(projectIds)}
+  onReorderThreads={(group, threadIds) => updateGroup(group, threadIds)}
+/>
+// group is { kind: "pinned" } | { kind: "recents" } | { kind: "project", projectId }
+// projects always reorder; chats reorder only in manual order; Escape cancels a drag
+```

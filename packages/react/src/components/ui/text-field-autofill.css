@@ -1,0 +1,11 @@
+.text-field-autofill-input:-webkit-autofill,
+.text-field-autofill-textarea:-webkit-autofill {
+  animation: 1ms ui-autofill;
+}
+
+@keyframes ui-autofill {
+  from,
+  to {
+    opacity: 1;
+  }
+}

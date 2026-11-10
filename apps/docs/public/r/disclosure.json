@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "disclosure",
+  "title": "Disclosure",
+  "dependencies": ["lucide-react@^1.66.0"],
+  "registryDependencies": [
+    "@composerkit/button",
+    "@composerkit/progress",
+    "@composerkit/styles",
+    "@composerkit/utils"
+  ],
+  "files": [
+    {
+      "path": "../../packages/react/src/components/ui/disclosure.tsx",
+      "content": "\"use client\";\n\nimport { Button } from \"@/components/ui/button\";\nimport { Spinner } from \"@/components/ui/progress\";\nimport { cn } from \"@/lib/utils\";\nimport { ChevronRight } from \"lucide-react\";\nimport type { ComponentProps, ReactNode } from \"react\";\n\ninterface DisclosureToggleProps extends Omit<\n  ComponentProps<typeof Button>,\n  \"children\" | \"color\" | \"loading\"\n> {\n  children?: ReactNode;\n  expanded: boolean;\n  isLoading?: boolean;\n  kind: \"space\" | \"page\";\n  label?: string;\n  title: string;\n}\n\nconst layer =\n  \"col-start-1 row-start-1 flex items-center justify-center transition-opacity duration-(--motion-duration-fast) ease-(--ease-enter) group-focus-visible/disclosure:duration-0 motion-reduce:duration-0\";\n\nfunction DisclosureToggle({\n  children,\n  className,\n  expanded,\n  isLoading = false,\n  kind,\n  label,\n  onClick,\n  title,\n  ...props\n}: DisclosureToggleProps) {\n  const action = expanded ? \"Collapse\" : \"Expand\";\n\n  const defaultLabel =\n    kind === \"space\" ? `${action} ${title}` : `${action} pages inside ${title}`;\n\n  const chevron = (\n    <ChevronRight\n      className={cn(\n        \"size-4 transition-[rotate] duration-(--motion-duration-slow) ease-(--ease-enter) group-focus-visible/disclosure:duration-0 motion-reduce:duration-0\",\n        expanded && \"rotate-90\"\n      )}\n    />\n  );\n\n  return (\n    <Button\n      {...props}\n      aria-busy={isLoading}\n      aria-expanded={expanded}\n      aria-label={label ?? defaultLabel}\n      className={cn(\"group/disclosure\", className)}\n      color=\"disclosure\"\n      onClick={isLoading ? undefined : onClick}\n      size=\"icon\"\n      uniform\n    >\n      <span aria-hidden=\"true\" className=\"grid\" data-loading={isLoading}>\n        <span\n          className={cn(\n            layer,\n            isLoading && \"opacity-0 delay-50 starting:opacity-100\"\n          )}\n        >\n          {kind === \"space\" && children !== null && children !== undefined ? (\n            <>\n              <span className=\"flex items-center justify-center group-hover/disclosure:hidden group-focus-visible/disclosure:hidden\">\n                {children}\n              </span>\n              <span className=\"hidden group-hover/disclosure:block group-focus-visible/disclosure:block\">\n                {chevron}\n              </span>\n            </>\n          ) : (\n            (children ?? chevron)\n          )}\n        </span>\n        <span\n          className={cn(\n            layer,\n            isLoading ? \"opacity-100 delay-50 starting:opacity-0\" : \"opacity-0\"\n          )}\n        >\n          <Spinner\n            as=\"span\"\n            className=\"size-4\"\n            containerClassName={\n              isLoading\n                ? \"[animation-play-state:running]\"\n                : \"[animation-play-state:paused]\"\n            }\n          />\n        </span>\n      </span>\n    </Button>\n  );\n}\n\nexport { DisclosureToggle };\n\nexport type { DisclosureToggleProps };\n",
+      "type": "registry:file",
+      "target": "~/src/components/ui/disclosure.tsx"
+    }
+  ],
+  "type": "registry:item"
+}

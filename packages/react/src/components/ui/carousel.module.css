@@ -1,0 +1,78 @@
+/*
+ * The image placeholder of the photo carousel. Tailwind cannot define
+ * @keyframes, so this module draws a tinted
+ * fill (--color-description is --ck-palette-ink-tertiary in
+ * the app theme, 8% in light and 12% in dark) that pulses between .68 and .82
+ * opacity over 2.4s, and holds at .76 when :root has data-ck-reduced-motion="true".
+ * The .dark rule is the nearest theme scope here, through light-dark.
+ */
+
+@keyframes pulse {
+  0%,
+  to {
+    opacity: 0.68;
+  }
+
+  50% {
+    opacity: 0.82;
+  }
+}
+
+.placeholder {
+  background-color: light-dark(
+    color-mix(
+      in srgb,
+      var(--ck-palette-ink-tertiary) 8%,
+      var(--ck-palette-surface-surface)
+    ),
+    color-mix(
+      in srgb,
+      var(--ck-palette-ink-tertiary) 12%,
+      var(--ck-palette-surface-surface)
+    )
+  );
+  opacity: 0.68;
+  animation: 2.4s ease-in-out infinite pulse;
+}
+
+:global(:root[data-ck-reduced-motion="true"]) .placeholder {
+  opacity: 0.76;
+  animation: none;
+}
+
+/*
+ * Window content and window actions:
+ * the viewer frame leaves room for the window title bar. Every selector is in
+ * :where, and the rules sit in the components layer, so any padding or top
+ * utility on the element wins. The frame sets --window-titlebar-height to
+ * env(titlebar-area-height, 0px); a CSS module would rename that name inside
+ * env.
+ */
+@layer components {
+  :where(.windowContent) {
+    padding-top: calc(var(--spacing) * 12);
+  }
+
+  :where(.windowActions) {
+    top: calc(var(--spacing) * 3);
+  }
+
+  :where(.windowContent[data-ck-right-window-controls="true"]):not(
+    :where(:global(.compact-window) *)
+  ) {
+    padding-top: calc(
+      var(--window-titlebar-height) / var(--ui-display-scale) + var(--spacing) *
+        16
+    );
+  }
+
+  :where(.windowContent[data-ck-right-window-controls="true"]):not(
+      :where(:global(.compact-window) *)
+    )
+    > :where(.windowActions) {
+    top: calc(
+      var(--window-titlebar-height) / var(--ui-display-scale) + var(--spacing) *
+        3
+    );
+  }
+}

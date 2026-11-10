@@ -1,0 +1,467 @@
+/*
+ * Button group and toolbar button styles. Generic token names map to the
+ * Electron theme variables in app/globals.css:
+ *   --color-text                          -> --ck-palette-ink
+ *   --color-fill-primary-transparent-hover-> --ck-palette-surface-button-secondary-hover
+ *   --color-text-strong-solid            -> --theme-background-control-opaque
+ *   --color-panel                       -> --ck-palette-surface-surface
+ *   --color-text-notice / --color-chart-blue-> --ck-palette-label-accent / --ck-palette-accent-blue
+ *   --color-border(-subtle)               -> --ck-palette-border(-light)
+ * `[data-state=open]` also matches Base UI's `[data-popup-open]`.
+ */
+
+@layer theme, base, components, utilities;
+
+/* The component keeps these rules in `@layer components`, below utilities. */
+@layer components {
+  .button {
+    position: relative;
+    isolation: isolate;
+    gap: calc(var(--spacing) * 2);
+    border-radius: var(--radius-pill);
+    border-width: 0;
+    padding-inline: calc(var(--spacing) * 3);
+    padding-block: 0;
+    font-size: var(--text-sm);
+    line-height: calc(var(--spacing) * 5);
+    color: var(--ck-palette-ink);
+  }
+
+  .button::after {
+    content: "";
+    pointer-events: none;
+    z-index: -10;
+    border-radius: inherit;
+    corner-shape: inherit;
+    position: absolute;
+    inset: 0;
+  }
+
+  .button:disabled {
+    cursor: default;
+  }
+
+  .button.dropdown {
+    gap: var(--spacing);
+    padding-inline-end: calc(var(--spacing) * 1.5);
+  }
+
+  .button.zoom {
+    gap: var(--spacing);
+    padding-inline-start: calc(var(--spacing) * 2);
+    padding-inline-end: var(--spacing);
+  }
+
+  @media (hover: hover) {
+    .button:not(.selected, .primary):enabled:hover::after {
+      background-color: var(--ck-palette-surface-button-secondary-hover);
+    }
+  }
+
+  .button:not(.selected, .primary)[data-state="open"]::after,
+  .button:not(.selected, .primary)[data-popup-open]::after {
+    background-color: var(--ck-palette-surface-button-secondary-hover);
+  }
+
+  .button.primary {
+    background-color: var(--ck-palette-ink);
+    background-image: none;
+    color: var(--theme-background-control-opaque);
+  }
+
+  @media (hover: hover) {
+    .button.primary:enabled:hover {
+      background-color: color-mix(
+        in oklab,
+        var(--ck-palette-ink) 82%,
+        transparent
+      );
+    }
+  }
+
+  .button.primary[data-state="open"],
+  .button.primary[data-popup-open] {
+    background-color: color-mix(
+      in oklab,
+      var(--ck-palette-ink) 82%,
+      transparent
+    );
+  }
+
+  .button.selected {
+    box-shadow: inset 0 0 0 0.5px
+      color-mix(in srgb, var(--ck-palette-label-accent) 22%, transparent);
+    background-image: none;
+    background-color: color-mix(
+      in srgb,
+      var(--ck-palette-surface-surface) 92%,
+      var(--ck-palette-accent-blue)
+    );
+    color: var(--ck-palette-label-accent);
+  }
+
+  .button.selected:enabled:hover:not([data-ck-hover-suppressed="true"]),
+  .button.selected[data-state="open"],
+  .button.selected[data-popup-open] {
+    background-color: color-mix(
+      in srgb,
+      var(--ck-palette-surface-surface) 87%,
+      var(--ck-palette-accent-blue)
+    );
+  }
+
+  /* Dark text follows the nearest scope through light-dark. */
+  .button.selected {
+    --ck-viewer-selected-dark-text: color-mix(
+      in srgb,
+      var(--ck-palette-accent-blue),
+      var(--ck-fixed-white)
+        calc(
+          20.4% + var(--ui-theme-contrast) * 0.31% +
+            max(0, var(--ui-theme-contrast) - 58) * 0.31%
+        )
+    );
+    color: light-dark(
+      var(--ck-palette-label-accent),
+      var(--ck-viewer-selected-dark-text, var(--ck-palette-label-accent))
+    );
+  }
+
+  /*
+   * Light draws a 1px light border and a soft drop shadow, dark draws two
+   * half-pixel borders and a deeper shadow. Both lists share five layers so
+   * light-dark picks the colors by the nearest scope.
+   */
+  .controlSurface {
+    background: linear-gradient(
+      light-dark(
+        var(--ck-palette-surface-elevated-primary),
+        var(--theme-background-control-opaque)
+      ),
+      light-dark(
+        var(--ck-palette-surface-elevated-primary),
+        var(--theme-background-control-opaque)
+      )
+    );
+    box-shadow:
+      0 0 0 1px light-dark(var(--ck-palette-border-light), transparent),
+      0 0 0 0.5px light-dark(transparent, var(--ck-palette-border)),
+      0 0 0 0.5px light-dark(transparent, var(--ck-palette-border)),
+      0 3px 18px 0
+        light-dark(
+          color-mix(in srgb, var(--ck-shadow-color) 5%, transparent),
+          transparent
+        ),
+      0 7px 18px -3px
+        light-dark(
+          transparent,
+          color-mix(in srgb, var(--ck-shadow-color) 12%, transparent)
+        );
+    backdrop-filter: blur(22px);
+  }
+
+  .inputSurface {
+    isolation: isolate;
+    position: relative;
+  }
+
+  .inputSurface::after {
+    content: "";
+    pointer-events: none;
+    z-index: -10;
+    border-radius: var(--radius-pill);
+    position: absolute;
+    inset: 0;
+  }
+
+  .inputSurface:focus-within::after,
+  .inputSurface:hover::after,
+  .inputSurface[data-state="active"]::after {
+    background-color: var(--ck-palette-surface-button-secondary-hover);
+  }
+
+  .capsule {
+    padding: calc(var(--spacing) * 0.5);
+  }
+
+  .control {
+    gap: var(--spacing);
+    padding-inline: var(--spacing);
+    padding-block: 0;
+    font-size: var(--text-sm);
+    line-height: calc(var(--spacing) * 5);
+    height: calc(
+      var(--ck-viewer-control-height, calc(var(--spacing) * 9)) - var(--spacing)
+    );
+  }
+
+  .control:disabled {
+    cursor: default;
+  }
+
+  .compound {
+    border-radius: var(--radius-pill);
+    color: var(--ck-palette-ink);
+  }
+
+  .compoundControl {
+    height: 100%;
+    padding-block: 0;
+    font-size: var(--text-sm);
+    line-height: calc(var(--spacing) * 5);
+  }
+
+  .compoundControl:disabled {
+    cursor: default;
+  }
+
+  .button,
+  .capsule,
+  .compound,
+  .title {
+    height: var(--ck-viewer-control-height, calc(var(--spacing) * 9));
+  }
+
+  :is(
+    [data-ck-viewer-density="compact"] .button,
+    [data-ck-viewer-density="compact"] .capsule,
+    [data-ck-viewer-density="compact"] .compound,
+    [data-ck-viewer-density="compact"] .title
+  ) {
+    height: calc(var(--spacing) * 8);
+  }
+
+  [data-ck-viewer-density="compact"] .group {
+    --ck-viewer-control-height: calc(var(--spacing) * 8);
+  }
+
+  .group {
+    gap: calc(var(--spacing) * 0.5);
+  }
+
+  .group .button,
+  .group .compound {
+    border-width: 0;
+    box-shadow: none;
+    background-image: none;
+    height: calc(
+      var(--ck-viewer-control-height, calc(var(--spacing) * 9)) - var(--spacing)
+    );
+  }
+
+  .group .button:not(.selected, .primary),
+  .group .compound {
+    background-color: transparent;
+  }
+
+  .group:has(
+    > [role="group"]:not([data-ck-viewer-header-collapsed]) [data-ck-facepile]
+  ) {
+    gap: 0;
+  }
+
+  .group:has(
+      > [role="group"]:not([data-ck-viewer-header-collapsed]) [data-ck-facepile]
+    )
+    .shareIcon {
+    display: none;
+  }
+
+  :is(
+    :is(.button, .control):has(
+      [data-ck-viewer-compact-label="icon"][data-ck-viewer-header-collapsed]
+    ),
+    .button:has(> [data-ck-page-share-label][data-ck-viewer-header-collapsed])
+  ) {
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    justify-content: center;
+    padding-inline: 0;
+  }
+
+  :is(.button, .control):has(
+    [data-ck-viewer-compact-label="content"][data-ck-viewer-header-collapsed]
+  ) {
+    padding-inline: calc(var(--spacing) * 2);
+    flex-shrink: 0;
+    justify-content: center;
+  }
+
+  .divider {
+    height: calc(var(--spacing) * 4);
+    background-color: var(--ck-palette-border);
+    flex-shrink: 0;
+    width: 1px;
+  }
+
+  :where([data-ck-viewer-density="regular"]) .divider {
+    margin-inline: calc(var(--spacing) * 0.5);
+  }
+
+  .joined .divider {
+    margin-inline: var(--spacing);
+  }
+
+  .zoomGroup .divider {
+    margin-inline: calc(var(--spacing) * 0.5);
+  }
+
+  :where([data-ck-viewer-density="regular"]) .zoomGroup .divider {
+    margin-inline: var(--spacing);
+  }
+
+  .divider.sectionDivider {
+    margin-inline: calc(var(--spacing) * 1.5);
+  }
+
+  .joined .button {
+    padding-inline: var(--spacing);
+  }
+
+  .joined .button:first-child {
+    padding-inline-start: calc(var(--spacing) * 3);
+  }
+
+  .joined .button:last-child {
+    padding-inline-end: calc(var(--spacing) * 3);
+  }
+
+  .joined .button:last-child:not(:first-child, .label) {
+    margin-inline-end: calc(var(--spacing) * 2);
+    padding-inline-end: var(--spacing);
+  }
+
+  .joined .button.label {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+
+  .joined .button.avatarGroup {
+    padding-inline-start: calc(var(--spacing) * 0.5);
+    padding-inline-end: 0;
+  }
+
+  .joined .button.avatarGroup:last-child {
+    padding-inline-end: calc(var(--spacing) * 0.5);
+  }
+
+  .group [data-ck-header-action] {
+    height: calc(
+      var(--ck-viewer-control-height, calc(var(--spacing) * 9)) - var(--spacing)
+    ) !important;
+    min-width: calc(
+      var(--ck-viewer-control-height, calc(var(--spacing) * 9)) - var(--spacing)
+    ) !important;
+  }
+
+  .group [data-ck-header-action]:not([data-ck-has-label]) {
+    width: calc(
+      var(--ck-viewer-control-height, calc(var(--spacing) * 9)) - var(--spacing)
+    ) !important;
+    max-width: calc(
+      var(--ck-viewer-control-height, calc(var(--spacing) * 9)) - var(--spacing)
+    ) !important;
+  }
+
+  [data-ck-viewer-density="compact"] .group [data-ck-header-action] {
+    height: calc(var(--spacing) * 7) !important;
+    min-width: calc(var(--spacing) * 7) !important;
+  }
+
+  [data-ck-viewer-density="compact"]
+    .group
+    [data-ck-header-action]:not([data-ck-has-label]) {
+    width: calc(var(--spacing) * 7) !important;
+    max-width: calc(var(--spacing) * 7) !important;
+  }
+
+  :is(
+    [data-ck-viewer-density="compact"] .group :where(.button, .compound),
+    [data-ck-viewer-density="compact"] .control
+  ) {
+    height: calc(var(--spacing) * 7);
+  }
+
+  .capsule.group:has(
+      > :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):not(
+      :has(
+        > :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+          ~ :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+      )
+    ):not(
+      :has(
+        > [role="group"]:not(
+          [data-ck-viewer-header-collapsed],
+          [hidden],
+          .sr-only
+        )
+      )
+    ) {
+    padding: 0;
+  }
+
+  .capsule.group
+    > :not([role="group"]):nth-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):nth-last-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):is(button),
+  .capsule.group
+    > :not([role="group"]):nth-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):nth-last-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    )
+    > button:only-child {
+    height: 100%;
+  }
+
+  .capsule.group
+    > :not([role="group"]):nth-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):nth-last-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):has(> :is(button, [data-ck-header-action]):only-child) {
+    height: 100%;
+  }
+
+  .capsule.group
+    > :not([role="group"]):nth-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):nth-last-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    )[data-ck-header-action],
+  .capsule.group
+    > :not([role="group"]):nth-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):nth-last-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    )
+    > [data-ck-header-action]:only-child {
+    height: 100% !important;
+  }
+
+  .capsule.group
+    > :not([role="group"]):nth-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):nth-last-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    )[data-ck-header-action]:not([data-ck-has-label]),
+  .capsule.group
+    > :not([role="group"]):nth-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    ):nth-last-child(
+      1 of :not([data-ck-viewer-header-collapsed], [hidden], .sr-only)
+    )
+    > [data-ck-header-action]:only-child:not([data-ck-has-label]) {
+    width: var(--ck-viewer-control-height, calc(var(--spacing) * 9)) !important;
+    min-width: var(
+      --ck-viewer-control-height,
+      calc(var(--spacing) * 9)
+    ) !important;
+    max-width: var(
+      --ck-viewer-control-height,
+      calc(var(--spacing) * 9)
+    ) !important;
+  }
+}

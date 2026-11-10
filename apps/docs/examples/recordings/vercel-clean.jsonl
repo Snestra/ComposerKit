@@ -1,0 +1,14 @@
+{"_comment":"Source: https://ai-sdk.dev/docs/ai-sdk-ui/stream-protocol. Published v5 UI message stream example payloads, replayed without an API key."}
+{"type":"start","messageId":"msg_clean"}
+{"type":"reasoning-start","id":"reasoning_clean"}
+{"type":"reasoning-delta","id":"reasoning_clean","delta":"I should check the weather "}
+{"type":"reasoning-delta","id":"reasoning_clean","delta":"before suggesting a coat."}
+{"type":"reasoning-end","id":"reasoning_clean"}
+{"type":"tool-input-start","toolCallId":"call_clean","toolName":"getWeather"}
+{"type":"tool-input-delta","toolCallId":"call_clean","inputTextDelta":"{\"city\":"}
+{"type":"tool-input-delta","toolCallId":"call_clean","inputTextDelta":"\"San Francisco\"}"}
+{"type":"tool-input-available","toolCallId":"call_clean","toolName":"getWeather","input":{"city":"San Francisco"}}
+{"type":"tool-output-available","toolCallId":"call_clean","output":{"temperatureF":68,"condition":"Clear"}}
+{"type":"file","url":"https://example.com/weather-chart.png","mediaType":"image/png"}
+{"type":"finish"}
+"[DONE]"

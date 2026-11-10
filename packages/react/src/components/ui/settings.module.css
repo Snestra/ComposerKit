@@ -1,0 +1,147 @@
+/*
+ * Rules the settings family cannot express as utilities.
+ *
+ * Interactive rows.
+ * Rows divide with a bottom border; the border turns transparent on a row that
+ * holds an enabled button or radio while it is hovered or focused, and on the
+ * row above it, so the highlighted row reads as one block.
+ *
+ * The daybreak card decoration.
+ * The component writes the two theme values through its light/dark polyfill; the
+ * native light-dark resolves to the nearest theme scope the same way.
+ *
+ * The loading bar is the
+ * bar PreferenceRow shows while a value loads.
+ */
+@layer components {
+  .interactive > :not(:last-child) {
+    border-bottom-color: var(--ck-palette-border);
+  }
+
+  .interactive
+    > :has(
+      > button:enabled,
+      > input[type="radio"]:enabled,
+      > label > input[type="radio"]:enabled
+    ):focus-within {
+    border-bottom-color: transparent;
+  }
+
+  .interactive
+    > :has(
+      + :focus-within > button:enabled,
+      + :focus-within > input[type="radio"]:enabled,
+      + :focus-within > label > input[type="radio"]:enabled
+    ) {
+    border-bottom-color: transparent;
+  }
+
+  @media (hover: hover) {
+    .interactive
+      > :has(
+        > button:enabled,
+        > input[type="radio"]:enabled,
+        > label > input[type="radio"]:enabled
+      ):hover {
+      border-bottom-color: transparent;
+    }
+
+    .interactive
+      > :has(
+        + :hover > button:enabled,
+        + :hover > input[type="radio"]:enabled,
+        + :hover > label > input[type="radio"]:enabled
+      ) {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .daybreak {
+    isolation: isolate;
+    padding-inline-end: clamp(
+      calc(var(--spacing) * 8),
+      18%,
+      calc(var(--spacing) * 32)
+    );
+    position: relative;
+  }
+
+  .daybreak::before {
+    content: "";
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 152px 80px at 76% calc(100% + 41px),
+      var(
+          --theme-background-panel,
+          var(--ck-palette-surface-elevated-secondary)
+        )
+        calc(100% - 2px),
+      var(--color-status-warning) 100%,
+      color-mix(in srgb, var(--color-status-warning-fill) 40%, transparent)
+        calc(100% + 2px),
+      color-mix(in srgb, var(--color-status-warning-fill) 20%, transparent) 122%,
+      color-mix(in srgb, var(--color-status-warning-fill) 5%, transparent) 152%,
+      transparent 180%
+    );
+    width: min(250px, 35%);
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    mask-image: linear-gradient(90deg, transparent 25%, var(--ck-mask) 70%);
+  }
+
+  .loadingBar {
+    --loading-bar-base: color-mix(
+      in srgb,
+      var(--ck-palette-ink-tertiary) 10%,
+      transparent
+    );
+    --loading-bar-highlight: color-mix(
+      in srgb,
+      var(--ck-palette-ink-tertiary) 16%,
+      transparent
+    );
+    border-radius: var(--radius-md);
+    background-color: var(--loading-bar-base);
+    position: relative;
+    overflow: hidden;
+    height: calc(var(--spacing) * 3);
+  }
+
+  .loadingBar::before {
+    content: "";
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--loading-bar-highlight) 50%,
+      transparent 100%
+    );
+    will-change: transform;
+    animation: 3s linear infinite settingsLoadingBar;
+    animation-play-state: var(--ck-decoration-playback, running);
+    position: absolute;
+    inset: 0;
+    transform: translate(-100%);
+  }
+
+  .loadingBar[data-ck-reduced-motion="true"]::before,
+  :global(:root[data-ck-reduced-motion="true"]) .loadingBar::before {
+    will-change: auto;
+    animation: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(:root:not([data-ck-reduced-motion])) .loadingBar::before {
+      will-change: auto;
+      animation: none;
+    }
+  }
+
+  @keyframes settingsLoadingBar {
+    to {
+      transform: translate(100%);
+    }
+  }
+}
