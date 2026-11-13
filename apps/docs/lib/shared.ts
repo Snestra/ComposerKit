@@ -12,7 +12,7 @@ export const docsContentRoute = '/llms.mdx/docs';
 export const galleryRoute = '/gallery';
 
 export const gitConfig = {
-  user: 'Snestra',
+  user: 'bjoernaagaard',
   repo: 'ComposerKit',
   branch: 'main',
 };

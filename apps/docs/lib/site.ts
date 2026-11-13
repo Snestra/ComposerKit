@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 
 export const site = {
   name: 'ComposerKit',
-  url: 'https://snestra.github.io/ComposerKit',
+  url: 'https://bjoernaagaard.github.io/ComposerKit',
   title: 'ComposerKit: React components for chat interfaces',
   description: 'Build message composers and conversations with React components. Install the source through the shadcn registry and connect your own backend.',
   themeColor: '#0f1f10',

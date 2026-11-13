@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "composerkit",
-  "homepage": "https://github.com/Snestra/ComposerKit",
+  "homepage": "https://github.com/bjoernaagaard/ComposerKit",
   "items": [
     {
       "description": "Every ComposerKit component, hook, helper and style.",
