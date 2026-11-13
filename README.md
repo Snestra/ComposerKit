@@ -2,7 +2,7 @@
 
 ComposerKit is a set of React components for chat and agent apps, such as a message composer, a conversation view, tool calls and code diffs. The components use Tailwind CSS and Base UI, and you connect them to your own model and backend.
 
-The documentation, live demos and theme editor are at https://snestra.github.io/ComposerKit/.
+The documentation, live demos and theme editor are at https://bjoernaagaard.github.io/ComposerKit/.
 
 ## Install
 
@@ -12,7 +12,7 @@ First, set up shadcn and register the ComposerKit namespace. Second, add the com
 
 ```bash
 npx shadcn@latest init --defaults --yes
-npx shadcn registry add '@composerkit=https://snestra.github.io/ComposerKit/r/{name}.json'
+npx shadcn registry add '@composerkit=https://bjoernaagaard.github.io/ComposerKit/r/{name}.json'
 npx shadcn add @composerkit/composer --overwrite --yes
 ```
 
@@ -24,7 +24,7 @@ The composer brings the ComposerKit styles into `src/styles/globals.css`. Import
 
 ## Use a component
 
-The page below shows a message box and prints each message you send under it. The [quickstart](https://snestra.github.io/ComposerKit/docs) walks through the same page in a new Next.js app.
+The page below shows a message box and prints each message you send under it. The [quickstart](https://bjoernaagaard.github.io/ComposerKit/docs) walks through the same page in a new Next.js app.
 
 ```tsx
 "use client";
@@ -90,7 +90,7 @@ flowchart LR
     src["packages/composerkit/src"] -->|pnpm registry:build| registry["apps/docs/public/r"]
     src --> docs["apps/docs"]
     registry --> docs
-    docs -->|Pages workflow| pages["snestra.github.io/ComposerKit"]
+    docs -->|Pages workflow| pages["bjoernaagaard.github.io/ComposerKit"]
 ```
 
 ### Run the docs site
